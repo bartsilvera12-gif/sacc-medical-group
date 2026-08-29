@@ -64,3 +64,36 @@ Pasos para publicar:
 3. Deploy. Cada `git push` a `master` vuelve a desplegar automáticamente.
 
 No hay paso de compilación: el archivo `.dc.html` sigue editándose igual que en local.
+
+## Video del hero
+
+El original (`uploads/15249530_1920_1080_30fps.mp4`, 14 MB a 11 Mbps) no se
+publica: queda en local y está en `.gitignore`. Lo que se sirve son versiones
+comprimidas con ffmpeg, elegidas por ancho de pantalla en `initVideo()`:
+
+| Archivo | Uso | Peso |
+| --- | --- | --- |
+| `uploads/hero-poster.jpg` | primer fotograma, se ve mientras carga el video | 66 KB |
+| `uploads/hero-480.mp4` | pantallas < 700 px | 668 KB |
+| `uploads/hero-720.mp4` | pantallas ≥ 700 px | 1,4 MB |
+
+Para regenerarlas a partir de otro video:
+
+```bash
+ffmpeg -i ORIGEN.mp4 -vf scale=1152:-2 -c:v libx264 -preset veryslow -crf 30 -pix_fmt yuv420p -an -movflags +faststart uploads/hero-720.mp4
+ffmpeg -i ORIGEN.mp4 -vf scale=720:-2  -c:v libx264 -preset slow     -crf 29 -pix_fmt yuv420p -an -movflags +faststart uploads/hero-480.mp4
+ffmpeg -ss 0.5 -i ORIGEN.mp4 -frames:v 1 -vf scale=1280:-2 -q:v 6 uploads/hero-poster.jpg
+```
+
+## Comportamiento responsive
+
+`applyResponsive()` no usa media queries (los estilos son inline): mide y
+reescribe. Hay dos umbrales:
+
+- **< 900 px** — las grillas de más de dos columnas pasan a dos, los `sticky`
+  se degradan a `relative` y los pilares del modelo pierden su `min-height`.
+- **< 620 px** — todo pasa a una sola columna.
+
+El menú se vuelve hamburguesa cuando los enlaces no entran (medido, no fijo), y
+en ese momento se oculta también el botón "Asociarse con SACC" para dejarle
+sitio.

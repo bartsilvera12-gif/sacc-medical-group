@@ -8,3 +8,7 @@
 # Material de trabajo: manual de marca (contiene datos personales) y capturas
 uploads/WhatsApp Image*
 uploads/pasted-*
+
+# El master del video del hero (14 MB). Lo que se publica son las versiones
+# comprimidas hero-720/hero-480 generadas con ffmpeg.
+uploads/15249530_1920_1080_30fps.mp4
