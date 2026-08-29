@@ -1,0 +1,10 @@
+# Estado local de los huecos de imagen del canvas
+.image-slots.state.json
+.thumbnail
+
+# Configuracion local del entorno de desarrollo
+.claude/
+
+# Material de trabajo: manual de marca (contiene datos personales) y capturas
+uploads/WhatsApp Image*
+uploads/pasted-*
