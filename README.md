@@ -97,3 +97,12 @@ reescribe. Hay dos umbrales:
 El menú se vuelve hamburguesa cuando los enlaces no entran (medido, no fijo), y
 en ese momento se oculta también el botón "Asociarse con SACC" para dejarle
 sitio.
+
+### Scroll táctil sobre las imágenes
+
+`image-slot.js` marca su `<img>` y su capa de arrastre con `touch-action: none`
+para poder reencuadrar la foto en el editor. En el sitio publicado eso hace que
+apoyar el dedo sobre una imagen cancele el scroll. `liberarTactil()` inyecta una
+hoja en cada shadow root que lo devuelve a `pan-y pinch-zoom`, y solo restituye
+`none` mientras el slot lleva el atributo `data-reframe` — es decir, mientras se
+está reencuadrando de verdad dentro del canvas.
