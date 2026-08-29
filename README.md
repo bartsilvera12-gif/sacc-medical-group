@@ -44,3 +44,23 @@ Geometría de los departamentos de Paraguay de
 [world-atlas](https://github.com/topojson/world-atlas).
 
 Desarrollado por [Neura](https://neura.com.py).
+
+## Despliegue en Vercel
+
+El punto de entrada se llama `SACC Medical Group.dc.html` (con espacios), así que la
+raíz del dominio no encontraría un `index.html`. `vercel.json` resuelve eso:
+
+| Ruta | Sirve |
+| --- | --- |
+| `/` | `SACC Medical Group.dc.html` (reescritura interna, la URL no cambia) |
+| `/privacidad` | `politica-de-privacidad.html` |
+
+Pasos para publicar:
+
+1. En [vercel.com/new](https://vercel.com/new), importar el repositorio
+   `bartsilvera12-gif/sacc-medical-group`.
+2. Framework Preset: **Other**. Sin Build Command, sin Output Directory, sin Install
+   Command — es un sitio estático.
+3. Deploy. Cada `git push` a `master` vuelve a desplegar automáticamente.
+
+No hay paso de compilación: el archivo `.dc.html` sigue editándose igual que en local.

@@ -1,0 +1,13 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "rewrites": [
+    { "source": "/", "destination": "/SACC%20Medical%20Group.dc.html" },
+    { "source": "/privacidad", "destination": "/politica-de-privacidad.html" }
+  ],
+  "headers": [
+    {
+      "source": "/uploads/fonts/(.*)",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+    }
+  ]
+}
