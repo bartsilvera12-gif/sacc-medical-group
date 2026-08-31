@@ -73,7 +73,7 @@
         <span style="color: #55534F;">|</span>
         <button onClick="{{ setEn }}" style="background: none; border: none; padding: 0; cursor: pointer; letter-spacing: .14em; font-size: 11px; color: {{ enColor }};">EN</button>
       </div>
-      <a href="#contacto" data-cta-header="1" style="display: inline-block; white-space: nowrap; padding: 12px 22px; border: 1px solid rgba(201,169,106,.55); font-size: 10.5px; letter-spacing: .18em; text-transform: uppercase; color: #F5F2EC; transition: background 500ms cubic-bezier(.16,.8,.24,1), color 500ms, border-color 500ms;" style-hover="background: var(--accent, #C9A96A); color: #0B0B0C; border-color: var(--accent, #C9A96A);">Partner with SACC</a>
+      <a href="#contacto" data-cta-header="1" style="display: inline-block; white-space: nowrap; padding: 13px 24px; border: 1px solid rgba(201,169,106,.75); font-size: 10.5px; letter-spacing: .18em; text-transform: uppercase; color: #F5F2EC; transition: background 500ms cubic-bezier(.16,.8,.24,1), color 500ms, border-color 500ms;" style-hover="background: var(--accent, #C9A96A); color: #0B0B0C; border-color: var(--accent, #C9A96A);">Partner with SACC</a>
       <button ref="{{ burgerRef }}" onClick="{{ toggleMenu }}" aria-label="Menu" style="display: none; background: none; border: none; padding: 6px; cursor: pointer; flex-direction: column; gap: 6px;">
         <span style="display: block; width: 26px; height: 1px; background: #FFFFFF;"></span>
         <span style="display: block; width: 26px; height: 1px; background: #FFFFFF;"></span>
@@ -671,6 +671,28 @@ class Component extends DCLogic {
     const lado = cta.parentElement;
     const fila = lado && lado.parentElement;
     if (!fila) return;
+    const sub = document.querySelector('[data-marca-sub]');
+
+    cta.style.display = 'inline-block';
+    if (idiomas) idiomas.style.display = 'flex';
+    if (sub) sub.style.display = 'flex';
+
+    if (!compact) {
+      // Con el menu a la vista, el ancho y las separaciones los negocia
+      // setNavScale, que guarda sus propios valores de origen.
+      return;
+    }
+
+    // A partir de aqui el nav esta oculto y los valores del boton son los de
+    // origen: se guardan una sola vez para poder volver a ellos.
+    if (!this._ctaBase) {
+      this._ctaBase = {
+        padding: cta.style.padding,
+        fontSize: cta.style.fontSize,
+        letterSpacing: cta.style.letterSpacing,
+      };
+    }
+    const base = this._ctaBase;
 
     const desborda = () => {
       const kids = Array.from(fila.children).filter((el) => getComputedStyle(el).display !== 'none');
@@ -680,42 +702,35 @@ class Component extends DCLogic {
       return ancho + 2 > fila.clientWidth;
     };
 
-    const sub = document.querySelector('[data-marca-sub]');
-
-    // Punto de partida: todo visible y sin apretar.
-    cta.style.display = 'inline-block';
-    cta.style.padding = '';
-    cta.style.fontSize = '';
-    cta.style.letterSpacing = '';
-    if (idiomas) idiomas.style.display = 'flex';
-    if (sub) sub.style.display = 'flex';
-    lado.style.gap = compact ? '14px' : '';
-    fila.style.gap = compact ? '18px' : '40px';
+    // Punto de partida del modo compacto: boton entero, menos aire alrededor.
+    cta.style.padding = base.padding;
+    cta.style.fontSize = base.fontSize;
+    cta.style.letterSpacing = base.letterSpacing;
+    fila.style.gap = '18px';
+    lado.style.gap = '14px';
     if (!desborda()) return;
 
-    // Paso 1: el boton mas chico y menos aire entre bloques.
-    cta.style.padding = '9px 13px';
-    cta.style.fontSize = '9.5px';
-    cta.style.letterSpacing = '.1em';
+    // Paso 1: se junta todo un poco mas, el boton intacto.
+    fila.style.gap = '14px';
     lado.style.gap = '12px';
-    fila.style.gap = compact ? '14px' : '24px';
     if (!desborda()) return;
 
-    // Paso 2: fuera el selector de idioma, que ya esta dentro del menu.
-    if (idiomas && compact) idiomas.style.display = 'none';
+    // Paso 2: la caja se ajusta, pero el interletrado no se toca: es lo que
+    // hace que se lea como boton y no como texto encajonado.
+    cta.style.padding = '11px 18px';
+    cta.style.fontSize = '10px';
+    cta.style.letterSpacing = '.16em';
     if (!desborda()) return;
 
-    // Paso 3: el logotipo se queda sin su bajada; la marca sigue legible.
-    if (sub && compact) sub.style.display = 'none';
+    // Paso 3: fuera el selector de idioma, que ya esta dentro del menu.
+    if (idiomas) idiomas.style.display = 'none';
     if (!desborda()) return;
 
-    // Paso 4: el boton al minimo legible antes de renunciar a el.
-    cta.style.padding = '8px 11px';
-    cta.style.fontSize = '9px';
-    cta.style.letterSpacing = '.06em';
+    // Paso 4: el logotipo se queda sin su bajada; la marca sigue legible.
+    if (sub) sub.style.display = 'none';
     if (!desborda()) return;
 
-    // Paso 5: no hay lugar; el boton queda dentro del menu.
+    // Paso 5: no hay lugar sin afear el boton; queda dentro del menu.
     cta.style.display = 'none';
   }
 
@@ -1658,12 +1673,8 @@ class Component extends DCLogic {
     const side = row.lastElementChild;
     const sideOrig = side && keep(side, ['gap']);
     if (side) side.style.gap = tight ? '14px' : sideOrig.gap;
-    const cta = side && side.querySelector('a[href="#contacto"]');
-    if (cta) {
-      const o = keep(cta, ['padding', 'letterSpacing']);
-      cta.style.padding = tight ? '10px 15px' : o.padding;
-      cta.style.letterSpacing = tight ? '.11em' : o.letterSpacing;
-    }
+    // El boton no se aprieta: perder su interletrado lo afea. Si no entra,
+    // el ancho lo ceden los enlaces y, en ultimo caso, se pasa a hamburguesa.
   }
 
   applyResponsive() {
