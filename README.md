@@ -53,6 +53,7 @@ raíz del dominio no encontraría un `index.html`. `vercel.json` resuelve eso:
 | Ruta | Sirve |
 | --- | --- |
 | `/` | `SACC Medical Group.dc.html` (reescritura interna, la URL no cambia) |
+| `/nosotros` | `nosotros.html` |
 | `/privacidad` | `politica-de-privacidad.html` |
 
 Pasos para publicar:
@@ -112,3 +113,16 @@ apoyar el dedo sobre una imagen cancele el scroll. `liberarTactil()` inyecta una
 hoja en cada shadow root que lo devuelve a `pan-y pinch-zoom`, y solo restituye
 `none` mientras el slot lleva el atributo `data-reframe` — es decir, mientras se
 está reencuadrando de verdad dentro del canvas.
+
+## La pagina /nosotros
+
+Es un HTML aparte, no una seccion del canvas: portada, capacidades, mision y
+vision. Repite el header, el menu y el pie del sitio en CSS propio, y comparte
+el idioma elegido a traves de `localStorage.sacc-lang`, que el sitio principal escribe
+en `setEs`/`setEn` y lee al montar.
+
+El header ya no alterna con el scroll: nace solido y lleva siempre el boton de
+contacto. Como en un celular no entran a la vez logotipo, idioma, boton y
+hamburguesa, `ajustarCta()` mide y va soltando en orden: aprieta el boton, quita el
+selector de idioma, quita la bajada del logotipo y recien entonces esconde el
+boton, que igual esta dentro del menu.

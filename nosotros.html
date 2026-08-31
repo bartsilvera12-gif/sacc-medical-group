@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nosotros — SACC Medical Group</title>
+<meta name="description" content="Quiénes somos, misión, visión y capacidades de SACC Medical Group: desarrollo de productos, asuntos regulatorios, importación y acceso al mercado sanitario paraguayo.">
+<link rel="icon" type="image/png" sizes="32x32" href="uploads/marca/favicon-32.png">
+<link rel="icon" type="image/png" sizes="256x256" href="uploads/marca/favicon-256.png">
+<link rel="apple-touch-icon" href="uploads/marca/apple-touch-icon.png">
+<meta name="theme-color" content="#0B0B0C">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Nosotros — SACC Medical Group">
+<meta property="og:description" content="Quiénes somos, misión, visión y capacidades de SACC Medical Group.">
+<meta property="og:image" content="uploads/marca/favicon-256.png">
+<style>
+  @font-face { font-family: EB Garamond; font-style: normal; font-weight: 400; font-display: swap; src: url(uploads/fonts/ebgaramond-400-latin.woff2) format("woff2"); }
+  @font-face { font-family: EB Garamond; font-style: normal; font-weight: 500; font-display: swap; src: url(uploads/fonts/ebgaramond-500-latin.woff2) format("woff2"); }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: #0B0B0C; color: #16161A; font-family: EB Garamond, Garamond, Georgia, serif; -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; }
+  img { max-width: 100%; }
+
+  /* Aparicion al entrar en pantalla, como en el resto del sitio. El estado
+     oculto se aplica solo con JS activo para no esconder nada si falla. */
+  .anim [data-reveal] { opacity: 0; transform: translateY(24px); transition: opacity 1000ms cubic-bezier(.16,.8,.24,1) var(--d, 0ms), transform 1000ms cubic-bezier(.16,.8,.24,1) var(--d, 0ms); }
+  .anim [data-reveal][data-shown] { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+    .anim [data-reveal] { opacity: 1; transform: none; transition: none; }
+  }
+
+  /* ---------------------------------------------------------------- header */
+  header { position: fixed; top: 0; left: 0; right: 0; z-index: 90; background: rgba(13,13,14,.86); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid rgba(201,169,106,.35); padding: 15px clamp(20px, 5vw, 72px); }
+  .fila { display: flex; align-items: center; justify-content: space-between; gap: 40px; }
+  .marca { display: flex; flex-direction: column; align-items: center; gap: 6px; line-height: 1; }
+  .marca img { display: block; height: 27px; width: auto; }
+  .sub { display: flex; align-items: center; gap: 8px; }
+  .sub i { display: block; width: 14px; height: 1px; background: #C9A96A; }
+  .sub span { font-size: 8.5px; letter-spacing: .42em; color: #B9B5AD; }
+  nav.enlaces { display: flex; align-items: center; gap: clamp(14px, 2vw, 30px); }
+  nav.enlaces a { font-size: 11.5px; letter-spacing: .1em; text-transform: uppercase; white-space: nowrap; color: #F5F2EC; padding: 6px 0; border-bottom: 1px solid transparent; transition: color 400ms, border-color 400ms; }
+  nav.enlaces a:hover { color: #C9A96A; border-color: #C9A96A; }
+  nav.enlaces a[aria-current] { color: #C9A96A; border-color: #C9A96A; }
+  .lado { display: flex; align-items: center; gap: 22px; }
+  .idiomas { display: flex; align-items: center; gap: 7px; font-size: 11px; letter-spacing: .14em; }
+  .idiomas button { background: none; border: none; padding: 0; cursor: pointer; font: inherit; letter-spacing: .14em; color: #6E6B66; }
+  .idiomas button[aria-pressed="true"] { color: #C9A96A; }
+  .idiomas span { color: #55534F; }
+  .cta { display: inline-block; white-space: nowrap; padding: 12px 22px; border: 1px solid rgba(201,169,106,.55); font-size: 10.5px; letter-spacing: .18em; text-transform: uppercase; color: #F5F2EC; transition: background 500ms, color 500ms, border-color 500ms; }
+  .cta:hover { background: #C9A96A; color: #0B0B0C; border-color: #C9A96A; }
+  .burger { display: none; background: none; border: none; padding: 6px; cursor: pointer; flex-direction: column; gap: 6px; }
+  .burger span { display: block; width: 26px; height: 1px; background: #FFFFFF; }
+
+  .menu { position: fixed; inset: 0; z-index: 95; background: #0B0B0C; padding: 22px clamp(20px, 5vw, 72px); display: flex; flex-direction: column; opacity: 0; transform: translateY(-12px); pointer-events: none; transition: opacity 500ms cubic-bezier(.16,.8,.24,1), transform 600ms cubic-bezier(.16,.8,.24,1); }
+  .menu[data-abierto] { opacity: 1; transform: none; pointer-events: auto; }
+  .menu .top { display: flex; justify-content: space-between; align-items: center; }
+  .menu .top img { display: block; height: 24px; width: auto; }
+  .menu .cerrar { background: none; border: none; color: #F5F2EC; font-size: 26px; line-height: 1; cursor: pointer; }
+  .menu nav { margin: auto 0; display: flex; flex-direction: column; gap: 4px; }
+  .menu nav a { font-size: clamp(24px, 7.4vw, 40px); color: #F5F2EC; padding: 8px 0; border-bottom: 1px solid rgba(245,242,236,.08); }
+  .menu nav a:last-child { color: #C9A96A; border-bottom: none; }
+  .menu .pie { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding-bottom: 18px; }
+  .menu .pie .lema { font-size: 10.5px; letter-spacing: .2em; color: #6E6B66; text-transform: uppercase; }
+
+  /* -------------------------------------------------------------- secciones */
+  section { padding: clamp(34px, 7vw, 104px) clamp(20px, 5vw, 72px); }
+  .caja { max-width: 1500px; margin: 0 auto; }
+  .eyebrow { display: flex; align-items: center; gap: 14px; margin-bottom: clamp(24px, 3vw, 38px); }
+  .eyebrow i { display: block; width: 48px; height: 1px; background: #B99A5F; }
+  .eyebrow span { font-size: 10px; letter-spacing: .4em; text-transform: uppercase; color: #8A8378; }
+  .dos { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(30px, 5vw, 80px); align-items: start; }
+
+  /* Portada oscura: da entrada a la pagina bajo el header fijo. */
+  .portada { background: #0B0B0C; padding-top: clamp(112px, 13vw, 190px); position: relative; overflow: hidden; }
+  .portada .aura { position: absolute; top: -30%; right: -10%; width: 60%; height: 120%; border-radius: 50%; filter: blur(110px); background: radial-gradient(circle, rgba(201,169,106,.16), transparent 70%); pointer-events: none; }
+  .portada .caja { position: relative; }
+  .portada .eyebrow i { background: #C9A96A; }
+  .portada .eyebrow span { color: #9A968F; }
+  .portada h1 { margin: 0 0 clamp(28px, 3.4vw, 48px); max-width: 1100px; font-weight: 300; font-size: clamp(32px, 4.4vw, 66px); line-height: 1.1; letter-spacing: -.02em; color: #F5F2EC; }
+  .portada h1 em { font-family: EB Garamond, Garamond, Georgia, serif; letter-spacing: .045em; font-style: normal; font-weight: 400; color: #C9A96A; }
+  .portada p { margin: 0; font-size: 15.5px; line-height: 1.85; font-weight: 300; color: #A9A5A0; }
+  /* #6E6B66 sobre #0B0B0C da 3.7:1, por debajo del minimo para texto corrido. */
+  .portada p.tenue { color: #8E8A84; }
+  .portada .borde { margin-top: clamp(30px, 4vw, 56px); border-top: 1px solid rgba(245,242,236,.12); }
+
+  /* Capacidades: matriz de celdas separadas por filetes. */
+  .capacidades { background: #FAFAF9; }
+  .capacidades .lead { max-width: 620px; margin: 0 0 clamp(26px, 3vw, 40px); font-size: 16px; line-height: 1.8; font-weight: 300; color: #3A3A3E; }
+  .matriz { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: rgba(20,20,22,.12); border: 1px solid rgba(20,20,22,.12); }
+  .cap { background: #FFFFFF; padding: clamp(22px, 2.4vw, 32px) clamp(18px, 2vw, 28px); min-height: clamp(132px, 12vw, 168px); display: flex; flex-direction: column; gap: 14px; transition: background 500ms; }
+  .cap:hover { background: #FFFCF2; }
+  .cap i { display: block; width: 22px; height: 1px; background: #B99A5F; }
+  .cap span { font-size: 15px; line-height: 1.55; font-weight: 300; color: #3A3A3E; }
+  .cierre { max-width: 920px; margin: clamp(30px, 3.6vw, 52px) 0 0; font-size: 17px; line-height: 1.75; font-weight: 300; color: #16161A; }
+
+  /* Mision y vision. */
+  .mv { background: #FFFFFF; }
+  .panel { border-top: 1px solid rgba(20,20,22,.16); padding-top: clamp(22px, 2.4vw, 34px); }
+  .panel .rot { display: flex; align-items: center; gap: 12px; margin-bottom: clamp(18px, 2vw, 30px); }
+  .panel .rot i { display: block; width: 26px; height: 1px; background: #B99A5F; }
+  .panel .rot span { font-size: 10px; letter-spacing: .42em; text-transform: uppercase; color: #8A8378; }
+  .panel p { margin: 0; font-weight: 300; font-size: clamp(17px, 1.55vw, 24px); line-height: 1.6; letter-spacing: -.01em; color: #16161A; }
+  .panel p + p { margin-top: clamp(16px, 1.6vw, 22px); font-size: 15px; line-height: 1.85; letter-spacing: 0; color: #6A6A6E; }
+  .figura { margin-top: clamp(28px, 4vw, 62px); height: clamp(200px, 26vw, 400px); overflow: hidden; background: #EDEEEF; }
+  .figura img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  /* Datos generales sobre fondo oscuro. */
+
+  /* Cierre. */
+  .final { background: #FAFAF9; text-align: center; }
+  .final h2 { margin: 0 0 clamp(22px, 2.6vw, 34px); font-weight: 300; font-size: clamp(24px, 3vw, 42px); line-height: 1.15; letter-spacing: -.02em; color: #16161A; }
+  .botones { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; }
+  .btn-lleno { padding: 16px 30px; background: #16161A; color: #F5F2EC; font-size: 11px; letter-spacing: .18em; text-transform: uppercase; transition: background 500ms, transform 500ms; }
+  .btn-lleno:hover { background: #C9A96A; color: #0B0B0C; transform: translateY(-2px); }
+  .btn-borde { padding: 16px 30px; border: 1px solid rgba(20,20,22,.25); font-size: 11px; letter-spacing: .18em; text-transform: uppercase; transition: border-color 400ms, color 400ms, transform 500ms; }
+  .btn-borde:hover { border-color: #C9A96A; color: #B99A5F; transform: translateY(-2px); }
+
+  /* Pie: el mismo del sitio, para que la pagina no termine en seco. */
+  footer { background: #0B0B0C; padding: clamp(38px, 4.5vw, 66px) clamp(20px, 5vw, 72px) 26px; }
+  footer .rejilla { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: clamp(26px, 4vw, 64px); padding-bottom: clamp(28px, 3.6vw, 48px); border-bottom: 1px solid rgba(245,242,236,.10); }
+  footer .marca-pie { display: inline-flex; flex-direction: column; align-items: center; gap: 7px; line-height: 1; }
+  footer .marca-pie img { display: block; height: 33px; width: auto; }
+  footer .marca-pie .sub i { width: 16px; }
+  footer .marca-pie .sub span { font-size: 9px; }
+  footer .lema-pie { margin: 18px 0 0; max-width: 330px; font-size: 14px; line-height: 1.75; font-weight: 300; color: #85817B; }
+  footer nav { display: flex; flex-direction: column; gap: 10px; }
+  footer nav a { font-size: 12.5px; letter-spacing: .08em; color: #C7C3BC; transition: color 400ms; }
+  footer .datos-pie { display: flex; flex-direction: column; gap: 10px; }
+  footer .datos-pie div { font-size: 12.5px; font-weight: 300; color: #85817B; }
+  footer .datos-pie a { font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: #F5F2EC; transition: color 400ms; }
+  footer .datos-pie a:first-of-type { margin-top: 12px; }
+  footer .barra { padding-top: 20px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-size: 11px; letter-spacing: .1em; color: #55534F; }
+  footer .barra .legal { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 18px; }
+  footer .barra .legal a { color: #85817B; letter-spacing: .1em; transition: color 400ms; }
+  footer .barra .legal .punto { color: #35332F; }
+  footer a:hover { color: #C9A96A; }
+
+  /* El paso a hamburguesa no lo decide un breakpoint fijo sino la medicion
+     del propio header, igual que en el sitio principal. */
+  .fila[data-compacto] nav.enlaces { display: none; }
+  .fila[data-compacto] .burger { display: flex; }
+  .fila[data-compacto] .cta { padding: 9px 13px; font-size: 9.5px; letter-spacing: .1em; }
+  .fila[data-compacto] .lado { gap: 12px; }
+  .fila[data-compacto] { gap: 16px; }
+  .fila[data-compacto][data-sin-idioma] .idiomas { display: none; }
+  .fila[data-compacto][data-sin-bajada] .sub { display: none; }
+
+  @media (max-width: 1099px) {
+    .matriz { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 899px) {
+    footer .rejilla { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 619px) {
+    .dos, .matriz { grid-template-columns: 1fr; }
+    footer .rejilla { grid-template-columns: 1fr; gap: 26px; }
+    .idiomas { display: none; }
+    .cap { min-height: 0; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="fila">
+    <a class="marca" href="/">
+      <img src="uploads/marca/wordmark-sacc.png" alt="SACC Medical Group">
+      <span class="sub"><i></i><span data-t="MEDICAL GROUP">MEDICAL GROUP</span><i></i></span>
+    </a>
+    <nav class="enlaces">
+      <a href="/" data-t="Inicio">Inicio</a>
+      <a href="/nosotros" aria-current="page" data-t="Nosotros">Nosotros</a>
+      <a href="/#areas" data-t="Áreas de actividad">Áreas de actividad</a>
+      <a href="/#market-access" data-t="Market Access">Market Access</a>
+      <a href="/#international" data-t="International Business">International Business</a>
+      <a href="/#modelo" data-t="Nuestro modelo">Nuestro modelo</a>
+      <a href="/#contacto" data-t="Contacto">Contacto</a>
+    </nav>
+    <div class="lado">
+      <div class="idiomas">
+        <button type="button" data-lang="ES" aria-pressed="true">ES</button>
+        <span>|</span>
+        <button type="button" data-lang="EN" aria-pressed="false">EN</button>
+      </div>
+      <a class="cta" href="/#contacto" data-t="Asociarse con SACC">Asociarse con SACC</a>
+      <button class="burger" type="button" aria-label="Menu"><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<div class="menu">
+  <div class="top">
+    <img src="uploads/marca/wordmark-sacc.png" alt="SACC Medical Group">
+    <button class="cerrar" type="button" aria-label="Cerrar">&times;</button>
+  </div>
+  <a class="cta menu-cta" href="/#contacto" style="display: block; text-align: center; margin-top: 22px; background: #C9A96A; color: #0B0B0C; border-color: #C9A96A; padding: 16px 24px; font-size: 11px; letter-spacing: .18em;" data-t="Asociarse con SACC">Asociarse con SACC</a>
+  <nav>
+    <a href="/" data-t="Inicio">Inicio</a>
+    <a href="/nosotros" data-t="Nosotros">Nosotros</a>
+    <a href="/#areas" data-t="Áreas">Áreas</a>
+    <a href="/#market-access" data-t="Market Access">Market Access</a>
+    <a href="/#international" data-t="International">International</a>
+    <a href="/#modelo" data-t="Modelo">Modelo</a>
+    <a href="/#contacto" data-t="Contacto">Contacto</a>
+  </nav>
+  <div class="pie">
+    <div class="lema" data-t="Conectando la salud global con Paraguay">Conectando la salud global con Paraguay</div>
+    <div class="idiomas">
+      <button type="button" data-lang="ES" aria-pressed="true">ES</button>
+      <span>|</span>
+      <button type="button" data-lang="EN" aria-pressed="false">EN</button>
+    </div>
+  </div>
+</div>
+
+<section class="portada">
+  <div class="aura"></div>
+  <div class="caja">
+    <div data-reveal="1" class="eyebrow"><i></i><span data-t="Quiénes somos">Quiénes somos</span></div>
+    <h1 data-reveal="1" style="--d: 90ms"><span data-t="SACC Medical Group nace con una">SACC Medical Group nace con una</span> <em data-t="concepción moderna del negocio sanitario.">concepción moderna del negocio sanitario.</em></h1>
+    <div data-reveal="1" class="dos borde" style="padding-top: clamp(26px, 3vw, 42px);">
+      <p data-reveal="1" data-t="Entendemos que introducir un producto médico o farmacéutico en un mercado requiere mucho más que importarlo.">Entendemos que introducir un producto médico o farmacéutico en un mercado requiere mucho más que importarlo.</p>
+      <p class="tenue" data-reveal="1" style="--d: 110ms" data-t="Requiere comprender su marco regulatorio, evaluar su viabilidad comercial, desarrollar una estrategia de acceso al mercado y construir relaciones sostenibles entre fabricantes, autoridades, profesionales e instituciones.">Requiere comprender su marco regulatorio, evaluar su viabilidad comercial, desarrollar una estrategia de acceso al mercado y construir relaciones sostenibles entre fabricantes, autoridades, profesionales e instituciones.</p>
+    </div>
+  </div>
+</section>
+
+<section class="capacidades">
+  <div class="caja">
+    <div data-reveal="1" class="eyebrow"><i></i><span data-t="Nuestra estructura">Nuestra estructura</span></div>
+    <p data-reveal="1" class="lead" data-t="Por ello, nuestra estructura de trabajo integra diferentes capacidades:">Por ello, nuestra estructura de trabajo integra diferentes capacidades:</p>
+    <div class="matriz">
+      <div class="cap" data-reveal="1" style="--d: 0ms"><i></i><span data-t="Desarrollo y evaluación de productos.">Desarrollo y evaluación de productos.</span></div>
+      <div class="cap" data-reveal="1" style="--d: 55ms"><i></i><span data-t="Asuntos regulatorios y registros sanitarios.">Asuntos regulatorios y registros sanitarios.</span></div>
+      <div class="cap" data-reveal="1" style="--d: 110ms"><i></i><span data-t="Importación y logística.">Importación y logística.</span></div>
+      <div class="cap" data-reveal="1" style="--d: 165ms"><i></i><span data-t="Desarrollo comercial y distribución.">Desarrollo comercial y distribución.</span></div>
+      <div class="cap" data-reveal="1" style="--d: 220ms"><i></i><span data-t="Acceso al mercado institucional.">Acceso al mercado institucional.</span></div>
+      <div class="cap" data-reveal="1" style="--d: 275ms"><i></i><span data-t="Desarrollo de fabricantes y proveedores internacionales.">Desarrollo de fabricantes y proveedores internacionales.</span></div>
+      <div class="cap" data-reveal="1" style="--d: 330ms"><i></i><span data-t="Inteligencia de mercado.">Inteligencia de mercado.</span></div>
+      <div class="cap" data-reveal="1" style="--d: 385ms"><i></i><span data-t="Gestión de proyectos de introducción de nuevas tecnologías sanitarias.">Gestión de proyectos de introducción de nuevas tecnologías sanitarias.</span></div>
+    </div>
+    <p data-reveal="1" class="cierre" data-t="Este enfoque permite analizar cada oportunidad desde una perspectiva integral: técnica, regulatoria, comercial y estratégica.">Este enfoque permite analizar cada oportunidad desde una perspectiva integral: técnica, regulatoria, comercial y estratégica.</p>
+  </div>
+</section>
+
+<section class="mv">
+  <div class="caja">
+    <div class="dos">
+      <div class="panel" data-reveal="1" style="--d: 0ms">
+        <div class="rot"><i></i><span data-t="Misión">Misión</span></div>
+        <p data-t="Contribuir al fortalecimiento del sistema de salud paraguayo mediante la incorporación y provisión de productos médicos, tecnologías sanitarias y especialidades farmacéuticas de calidad, desarrollando relaciones sostenibles con fabricantes internacionales y ofreciendo soluciones respaldadas por criterios técnicos, regulatorios y comerciales.">Contribuir al fortalecimiento del sistema de salud paraguayo mediante la incorporación y provisión de productos médicos, tecnologías sanitarias y especialidades farmacéuticas de calidad, desarrollando relaciones sostenibles con fabricantes internacionales y ofreciendo soluciones respaldadas por criterios técnicos, regulatorios y comerciales.</p>
+        <p data-t="Buscamos facilitar el acceso del mercado paraguayo a productos competitivos, seguros y confiables, acompañando cada proyecto desde su evaluación y desarrollo regulatorio hasta su introducción, comercialización y posicionamiento en el mercado.">Buscamos facilitar el acceso del mercado paraguayo a productos competitivos, seguros y confiables, acompañando cada proyecto desde su evaluación y desarrollo regulatorio hasta su introducción, comercialización y posicionamiento en el mercado.</p>
+      </div>
+      <div class="panel" data-reveal="1" style="--d: 140ms">
+        <div class="rot"><i></i><span data-t="Visión">Visión</span></div>
+        <p data-t="Ser una compañía paraguaya de referencia en el sector healthcare, reconocida por su capacidad para identificar, desarrollar e introducir al mercado soluciones médicas y farmacéuticas de alto valor, construyendo una plataforma sólida de cooperación entre fabricantes internacionales, profesionales de la salud, instituciones sanitarias y el mercado paraguayo.">Ser una compañía paraguaya de referencia en el sector healthcare, reconocida por su capacidad para identificar, desarrollar e introducir al mercado soluciones médicas y farmacéuticas de alto valor, construyendo una plataforma sólida de cooperación entre fabricantes internacionales, profesionales de la salud, instituciones sanitarias y el mercado paraguayo.</p>
+        <p data-t="Nuestra visión es consolidar progresivamente un portafolio diversificado de insumos médicos, dispositivos, equipamiento y especialidades farmacéuticas, incluyendo productos destinados a áreas terapéuticas especializadas y de alta complejidad.">Nuestra visión es consolidar progresivamente un portafolio diversificado de insumos médicos, dispositivos, equipamiento y especialidades farmacéuticas, incluyendo productos destinados a áreas terapéuticas especializadas y de alta complejidad.</p>
+      </div>
+    </div>
+    <div data-reveal="1" style="--d: 120ms" class="figura"><img src="uploads/sacc-mission.jpg" alt="" loading="lazy"></div>
+  </div>
+</section>
+
+
+<section class="final">
+  <div class="caja">
+    <h2 data-reveal="1" data-t="Desarrollemos juntos el mercado sanitario paraguayo.">Desarrollemos juntos el mercado sanitario paraguayo.</h2>
+    <div data-reveal="1" style="--d: 120ms" class="botones">
+      <a class="btn-lleno" href="/#contacto" data-t="Asociarse con SACC">Asociarse con SACC</a>
+      <a class="btn-borde" href="/" data-t="Volver al inicio">Volver al inicio</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="caja">
+    <div class="rejilla">
+      <div>
+        <div class="marca-pie">
+          <img src="uploads/marca/wordmark-sacc.png" alt="SACC Medical Group">
+          <span class="sub"><i></i><span data-t="MEDICAL GROUP">MEDICAL GROUP</span><i></i></span>
+        </div>
+        <p class="lema-pie" data-t="Conectando la salud global con Paraguay.">Conectando la salud global con Paraguay.</p>
+      </div>
+      <nav>
+        <a href="/nosotros" data-t="Compañía">Compañía</a>
+        <a href="/#areas" data-t="Soluciones en salud">Soluciones en salud</a>
+        <a href="/#market-access" data-t="Acceso al mercado">Acceso al mercado</a>
+        <a href="/#international" data-t="Negocios internacionales">Negocios internacionales</a>
+        <a href="/#contacto" data-t="Contacto">Contacto</a>
+      </nav>
+      <div class="datos-pie">
+        <div>SACC Medical Group</div>
+        <div>SACC EAS</div>
+        <div data-t="República del Paraguay">República del Paraguay</div>
+        <a href="https://www.linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="mailto:info@saccmedicalgroup.com">Email</a>
+      </div>
+    </div>
+    <div class="barra">
+      <span>© SACC Medical Group. <span data-t="Todos los derechos reservados.">Todos los derechos reservados.</span></span>
+      <span class="legal">
+        <a href="/privacidad" data-t="Política de privacidad">Política de privacidad</a>
+        <span class="punto">·</span>
+        <a href="https://neura.com.py" target="_blank" rel="noopener" data-t="Desarrollado por Neura">Desarrollado por Neura</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  // La clase se agrega desde aqui: si el script no corre, nada queda oculto.
+  document.documentElement.classList.add('anim');
+  var reducido = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // Se revisa por scroll en vez de IntersectionObserver: el observador no
+  // dispara si la pagina no se esta pintando (pestañas en segundo plano,
+  // paneles embebidos), y los textos quedarian invisibles para siempre.
+  function revisar() {
+    var vh = innerHeight;
+    var pendientes = document.querySelectorAll('[data-reveal]:not([data-shown])');
+    Array.prototype.forEach.call(pendientes, function (el) {
+      var r = el.getBoundingClientRect();
+      if (reducido || r.top < vh * 0.92) el.setAttribute('data-shown', '');
+    });
+  }
+  revisar();
+  [60, 300, 900].forEach(function (t) { setTimeout(revisar, t); });
+  addEventListener('scroll', revisar, { passive: true });
+  addEventListener('resize', revisar, { passive: true });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(revisar);
+
+  var menu = document.querySelector('.menu');
+  document.querySelector('.burger').addEventListener('click', function () { menu.setAttribute('data-abierto', ''); });
+  document.querySelector('.cerrar').addEventListener('click', function () { menu.removeAttribute('data-abierto'); });
+  Array.prototype.forEach.call(menu.querySelectorAll('nav a, .menu-cta'), function (a) {
+    a.addEventListener('click', function () { menu.removeAttribute('data-abierto'); });
+  });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') menu.removeAttribute('data-abierto'); });
+
+  // El header se aprieta por medicion: primero se intenta con los enlaces a la
+  // vista, despues en hamburguesa, y solo si aun asi no entra se suelta el
+  // selector de idioma, que igual esta dentro del menu.
+  var fila = document.querySelector('header .fila');
+  function desborda() {
+    var kids = Array.prototype.filter.call(fila.children, function (el) {
+      return getComputedStyle(el).display !== 'none';
+    });
+    var gap = parseFloat(getComputedStyle(fila).gap) || 0;
+    var ancho = gap * Math.max(0, kids.length - 1);
+    kids.forEach(function (el) { ancho += Math.max(el.scrollWidth, el.getBoundingClientRect().width); });
+    return ancho + 2 > fila.clientWidth;
+  }
+  function medirHeader() {
+    fila.removeAttribute('data-compacto');
+    fila.removeAttribute('data-sin-idioma');
+    fila.removeAttribute('data-sin-bajada');
+    if (!desborda()) return;
+    fila.setAttribute('data-compacto', '');
+    if (!desborda()) return;
+    fila.setAttribute('data-sin-idioma', '');
+    if (!desborda()) return;
+    fila.setAttribute('data-sin-bajada', '');
+  }
+  medirHeader();
+  addEventListener('resize', medirHeader);
+  if (window.ResizeObserver) new ResizeObserver(medirHeader).observe(document.documentElement);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(medirHeader);
+
+  // Traduccion. La eleccion se comparte con el sitio principal via localStorage.
+  var DICT = {
+    'MEDICAL GROUP': 'MEDICAL GROUP',
+    'Conectando la salud global con Paraguay.': 'Connecting Global Healthcare with Paraguay.',
+    'Compañía': 'Company',
+    'Soluciones en salud': 'Healthcare Solutions',
+    'Acceso al mercado': 'Market Access',
+    'Negocios internacionales': 'International Business',
+    'Inicio': 'Home',
+    'Nosotros': 'About us',
+    'Áreas de actividad': 'Areas of activity',
+    'Áreas': 'Areas',
+    'Market Access': 'Market Access',
+    'International Business': 'International Business',
+    'International': 'International',
+    'Nuestro modelo': 'Our model',
+    'Modelo': 'Model',
+    'Contacto': 'Contact',
+    'Asociarse con SACC': 'Partner with SACC',
+    'Conectando la salud global con Paraguay': 'Connecting Global Healthcare with Paraguay',
+    'Quiénes somos': 'Who we are',
+    'SACC Medical Group nace con una': 'SACC Medical Group was born with a',
+    'concepción moderna del negocio sanitario.': 'modern conception of the healthcare business.',
+    'Entendemos que introducir un producto médico o farmacéutico en un mercado requiere mucho más que importarlo.': 'We understand that introducing a medical or pharmaceutical product into a market requires much more than importing it.',
+    'Requiere comprender su marco regulatorio, evaluar su viabilidad comercial, desarrollar una estrategia de acceso al mercado y construir relaciones sostenibles entre fabricantes, autoridades, profesionales e instituciones.': 'It requires understanding its regulatory framework, assessing its commercial viability, developing a market access strategy and building sustainable relationships between manufacturers, authorities, professionals and institutions.',
+    'Nuestra estructura': 'Our structure',
+    'Por ello, nuestra estructura de trabajo integra diferentes capacidades:': 'For this reason, our working structure integrates different capabilities:',
+    'Desarrollo y evaluación de productos.': 'Product development and evaluation.',
+    'Asuntos regulatorios y registros sanitarios.': 'Regulatory affairs and health registrations.',
+    'Importación y logística.': 'Import and logistics.',
+    'Desarrollo comercial y distribución.': 'Commercial development and distribution.',
+    'Acceso al mercado institucional.': 'Institutional market access.',
+    'Desarrollo de fabricantes y proveedores internacionales.': 'Development of international manufacturers and suppliers.',
+    'Inteligencia de mercado.': 'Market intelligence.',
+    'Gestión de proyectos de introducción de nuevas tecnologías sanitarias.': 'Project management for the introduction of new healthcare technologies.',
+    'Este enfoque permite analizar cada oportunidad desde una perspectiva integral: técnica, regulatoria, comercial y estratégica.': 'This approach allows every opportunity to be analyzed from an integral perspective: technical, regulatory, commercial and strategic.',
+    'Misión': 'Mission',
+    'Visión': 'Vision',
+    'Contribuir al fortalecimiento del sistema de salud paraguayo mediante la incorporación y provisión de productos médicos, tecnologías sanitarias y especialidades farmacéuticas de calidad, desarrollando relaciones sostenibles con fabricantes internacionales y ofreciendo soluciones respaldadas por criterios técnicos, regulatorios y comerciales.': 'To strengthen the Paraguayan health system through the incorporation and supply of quality medical products, healthcare technologies and pharmaceutical specialties, developing sustainable relationships with international manufacturers and offering solutions backed by technical, regulatory and commercial criteria.',
+    'Buscamos facilitar el acceso del mercado paraguayo a productos competitivos, seguros y confiables, acompañando cada proyecto desde su evaluación y desarrollo regulatorio hasta su introducción, comercialización y posicionamiento en el mercado.': 'We seek to facilitate the Paraguayan market’s access to competitive, safe and reliable products, supporting each project from its evaluation and regulatory development through to its introduction, commercialization and positioning in the market.',
+    'Ser una compañía paraguaya de referencia en el sector healthcare, reconocida por su capacidad para identificar, desarrollar e introducir al mercado soluciones médicas y farmacéuticas de alto valor, construyendo una plataforma sólida de cooperación entre fabricantes internacionales, profesionales de la salud, instituciones sanitarias y el mercado paraguayo.': 'To be a leading Paraguayan company in the healthcare sector, recognized for its ability to identify, develop and bring to market high-value medical and pharmaceutical solutions, building a solid platform of cooperation between international manufacturers, healthcare professionals, healthcare institutions and the Paraguayan market.',
+    'Nuestra visión es consolidar progresivamente un portafolio diversificado de insumos médicos, dispositivos, equipamiento y especialidades farmacéuticas, incluyendo productos destinados a áreas terapéuticas especializadas y de alta complejidad.': 'Our vision is to progressively consolidate a diversified portfolio of medical supplies, devices, equipment and pharmaceutical specialties, including products intended for specialized and highly complex therapeutic areas.',
+    'Datos generales': 'General information',
+    'Nombre comercial': 'Trade name',
+    'Empresa': 'Company',
+    'País': 'Country',
+    'República del Paraguay': 'Republic of Paraguay',
+    'Sector': 'Sector',
+    'Salud / Healthcare': 'Health / Healthcare',
+    'Mercado principal': 'Main market',
+    'Desarrollemos juntos el mercado sanitario paraguayo.': 'Let’s develop the Paraguayan healthcare market together.',
+    'Volver al inicio': 'Back to home',
+    'Todos los derechos reservados.': 'All rights reserved.',
+    'Política de privacidad': 'Privacy policy',
+    'Desarrollado por Neura': 'Developed by Neura'
+  };
+
+  function aplicar(lang) {
+    Array.prototype.forEach.call(document.querySelectorAll('[data-t]'), function (el) {
+      var clave = el.getAttribute('data-t');
+      el.textContent = lang === 'EN' ? (DICT[clave] || clave) : clave;
+    });
+    Array.prototype.forEach.call(document.querySelectorAll('[data-lang]'), function (b) {
+      b.setAttribute('aria-pressed', b.getAttribute('data-lang') === lang ? 'true' : 'false');
+    });
+    document.documentElement.lang = lang === 'EN' ? 'en' : 'es';
+    document.title = (lang === 'EN' ? 'About us' : 'Nosotros') + ' — SACC Medical Group';
+  }
+
+  var guardado = 'ES';
+  try { guardado = localStorage.getItem('sacc-lang') || 'ES'; } catch (e) {}
+  aplicar(guardado);
+
+  Array.prototype.forEach.call(document.querySelectorAll('[data-lang]'), function (b) {
+    b.addEventListener('click', function () {
+      var lang = b.getAttribute('data-lang');
+      try { localStorage.setItem('sacc-lang', lang); } catch (e) {}
+      aplicar(lang);
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
