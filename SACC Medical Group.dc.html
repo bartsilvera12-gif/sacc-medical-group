@@ -438,12 +438,12 @@
   </div>
 
   <div style="position: relative; z-index: 1; max-width: 1500px; margin: 0 auto; padding: 0 clamp(20px, 5vw, 72px) clamp(36px, 8vw, 120px); display: grid; grid-template-columns: 1fr 1fr; gap: clamp(30px, 5vw, 80px); align-items: start;">
-    <div style="position: sticky; top: max(84px, calc((100vh - min(clamp(420px, 52vw, 640px), 76vh)) / 2)); height: min(clamp(420px, 52vw, 640px), 76vh); display: flex; flex-direction: column;">
+    <div data-modelo-columna="1" style="position: sticky; top: max(84px, calc((100vh - min(clamp(420px, 52vw, 640px), 76vh)) / 2)); height: min(clamp(420px, 52vw, 640px), 76vh); display: flex; flex-direction: column;">
       <div style="position: relative; flex: 1; background: #EDEEEF;">
-        <div style="position: absolute; inset: 0; opacity: {{ p0 }}; transition: opacity 900ms cubic-bezier(.16,.8,.24,1);"><image-slot id="sacc-model-1" shape="rect" placeholder="Product development" src="uploads/sacc-model-1.jpg"></image-slot></div>
-        <div style="position: absolute; inset: 0; opacity: {{ p1 }}; transition: opacity 900ms cubic-bezier(.16,.8,.24,1);"><image-slot id="sacc-model-2" shape="rect" placeholder="Regulatory strategy" src="uploads/sacc-model-2.jpg"></image-slot></div>
-        <div style="position: absolute; inset: 0; opacity: {{ p2 }}; transition: opacity 900ms cubic-bezier(.16,.8,.24,1);"><image-slot id="sacc-model-3" shape="rect" placeholder="Market access" src="uploads/sacc-model-3.jpg"></image-slot></div>
-        <div style="position: absolute; inset: 0; opacity: {{ p3 }}; transition: opacity 900ms cubic-bezier(.16,.8,.24,1);"><image-slot id="sacc-model-4" shape="rect" placeholder="Commercial development" src="uploads/sacc-model-4.jpg"></image-slot></div>
+        <div data-modelo-foto="0" style="position: absolute; inset: 0; opacity: 1; transition: opacity 900ms cubic-bezier(.16,.8,.24,1);"><image-slot id="sacc-model-1" shape="rect" placeholder="Product development" src="uploads/sacc-model-1.jpg"></image-slot></div>
+        <div data-modelo-foto="1" style="position: absolute; inset: 0; opacity: 0; transition: opacity 900ms cubic-bezier(.16,.8,.24,1);"><image-slot id="sacc-model-2" shape="rect" placeholder="Regulatory strategy" src="uploads/sacc-model-2.jpg"></image-slot></div>
+        <div data-modelo-foto="2" style="position: absolute; inset: 0; opacity: 0; transition: opacity 900ms cubic-bezier(.16,.8,.24,1);"><image-slot id="sacc-model-3" shape="rect" placeholder="Market access" src="uploads/sacc-model-3.jpg"></image-slot></div>
+        <div data-modelo-foto="3" style="position: absolute; inset: 0; opacity: 0; transition: opacity 900ms cubic-bezier(.16,.8,.24,1);"><image-slot id="sacc-model-4" shape="rect" placeholder="Commercial development" src="uploads/sacc-model-4.jpg"></image-slot></div>
       </div>
       <div style="margin-top: 18px; display: flex; align-items: center; gap: 10px;">
         <span style="height: 1px; flex: 1; background: rgba(20,20,22,.14); position: relative;"><span style="position: absolute; left: 0; top: 0; height: 1px; background: #B99A5F; width: {{ pillarProgress }}; transition: width 700ms cubic-bezier(.16,.8,.24,1);"></span></span>
@@ -828,7 +828,7 @@ class Component extends DCLogic {
       const guardado = localStorage.getItem('sacc-lang');
       if (guardado === 'EN' && this.state.lang !== 'EN') this.setState({ lang: 'EN' });
     } catch (e) {}
-    [60, 300, 900].forEach((t) => setTimeout(() => { this.applyResponsive(); this.scan(); this.applyLang(); this.liberarTactil(); }, t));
+    [60, 300, 900].forEach((t) => setTimeout(() => { this.applyLang(); this.applyResponsive(); this.scan(); this.liberarTactil(); }, t));
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { this.applyResponsive(); this.scan(); });
     window.addEventListener('scroll', this.onScroll, { passive: true });
     window.addEventListener('resize', this.onResize, { passive: true });
@@ -838,7 +838,7 @@ class Component extends DCLogic {
     }
   }
 
-  componentDidUpdate() { this.pintarAreas(); this.liberarTactil(); this.initVideo(); this.initStack(); this.initGlobe(); this.initSphere(); this.initTopo(); this.initMapa(); this.initCards3D(); this.scan(); this.applyResponsive(); this.applyLang(); }
+  componentDidUpdate() { this.pintarAreas(); this.liberarTactil(); this.initVideo(); this.initStack(); this.initGlobe(); this.initSphere(); this.initTopo(); this.initMapa(); this.initCards3D(); this.scan(); this.applyLang(); this.applyResponsive(); }
 
   componentWillUnmount() {
     this.teardownVideo();
@@ -1650,14 +1650,29 @@ class Component extends DCLogic {
   }
 
   // Devuelve true si el contenido del header no entra en el ancho disponible.
-  navOverflows() {
+  medirNav() {
     const nav = this.navLinksRef.current;
     const row = nav && nav.parentElement;
-    if (!row) return false;
+    if (!row) return 0;
     const kids = Array.from(row.children);
     const gap = parseFloat(getComputedStyle(row).gap) || 0;
     let needed = gap * Math.max(0, kids.length - 1);
     kids.forEach((el) => { needed += Math.max(el.scrollWidth, el.getBoundingClientRect().width); });
+    return needed;
+  }
+
+  navOverflows() {
+    const row = this.navLinksRef.current && this.navLinksRef.current.parentElement;
+    if (!row) return false;
+    // Se mide con los dos idiomas y manda el mas ancho: si no, los mismos
+    // enlaces entran en ingles y no en español, y el header cambiaba de modo
+    // al traducir.
+    const actual = this.state.lang === 'EN' ? 'en' : 'es';
+    const otro = actual === 'en' ? 'es' : 'en';
+    let needed = this.medirNav();
+    this.applyLang(otro);
+    needed = Math.max(needed, this.medirNav());
+    this.applyLang(actual);
     return needed + 16 > row.clientWidth;
   }
 
@@ -1716,6 +1731,7 @@ class Component extends DCLogic {
     if (!root) return;
     const muyAngosto = w < 620;
     this.layoutProceso(w < 900);
+    this.layoutModelo(w < 900);
     if (this._respW === w) return;
     this._respW = w;
     const narrow = w < 900;
@@ -1779,6 +1795,7 @@ class Component extends DCLogic {
       this.progressRef.current.style.width = (h > 0 ? Math.min(100, (y / h) * 100) : 0) + '%';
     }
     this.onStack();
+    this.layoutModelo(window.innerWidth < 900);
     if (this.heroBgRef.current && !this.reduced) {
       this.heroBgRef.current.style.willChange = 'transform';
       this.heroBgRef.current.style.transform = 'scale(1.04) translate3d(0,' + Math.min(y * 0.05, 60) + 'px,0)';
@@ -1815,6 +1832,48 @@ class Component extends DCLogic {
 
   // Los estilos de las fichas de area salian de huecos de plantilla numerados.
   // Ahora se aplican por indice, asi el largo de la lista lo decide el DOM.
+  // En escritorio las cuatro fotos comparten un recuadro sticky y se cruzan por
+  // opacidad. En celular eso no se ve: la columna queda al principio de la
+  // seccion y para cuando se llega a la segunda etapa ya paso de largo. Ahi
+  // cada foto se mete adentro de su etapa, debajo del texto.
+  layoutModelo(apilado) {
+    const columna = document.querySelector('[data-modelo-columna]');
+    const fotos = Array.from(document.querySelectorAll('[data-modelo-foto]'));
+    if (!columna || fotos.length !== 4) return;
+    const marco = columna.firstElementChild;
+
+    if (this._modeloApilado !== apilado) {
+      this._modeloApilado = apilado;
+      const pilares = Array.from(document.querySelectorAll('[data-pillar]'));
+      fotos.forEach((foto, i) => {
+        if (apilado) {
+          const destino = pilares[i];
+          if (!destino) return;
+          foto.style.position = 'relative';
+          foto.style.inset = 'auto';
+          foto.style.opacity = '1';
+          foto.style.marginTop = 'clamp(20px, 4vw, 30px)';
+          foto.style.height = 'clamp(200px, 52vw, 320px)';
+          destino.appendChild(foto);
+        } else {
+          foto.style.position = 'absolute';
+          foto.style.inset = '0';
+          foto.style.marginTop = '';
+          foto.style.height = '';
+          if (marco) marco.appendChild(foto);
+        }
+      });
+      columna.style.display = apilado ? 'none' : 'flex';
+    }
+
+    // El cruce por opacidad solo tiene sentido cuando comparten recuadro.
+    if (!apilado) {
+      fotos.forEach((foto, i) => {
+        foto.style.opacity = this.state.pillar === i ? '1' : '0';
+      });
+    }
+  }
+
   pintarAreas() {
     window.__saccPintarAreas = () => this.pintarAreas();
     const activo = this.state.area;
@@ -2063,11 +2122,11 @@ class Component extends DCLogic {
     };
   }
 
-  applyLang() {
+  applyLang(forzado) {
     const root = this.navRef.current && this.navRef.current.parentElement;
     if (!root) return;
     const dict = Component.DICT;
-    const idioma = this.state.lang === 'EN' ? 'en' : 'es';
+    const idioma = forzado || (this.state.lang === 'EN' ? 'en' : 'es');
     const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
     if (!this.origText) this.origText = new WeakMap();
     const store = this.origText;
@@ -2114,7 +2173,6 @@ class Component extends DCLogic {
       pillarCounter: '0' + (s.pillar + 1) + ' / 04',
       pillarProgress: ((s.pillar + 1) / 4) * 100 + '%',
     };
-    for (let i = 0; i < 4; i++) { v['p' + i] = s.pillar === i ? 1 : 0; }
     return v;
   }
 }
