@@ -198,9 +198,9 @@ del HTML. Vaciarla por accidente no deja la sección en blanco.
 
 ### El header y el compositor
 
-El header no usa . Lo usaba, pero eso lo convertía en una capa
+El header no usa `backdrop-filter`. Lo usaba, pero eso lo convertía en una capa
 compuesta por GPU apoyada sobre un video en reproducción y una pila de secciones
- — la combinación que algunos Android dibujan mal, dejando la barra
-transparente o directamente sin pintar. Con  de opacidad el desenfoque solo
+ `sticky` — la combinación que algunos Android dibujan mal, dejando la barra
+transparente o directamente sin pintar. Con `.86` de opacidad el desenfoque solo
 actuaba sobre el 14% restante, así que el fondo sólido se ve prácticamente igual
 y no depende del compositor.
