@@ -281,8 +281,8 @@
         </article>
       </div>
 
-      <div style="position: sticky; top: 130px; height: clamp(380px, 44vw, 620px);">
-        <div style="position: relative; width: 100%; height: 100%; background: #EDEEEF;">
+      <div style="position: sticky; top: 130px; height: clamp(380px, 44vw, 620px); display: flex; flex-direction: column;">
+        <div style="position: relative; width: 100%; flex: 1; min-height: 0; background: #EDEEEF;">
           <div data-area-img="0" style="position: absolute; inset: 0; opacity: 0; transition: opacity 900ms cubic-bezier(.16,.8,.24,1);"><image-slot id="sacc-area-1" shape="rect" placeholder="Farmacéutica" src="uploads/sacc-area-1.jpg"></image-slot></div>
           <div data-area-img="1" style="position: absolute; inset: 0; opacity: 0; transition: opacity 900ms cubic-bezier(.16,.8,.24,1);"><image-slot id="sacc-area-2" shape="rect" placeholder="Medical devices" src="uploads/sacc-area-2.jpg"></image-slot></div>
           <div data-area-img="2" style="position: absolute; inset: 0; opacity: 0; transition: opacity 900ms cubic-bezier(.16,.8,.24,1);"><image-slot id="sacc-area-3" shape="rect" placeholder="Medical supplies" src="uploads/sacc-area-3.jpg"></image-slot></div>
@@ -2122,10 +2122,26 @@ class Component extends DCLogic {
     };
   }
 
+  // Indice del diccionario por las tres formas posibles del texto: la del
+  // markup, la española y la inglesa.
+  dictIndexado() {
+    if (this._dictIdx) return this._dictIdx;
+    const base = Component.DICT;
+    const idx = Object.create(null);
+    for (const clave in base) {
+      const entrada = base[clave];
+      idx[clave] = entrada;
+      if (entrada.es && !(entrada.es in idx)) idx[entrada.es] = entrada;
+      if (entrada.en && !(entrada.en in idx)) idx[entrada.en] = entrada;
+    }
+    this._dictIdx = idx;
+    return idx;
+  }
+
   applyLang(forzado) {
     const root = this.navRef.current && this.navRef.current.parentElement;
     if (!root) return;
-    const dict = Component.DICT;
+    const dict = this.dictIndexado();
     const idioma = forzado || (this.state.lang === 'EN' ? 'en' : 'es');
     const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
     if (!this.origText) this.origText = new WeakMap();
