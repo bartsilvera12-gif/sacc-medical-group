@@ -11,8 +11,8 @@
 // Mientras esten vacios, el sitio funciona igual con el contenido que ya trae
 // y el panel avisa que falta configurarlo.
 window.SACC_SUPABASE = {
-  URL: '',
-  ANON_KEY: '',
+  URL: 'https://api.neura.com.py',
+  ANON_KEY: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlzcyI6InN1cGFiYXNlIiwiaWF0IjoxNzc0MTAxNDYxLCJleHAiOjE5MzE3ODE0NjF9.7_wAph8IolPMXtgfpezSwS5XR62IdD__qhqCywLDp3Q',
   ESQUEMA: 'sacc',
   BUCKET: 'sacc-imagenes',
 };

@@ -5,6 +5,9 @@
 (function () {
   'use strict';
 
+  if (window.__saccDatos) return;
+  window.__saccDatos = true;
+
   var cfg = window.SACC_SUPABASE || {};
   if (!cfg.URL || !cfg.ANON_KEY) return;
 

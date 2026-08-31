@@ -152,6 +152,10 @@ insert into sacc.admins (user_id, email) values ('EL-UID', 'correo@ejemplo.com')
 6. Completar `sacc-config.js` con el *Project URL* y la clave *anon public* de
    **Settings → API**.
 
+En esta instalacion el proyecto es autoalojado en `https://api.neura.com.py`,
+asi que el paso 3 no se hace desde el panel de Supabase sino por la variable
+de entorno `PGRST_DB_SCHEMAS` de PostgREST.
+
 ### Sobre las claves
 
 La `anon key` va en el navegador a propósito: por sí sola no da permisos. Quien
