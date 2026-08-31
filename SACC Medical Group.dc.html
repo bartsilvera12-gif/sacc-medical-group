@@ -300,17 +300,17 @@
       </div>
     </div>
 
-    <div ref="{{ processRef }}" style="position: relative; margin-top: clamp(36px, 8vw, 120px);">
-      <div style="position: absolute; left: 0; right: 0; top: 7px; height: 1px; background: rgba(245,242,236,.14);"></div>
+    <div ref="{{ processRef }}" data-proceso="1" style="position: relative; margin-top: clamp(36px, 8vw, 120px);">
+      <div data-proceso-riel="1" style="position: absolute; left: 0; right: 0; top: 7px; height: 1px; background: rgba(245,242,236,.14);"></div>
       <div ref="{{ processLineRef }}" style="position: absolute; left: 0; top: 7px; height: 1px; width: 0%; background: var(--accent, #C9A96A); transition: width 700ms cubic-bezier(.16,.8,.24,1);"></div>
-      <div style="position: relative; display: grid; grid-template-columns: repeat(7, 1fr); gap: 14px;">
-        <div><span style="display: block; width: 9px; height: 9px; border: 1px solid rgba(245,242,236,.3); background: #0B0B0C; border-radius: 50%; margin-bottom: 26px; transform: translateY(3px);"></span><div style="font-size: 10px; letter-spacing: .22em; color: #6E6B66; margin-bottom: 10px;">01</div><div style="font-size: clamp(12px, 1.05vw, 14px); line-height: 1.5; font-weight: 400; color: #F5F2EC;">Product Evaluation</div></div>
-        <div><span style="display: block; width: 9px; height: 9px; border: 1px solid rgba(245,242,236,.3); background: #0B0B0C; border-radius: 50%; margin-bottom: 26px; transform: translateY(3px);"></span><div style="font-size: 10px; letter-spacing: .22em; color: #6E6B66; margin-bottom: 10px;">02</div><div style="font-size: clamp(12px, 1.05vw, 14px); line-height: 1.5; font-weight: 400; color: #F5F2EC;">Regulatory Analysis</div></div>
-        <div><span style="display: block; width: 9px; height: 9px; border: 1px solid rgba(245,242,236,.3); background: #0B0B0C; border-radius: 50%; margin-bottom: 26px; transform: translateY(3px);"></span><div style="font-size: 10px; letter-spacing: .22em; color: #6E6B66; margin-bottom: 10px;">03</div><div style="font-size: clamp(12px, 1.05vw, 14px); line-height: 1.5; font-weight: 400; color: #F5F2EC;">Health Registration</div></div>
-        <div><span style="display: block; width: 9px; height: 9px; border: 1px solid rgba(245,242,236,.3); background: #0B0B0C; border-radius: 50%; margin-bottom: 26px; transform: translateY(3px);"></span><div style="font-size: 10px; letter-spacing: .22em; color: #6E6B66; margin-bottom: 10px;">04</div><div style="font-size: clamp(12px, 1.05vw, 14px); line-height: 1.5; font-weight: 400; color: #F5F2EC;">Import Strategy</div></div>
-        <div><span style="display: block; width: 9px; height: 9px; border: 1px solid rgba(245,242,236,.3); background: #0B0B0C; border-radius: 50%; margin-bottom: 26px; transform: translateY(3px);"></span><div style="font-size: 10px; letter-spacing: .22em; color: #6E6B66; margin-bottom: 10px;">05</div><div style="font-size: clamp(12px, 1.05vw, 14px); line-height: 1.5; font-weight: 400; color: #F5F2EC;">Market Access</div></div>
-        <div><span style="display: block; width: 9px; height: 9px; border: 1px solid rgba(245,242,236,.3); background: #0B0B0C; border-radius: 50%; margin-bottom: 26px; transform: translateY(3px);"></span><div style="font-size: 10px; letter-spacing: .22em; color: #6E6B66; margin-bottom: 10px;">06</div><div style="font-size: clamp(12px, 1.05vw, 14px); line-height: 1.5; font-weight: 400; color: #F5F2EC;">Institutional &amp; Private Market</div></div>
-        <div><span style="display: block; width: 9px; height: 9px; border: 1px solid rgba(245,242,236,.3); background: #0B0B0C; border-radius: 50%; margin-bottom: 26px; transform: translateY(3px);"></span><div style="font-size: 10px; letter-spacing: .22em; color: #6E6B66; margin-bottom: 10px;">07</div><div style="font-size: clamp(12px, 1.05vw, 14px); line-height: 1.5; font-weight: 400; color: #F5F2EC;">Portfolio Expansion</div></div>
+      <div data-proceso-grilla="1" style="position: relative; display: grid; grid-template-columns: repeat(7, 1fr); gap: 14px;">
+        <div data-paso="1"><span data-paso-punto="1" style="display: block; width: 9px; height: 9px; border: 1px solid rgba(245,242,236,.3); background: #0B0B0C; border-radius: 50%; margin-bottom: 26px; transform: translateY(3px);"></span><div data-paso-num="1" style="font-size: 10px; letter-spacing: .22em; color: #6E6B66; margin-bottom: 10px;">01</div><div data-paso-txt="1" style="font-size: clamp(12px, 1.05vw, 14px); line-height: 1.5; font-weight: 400; color: #F5F2EC;">Product Evaluation</div></div>
+        <div data-paso="1"><span data-paso-punto="1" style="display: block; width: 9px; height: 9px; border: 1px solid rgba(245,242,236,.3); background: #0B0B0C; border-radius: 50%; margin-bottom: 26px; transform: translateY(3px);"></span><div data-paso-num="1" style="font-size: 10px; letter-spacing: .22em; color: #6E6B66; margin-bottom: 10px;">02</div><div data-paso-txt="1" style="font-size: clamp(12px, 1.05vw, 14px); line-height: 1.5; font-weight: 400; color: #F5F2EC;">Regulatory Analysis</div></div>
+        <div data-paso="1"><span data-paso-punto="1" style="display: block; width: 9px; height: 9px; border: 1px solid rgba(245,242,236,.3); background: #0B0B0C; border-radius: 50%; margin-bottom: 26px; transform: translateY(3px);"></span><div data-paso-num="1" style="font-size: 10px; letter-spacing: .22em; color: #6E6B66; margin-bottom: 10px;">03</div><div data-paso-txt="1" style="font-size: clamp(12px, 1.05vw, 14px); line-height: 1.5; font-weight: 400; color: #F5F2EC;">Health Registration</div></div>
+        <div data-paso="1"><span data-paso-punto="1" style="display: block; width: 9px; height: 9px; border: 1px solid rgba(245,242,236,.3); background: #0B0B0C; border-radius: 50%; margin-bottom: 26px; transform: translateY(3px);"></span><div data-paso-num="1" style="font-size: 10px; letter-spacing: .22em; color: #6E6B66; margin-bottom: 10px;">04</div><div data-paso-txt="1" style="font-size: clamp(12px, 1.05vw, 14px); line-height: 1.5; font-weight: 400; color: #F5F2EC;">Import Strategy</div></div>
+        <div data-paso="1"><span data-paso-punto="1" style="display: block; width: 9px; height: 9px; border: 1px solid rgba(245,242,236,.3); background: #0B0B0C; border-radius: 50%; margin-bottom: 26px; transform: translateY(3px);"></span><div data-paso-num="1" style="font-size: 10px; letter-spacing: .22em; color: #6E6B66; margin-bottom: 10px;">05</div><div data-paso-txt="1" style="font-size: clamp(12px, 1.05vw, 14px); line-height: 1.5; font-weight: 400; color: #F5F2EC;">Market Access</div></div>
+        <div data-paso="1"><span data-paso-punto="1" style="display: block; width: 9px; height: 9px; border: 1px solid rgba(245,242,236,.3); background: #0B0B0C; border-radius: 50%; margin-bottom: 26px; transform: translateY(3px);"></span><div data-paso-num="1" style="font-size: 10px; letter-spacing: .22em; color: #6E6B66; margin-bottom: 10px;">06</div><div data-paso-txt="1" style="font-size: clamp(12px, 1.05vw, 14px); line-height: 1.5; font-weight: 400; color: #F5F2EC;">Institutional &amp; Private Market</div></div>
+        <div data-paso="1"><span data-paso-punto="1" style="display: block; width: 9px; height: 9px; border: 1px solid rgba(245,242,236,.3); background: #0B0B0C; border-radius: 50%; margin-bottom: 26px; transform: translateY(3px);"></span><div data-paso-num="1" style="font-size: 10px; letter-spacing: .22em; color: #6E6B66; margin-bottom: 10px;">07</div><div data-paso-txt="1" style="font-size: clamp(12px, 1.05vw, 14px); line-height: 1.5; font-weight: 400; color: #F5F2EC;">Portfolio Expansion</div></div>
       </div>
     </div>
   </div>
@@ -637,6 +637,54 @@ class Component extends DCLogic {
     this.modelRef = React.createRef();
     this.areaListRef = React.createRef();
     this.reduced = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  }
+
+  layoutProceso(vertical) {
+    // La linea de proceso nace horizontal: un riel arriba y siete columnas
+    // colgando. Apilada en una columna eso deja el riel suelto en el aire y el
+    // punto de cada paso flotando sobre su numero. En celular se rota entera:
+    // el riel baja por la izquierda y cada paso es punto - numero - etiqueta.
+    const cont = this.processRef.current;
+    if (!cont || this._procesoVertical === vertical) return;
+    this._procesoVertical = vertical;
+    const riel = cont.querySelector('[data-proceso-riel]');
+    const fill = this.processLineRef.current;
+    const grilla = cont.querySelector('[data-proceso-grilla]');
+    const SANGRIA = '24px';
+
+    if (riel) {
+      Object.assign(riel.style, vertical
+        ? { left: '4px', right: 'auto', top: '4px', bottom: '4px', width: '1px', height: 'auto' }
+        : { left: '0', right: '0', top: '7px', bottom: 'auto', width: 'auto', height: '1px' });
+    }
+    if (fill) {
+      Object.assign(fill.style, vertical
+        ? { left: '4px', top: '4px', width: '1px', height: '0%', transition: 'height 700ms cubic-bezier(.16,.8,.24,1)' }
+        : { left: '0', top: '7px', width: '0%', height: '1px', transition: 'width 700ms cubic-bezier(.16,.8,.24,1)' });
+    }
+    if (grilla) {
+      grilla.style.gridTemplateColumns = vertical ? '1fr' : 'repeat(7, 1fr)';
+      grilla.style.gap = vertical ? '0' : '14px';
+    }
+
+    cont.querySelectorAll('[data-paso]').forEach((paso) => {
+      Object.assign(paso.style, vertical
+        ? { display: 'flex', alignItems: 'center', gap: '0 ' + SANGRIA, padding: '13px 0' }
+        : { display: '', alignItems: '', gap: '', padding: '' });
+      const punto = paso.querySelector('[data-paso-punto]');
+      const num = paso.querySelector('[data-paso-num]');
+      const txt = paso.querySelector('[data-paso-txt]');
+      if (punto) Object.assign(punto.style, vertical
+        ? { marginBottom: '0', transform: 'none', flex: '0 0 auto', transition: 'background 700ms cubic-bezier(.16,.8,.24,1), border-color 700ms cubic-bezier(.16,.8,.24,1)' }
+        : { marginBottom: '26px', transform: 'translateY(3px)', flex: '', transition: '' });
+      if (num) Object.assign(num.style, vertical
+        ? { marginBottom: '0', flex: '0 0 auto', width: '22px' }
+        : { marginBottom: '10px', flex: '', width: '' });
+      if (txt) Object.assign(txt.style, vertical
+        ? { fontSize: '15px', flex: '1 1 auto' }
+        : { fontSize: '', flex: '' });
+    });
+    this.onScroll();
   }
 
   liberarTactil() {
@@ -1556,11 +1604,13 @@ class Component extends DCLogic {
     if (cta) cta.style.display = compact ? 'none' : 'inline-block';
     const root = this.navRef.current && this.navRef.current.parentElement;
     if (!root) return;
+    const muyAngosto = w < 620;
+    this.layoutProceso(w < 900);
     if (this._respW === w) return;
     this._respW = w;
     const narrow = w < 900;
-    const muyAngosto = w < 620;
     root.querySelectorAll('[style*="grid-template-columns"]').forEach((el) => {
+      if (el.hasAttribute('data-proceso-grilla')) return;
       if (el.dataset.gtc === undefined) el.dataset.gtc = el.style.gridTemplateColumns || '';
       const orig = el.dataset.gtc;
       if (!orig) return;
@@ -1637,7 +1687,16 @@ class Component extends DCLogic {
       const r = pr.getBoundingClientRect();
       const start = window.innerHeight * 0.85, end = window.innerHeight * 0.3;
       const t = (start - r.top) / (start - end);
-      pl.style.width = Math.max(0, Math.min(1, t)) * 100 + '%';
+      const frac = Math.max(0, Math.min(1, t));
+      const avance = frac * 100 + '%';
+      const puntos = pr.querySelectorAll('[data-paso-punto]');
+      puntos.forEach((p, i) => {
+        const hecho = frac >= (i + 0.5) / puntos.length;
+        p.style.borderColor = hecho ? 'var(--accent, #C9A96A)' : 'rgba(245,242,236,.3)';
+        p.style.background = hecho ? 'var(--accent, #C9A96A)' : '#0B0B0C';
+      });
+      if (this._procesoVertical) pl.style.height = avance;
+      else pl.style.width = avance;
     }
     const model = this.modelRef.current;
     if (model) {
