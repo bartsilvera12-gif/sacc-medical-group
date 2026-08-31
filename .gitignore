@@ -13,6 +13,6 @@ uploads/pasted-*
 # comprimidas hero-720/hero-480 generadas con ffmpeg.
 uploads/15249530_1920_1080_30fps.mp4
 
-# La configuracion de Supabase se completa por proyecto y no se versiona.
-# Se copia de sacc-config.js y se rellena con la URL y la anon key.
-# sacc-config.local.js
+# sacc-config.js SI se versiona: la anon key es publica por diseño y de todos
+# modos queda a la vista en el navegador. Lo que nunca entra al repositorio es
+# la clave service_role.
