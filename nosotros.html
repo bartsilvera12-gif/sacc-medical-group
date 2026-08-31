@@ -68,7 +68,8 @@
   .menu .top .marca .sub span { font-size: 8px; }
   /* El idioma sube al principio del panel y se marca con un recuadro: en
      dorado plano sobre negro el activo no se distinguia lo suficiente. */
-  .idiomas-panel { margin-top: 22px; gap: 8px; }
+  .fila-panel { margin-top: 22px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 14px; }
+  .idiomas-panel { gap: 8px; }
   .idiomas-panel button { border: 1px solid rgba(245,242,236,.20); padding: 6px 13px; font-size: 12px; color: #B9B5AD; transition: background 400ms, color 400ms, border-color 400ms; }
   .idiomas-panel button[aria-pressed="true"] { border-color: #C9A96A; background: rgba(201,169,106,.16); color: #DCC08A; }
   .menu nav a:last-child { color: #DCC08A; }
@@ -153,7 +154,7 @@
   .fila[data-compacto] .cta { padding: 11px 18px; font-size: 10px; letter-spacing: .16em; }
   .fila[data-compacto] .lado { gap: 12px; }
   .fila[data-compacto] { gap: 16px; }
-  .fila[data-compacto][data-sin-idioma] .idiomas { display: none; }
+  header .fila[data-compacto][data-sin-idioma] .idiomas { display: none; }
   .fila[data-compacto][data-sin-bajada] .sub { display: none; }
 
   @media (max-width: 1099px) {
@@ -165,7 +166,7 @@
   @media (max-width: 619px) {
     .dos, .matriz { grid-template-columns: 1fr; }
     footer .rejilla { grid-template-columns: 1fr; gap: 26px; }
-    .idiomas { display: none; }
+    header .idiomas { display: none; }
     .cap { min-height: 0; }
   }
 </style>
@@ -207,11 +208,13 @@
     </span>
     <button class="cerrar" type="button" aria-label="Cerrar">&times;</button>
   </div>
-  <div class="idiomas idiomas-panel">
-    <button type="button" data-lang="ES" aria-pressed="true">ES</button>
-    <button type="button" data-lang="EN" aria-pressed="false">EN</button>
+  <div class="fila-panel">
+    <div class="idiomas idiomas-panel">
+      <button type="button" data-lang="ES" aria-pressed="true">ES</button>
+      <button type="button" data-lang="EN" aria-pressed="false">EN</button>
+    </div>
+    <a class="cta menu-cta" href="/#contacto" style="background: #C9A96A; color: #0B0B0C; border-color: #C9A96A; padding: 11px 20px; font-size: 10px; letter-spacing: .16em;" data-t="Asociarse con SACC">Asociarse con SACC</a>
   </div>
-  <a class="cta menu-cta" href="/#contacto" style="align-self: flex-start; margin-top: 26px; background: #C9A96A; color: #0B0B0C; border-color: #C9A96A; padding: 13px 26px; font-size: 10.5px; letter-spacing: .18em;" data-t="Asociarse con SACC">Asociarse con SACC</a>
   <nav>
     <a href="/" data-t="Inicio">Inicio</a>
     <a href="/nosotros" data-t="Nosotros">Nosotros</a>

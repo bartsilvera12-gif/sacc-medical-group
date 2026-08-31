@@ -96,11 +96,13 @@
     </span>
     <button onClick="{{ toggleMenu }}" aria-label="Cerrar" style="background: none; border: none; color: #F5F2EC; font-size: 26px; line-height: 1; cursor: pointer;">×</button>
   </div>
-  <div style="margin-top: 22px; display: flex; align-items: center; gap: 8px; font-size: 12px; letter-spacing: .14em;">
+  <div style="margin-top: 22px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 14px;">
+    <div style="display: flex; align-items: center; gap: 8px; font-size: 12px; letter-spacing: .14em;">
     <button onClick="{{ setEs }}" style="border: 1px solid {{ esBorde }}; background: {{ esFondo }}; padding: 6px 13px; cursor: pointer; letter-spacing: .14em; font-size: 12px; color: {{ esTexto }}; transition: background 400ms, color 400ms, border-color 400ms;">ES</button>
     <button onClick="{{ setEn }}" style="border: 1px solid {{ enBorde }}; background: {{ enFondo }}; padding: 6px 13px; cursor: pointer; letter-spacing: .14em; font-size: 12px; color: {{ enTexto }}; transition: background 400ms, color 400ms, border-color 400ms;">EN</button>
+    </div>
+    <a href="#contacto" onClick="{{ closeMenu }}" style="padding: 11px 20px; background: var(--accent, #C9A96A); color: #0B0B0C; font-size: 10px; letter-spacing: .16em; text-transform: uppercase; white-space: nowrap;">Asociarse con SACC</a>
   </div>
-  <a href="#contacto" onClick="{{ closeMenu }}" style="align-self: flex-start; margin-top: 26px; padding: 13px 26px; background: var(--accent, #C9A96A); color: #0B0B0C; font-size: 10.5px; letter-spacing: .18em; text-transform: uppercase;">Asociarse con SACC</a>
   <nav style="margin: 22px 0 0; width: 100%; display: flex; flex-direction: column; gap: 2px;">
     <a href="#top" onClick="{{ closeMenu }}" style="font-family: EB Garamond, Garamond, Georgia, serif; letter-spacing: .045em; font-size: clamp(22px, 4.6vw, 30px); color: #F5F2EC; padding: 7px 0; border-bottom: 1px solid rgba(245,242,236,.08);">Inicio</a>
     <a href="/nosotros" onClick="{{ closeMenu }}" style="font-family: EB Garamond, Garamond, Georgia, serif; letter-spacing: .045em; font-size: clamp(22px, 4.6vw, 30px); color: #F5F2EC; padding: 7px 0; border-bottom: 1px solid rgba(245,242,236,.08);">Nosotros</a>
