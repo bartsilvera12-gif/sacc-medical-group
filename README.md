@@ -141,6 +141,11 @@ siquiera está configurado— la página se ve igual que siempre.
 2. **SQL Editor** → pegar y correr `supabase/schema.sql` entero. Crea el schema
    `sacc`, las tablas, las políticas RLS y el bucket de imágenes. Después correr
    `supabase/schema-secciones.sql`, que agrega las áreas y los principios.
+
+   Si al entrar al panel una sección dice que la tabla «existe pero PostgREST
+   no la ve todavía», es la caché del esquema. Se arregla corriendo
+   `notify pgrst, "reload schema";` en el SQL Editor. Los dos archivos ya
+   terminan con esa línea, así que solo pasa si se crearon las tablas a mano.
 3. **Settings → API → Exposed schemas** → agregar `sacc`. Sin este paso la API
    no ve las tablas y todo devuelve 404.
 4. **Authentication → Users → Add user**, con correo y contraseña.

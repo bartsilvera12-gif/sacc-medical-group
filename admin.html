@@ -312,8 +312,14 @@
     var q = base + '/rest/v1/' + tabla + '?select=*' + (orden ? '&order=' + orden : '');
     return fetch(q, { headers: cabeceras({ 'Accept-Profile': esquema }) })
       .then(function (r) {
-        if (!r.ok) throw new Error('No se pudo leer ' + tabla + ' (' + r.status + ').');
-        return r.json();
+        return r.text().then(function (t) {
+          if (r.ok) return t ? JSON.parse(t) : [];
+          var cuerpo = {};
+          try { cuerpo = JSON.parse(t); } catch (e) {}
+          var err = new Error(cuerpo.message || ('No se pudo leer ' + tabla + ' (' + r.status + ').'));
+          err.codigo = cuerpo.code || '';
+          throw err;
+        });
       });
   }
 
@@ -709,16 +715,22 @@
     return Promise.all([
       leer('contacto'),
       leer('imagenes', 'orden'),
-      leer('areas', 'orden').catch(function () { return null; }),
-      leer('principios', 'orden').catch(function () { return null; }),
+      leer('areas', 'orden').catch(function (e) { return { fallo: e }; }),
+      leer('principios', 'orden').catch(function (e) { return { fallo: e }; }),
     ]).then(function (res) {
       if (res[0] && res[0].length) pintarContacto(res[0][0]);
       pintarFotos(res[1] || []);
       // Si falta correr schema-secciones.sql, se dice donde esta el problema
       // en vez de dejar la seccion muda.
       [['areas', res[2], LISTAS.areas], ['principios', res[3], LISTAS.principios]].forEach(function (par) {
-        if (par[1] === null) {
-          estado(par[2].estado, 'mal', 'La tabla sacc.' + par[0] + ' no responde. Falta correr supabase/schema-secciones.sql.');
+        if (par[1] && par[1].fallo) {
+          // PGRST205 significa que la tabla existe pero PostgREST todavia no la
+          // ve: su cache del esquema quedo vieja. Es un problema distinto de
+          // que falte crearla, y se arregla distinto.
+          var e = par[1].fallo;
+          estado(par[2].estado, 'mal', e.codigo === 'PGRST205'
+            ? 'La tabla sacc.' + par[0] + ' existe pero PostgREST no la ve todavía. Corré en el SQL Editor:  notify pgrst, "reload schema";'
+            : 'La tabla sacc.' + par[0] + ' no responde. Falta correr supabase/schema-secciones.sql. (' + e.message + ')');
         } else {
           datos[par[0]] = par[1];
           pintarLista(par[2]);

@@ -135,3 +135,11 @@ select * from (values
       'We prioritise commercial relationships capable of generating continuity, growth and value for all parties involved.')
 ) as v(orden, titulo_es, titulo_en, texto_es, texto_en)
 where not exists (select 1 from sacc.principios);
+
+-- -----------------------------------------------------------------------------
+--  Refrescar la cache de PostgREST
+-- -----------------------------------------------------------------------------
+--  Crear las tablas no alcanza: PostgREST guarda su propio mapa del esquema y
+--  hasta que se recarga responde 404 con el codigo PGRST205. Esta linea se lo
+--  avisa.
+notify pgrst, 'reload schema';
