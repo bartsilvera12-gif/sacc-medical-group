@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Panel — SACC Medical Group</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/png" sizes="32x32" href="uploads/marca/favicon-32.png">
+<link rel="apple-touch-icon" href="uploads/marca/apple-touch-icon.png">
+<meta name="theme-color" content="#0B0B0C">
+<style>
+  @font-face { font-family: EB Garamond; font-style: normal; font-weight: 400; font-display: swap; src: url(uploads/fonts/ebgaramond-400-latin.woff2) format("woff2"); }
+  @font-face { font-family: EB Garamond; font-style: normal; font-weight: 500; font-display: swap; src: url(uploads/fonts/ebgaramond-500-latin.woff2) format("woff2"); }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #FAFAF9; color: #16161A; font-family: EB Garamond, Garamond, Georgia, serif; -webkit-font-smoothing: antialiased; }
+  a { color: inherit; }
+
+  header { background: #0B0B0C; padding: 16px clamp(20px, 4vw, 44px); display: flex; align-items: center; justify-content: space-between; gap: 20px; border-bottom: 1px solid rgba(201,169,106,.35); }
+  header .marca { display: inline-flex; flex-direction: column; align-items: center; gap: 6px; line-height: 1; }
+  header img { display: block; height: 24px; width: auto; }
+  header .sub { display: flex; align-items: center; gap: 8px; }
+  header .sub i { display: block; width: 14px; height: 1px; background: #C9A96A; }
+  header .sub span { font-size: 8px; letter-spacing: .4em; color: #B9B5AD; }
+  header .quien { font-size: 11px; letter-spacing: .12em; color: #85817B; display: flex; align-items: center; gap: 14px; }
+
+  main { max-width: 1080px; margin: 0 auto; padding: clamp(26px, 4vw, 52px) clamp(20px, 4vw, 44px) 80px; }
+  h1 { margin: 0 0 6px; font-weight: 400; font-size: clamp(26px, 3vw, 40px); letter-spacing: -.015em; }
+  .sub-h1 { margin: 0 0 clamp(26px, 3.4vw, 44px); font-size: 14.5px; line-height: 1.7; color: #6A6A6E; }
+
+  fieldset { border: 1px solid rgba(20,20,22,.14); background: #FFFFFF; padding: clamp(20px, 2.6vw, 32px); margin: 0 0 24px; }
+  legend { padding: 0 10px; font-size: 10px; letter-spacing: .34em; text-transform: uppercase; color: #8A8378; }
+  .rejilla { display: grid; grid-template-columns: 1fr 1fr; gap: 18px 22px; }
+  label { display: block; font-size: 10px; letter-spacing: .22em; text-transform: uppercase; color: #8A8378; margin-bottom: 7px; }
+  input[type=text], input[type=email], input[type=password], textarea {
+    width: 100%; font: inherit; font-size: 15px; color: #16161A; background: #FAFAF9;
+    border: 1px solid rgba(20,20,22,.18); padding: 11px 13px; border-radius: 0;
+  }
+  input:focus, textarea:focus { outline: 2px solid #C9A96A; outline-offset: -1px; }
+  textarea { min-height: 84px; resize: vertical; line-height: 1.6; }
+  .ancho-total { grid-column: 1 / -1; }
+
+  button { font: inherit; cursor: pointer; border-radius: 0; }
+  .btn { padding: 13px 26px; background: #16161A; color: #F5F2EC; border: 1px solid #16161A; font-size: 11px; letter-spacing: .18em; text-transform: uppercase; transition: background 300ms, color 300ms; }
+  .btn:hover { background: #C9A96A; border-color: #C9A96A; color: #0B0B0C; }
+  .btn[disabled] { opacity: .45; cursor: default; }
+  .btn-suave { padding: 9px 16px; background: transparent; color: #16161A; border: 1px solid rgba(20,20,22,.25); font-size: 10px; letter-spacing: .14em; text-transform: uppercase; }
+  .btn-suave:hover { border-color: #C9A96A; color: #8A6E32; }
+  .barra { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin-top: 6px; }
+
+  /* Imagenes */
+  .fotos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .foto { border: 1px solid rgba(20,20,22,.14); background: #FFFFFF; display: flex; flex-direction: column; }
+  .foto .marco { aspect-ratio: 3 / 2; background: #EDEEEF; overflow: hidden; }
+  .foto .marco img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .foto .cuerpo { padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+  .foto .nombre { font-size: 13.5px; line-height: 1.4; color: #16161A; }
+  .foto .slot { font-size: 10px; letter-spacing: .16em; color: #8A8378; }
+  .foto .pie { margin-top: auto; display: flex; align-items: center; gap: 10px; }
+  .foto input[type=file] { display: none; }
+
+  /* Acceso */
+  .acceso { max-width: 380px; margin: clamp(50px, 10vh, 120px) auto; background: #FFFFFF; border: 1px solid rgba(20,20,22,.14); padding: 34px; }
+  .acceso h2 { margin: 0 0 8px; font-weight: 400; font-size: 24px; }
+  .acceso p { margin: 0 0 24px; font-size: 14px; line-height: 1.7; color: #6A6A6E; }
+  .acceso .campo { margin-bottom: 16px; }
+
+  .aviso { padding: 14px 18px; border-left: 2px solid #B99A5F; background: #FFFCF2; font-size: 14px; line-height: 1.7; color: #3A3A3E; margin: 0 0 24px; }
+  .aviso.error { border-color: #B4462F; background: #FDF3F1; }
+  .aviso.ok { border-color: #4E7A52; background: #F2F7F2; }
+  .aviso code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12.5px; }
+  .oculto { display: none !important; }
+
+  @media (max-width: 899px) {
+    .fotos { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 619px) {
+    .rejilla, .fotos { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <a class="marca" href="/">
+    <img src="uploads/marca/wordmark-sacc.png" alt="SACC Medical Group">
+    <span class="sub"><i></i><span>MEDICAL GROUP</span><i></i></span>
+  </a>
+  <div class="quien">
+    <span id="usuario"></span>
+    <button type="button" class="btn-suave oculto" id="salir" style="color: #B9B5AD; border-color: rgba(245,242,236,.25);">Salir</button>
+  </div>
+</header>
+
+<!-- ------------------------------------------------------------- sin configurar -->
+<main id="vista-config" class="oculto">
+  <h1>Falta configurar la conexión</h1>
+  <p class="sub-h1">El panel no sabe a qué proyecto de Supabase conectarse.</p>
+  <div class="aviso">
+    <p style="margin: 0 0 12px;">Abrí <code>sacc-config.js</code> y completá los dos valores que están en Supabase, en <strong>Settings → API</strong>:</p>
+    <p style="margin: 0 0 12px;"><code>URL</code> es el <em>Project URL</em> y <code>ANON_KEY</code> es la clave <em>anon public</em>. La <code>service_role</code> no va nunca acá: da permiso total y este archivo lo puede leer cualquiera.</p>
+    <p style="margin: 0;">Antes de eso hay que correr <code>supabase/schema.sql</code> en el SQL Editor y agregar <code>sacc</code> en <strong>Settings → API → Exposed schemas</strong>.</p>
+  </div>
+</main>
+
+<!-- -------------------------------------------------------------------- acceso -->
+<main id="vista-acceso" class="oculto">
+  <form class="acceso" id="form-acceso">
+    <h2>Panel de administración</h2>
+    <p>Acceso reservado a los administradores del sitio.</p>
+    <div class="campo">
+      <label for="correo">Correo</label>
+      <input type="email" id="correo" autocomplete="username" required>
+    </div>
+    <div class="campo">
+      <label for="clave">Contraseña</label>
+      <input type="password" id="clave" autocomplete="current-password" required>
+    </div>
+    <div class="aviso error oculto" id="error-acceso"></div>
+    <button type="submit" class="btn" style="width: 100%;">Entrar</button>
+  </form>
+</main>
+
+<!-- ------------------------------------------------------------------- el panel -->
+<main id="vista-panel" class="oculto">
+  <h1>Contenido del sitio</h1>
+  <p class="sub-h1">Los cambios se publican al guardar. El sitio los toma en la siguiente carga, sin necesidad de volver a desplegar.</p>
+
+  <div class="aviso ok oculto" id="mensaje"></div>
+  <div class="aviso error oculto" id="error"></div>
+
+  <form id="form-contacto">
+    <fieldset>
+      <legend>Datos de contacto</legend>
+      <div class="rejilla">
+        <div>
+          <label for="c-email">Correo</label>
+          <input type="email" id="c-email" required>
+        </div>
+        <div>
+          <label for="c-linkedin">LinkedIn</label>
+          <input type="text" id="c-linkedin">
+        </div>
+        <div>
+          <label for="c-sede-es">Sede — español</label>
+          <input type="text" id="c-sede-es">
+        </div>
+        <div>
+          <label for="c-sede-en">Sede — inglés</label>
+          <input type="text" id="c-sede-en">
+        </div>
+        <div>
+          <label for="c-bajada-es">Bajada — español</label>
+          <textarea id="c-bajada-es"></textarea>
+        </div>
+        <div>
+          <label for="c-bajada-en">Bajada — inglés</label>
+          <textarea id="c-bajada-en"></textarea>
+        </div>
+        <div class="ancho-total barra">
+          <button type="submit" class="btn" id="guardar-contacto">Guardar contacto</button>
+          <span style="font-size: 12.5px; color: #8A8378;" id="sello-contacto"></span>
+        </div>
+      </div>
+    </fieldset>
+  </form>
+
+  <fieldset>
+    <legend>Imágenes</legend>
+    <p style="margin: 0 0 20px; font-size: 14px; line-height: 1.7; color: #6A6A6E;">Cada recuadro es un lugar del sitio. Al subir una foto se reemplaza solo ahí. Si nunca se sube nada, queda la que trae el sitio.</p>
+    <div class="fotos" id="fotos"></div>
+  </fieldset>
+</main>
+
+<script src="sacc-config.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  var cfg = window.SACC_SUPABASE || {};
+  var base = (cfg.URL || '').replace(/\/+$/, '');
+  var esquema = cfg.ESQUEMA || 'sacc';
+  var bucket = cfg.BUCKET || 'sacc-imagenes';
+  var CLAVE_SESION = 'sacc-admin-sesion';
+
+  var $ = function (id) { return document.getElementById(id); };
+  function ver(id) {
+    ['vista-config', 'vista-acceso', 'vista-panel'].forEach(function (v) {
+      $(v).classList.toggle('oculto', v !== id);
+    });
+  }
+  function avisar(caja, texto) {
+    var el = $(caja);
+    el.textContent = texto;
+    el.classList.toggle('oculto', !texto);
+    if (texto) setTimeout(function () { el.classList.add('oculto'); }, 6000);
+  }
+
+  if (!base || !cfg.ANON_KEY) { ver('vista-config'); return; }
+
+  // --------------------------------------------------------------- sesion
+  var sesion = null;
+  try { sesion = JSON.parse(localStorage.getItem(CLAVE_SESION) || 'null'); } catch (e) {}
+
+  function guardarSesion(s) {
+    sesion = s;
+    try { localStorage.setItem(CLAVE_SESION, JSON.stringify(s)); } catch (e) {}
+  }
+  function borrarSesion() {
+    sesion = null;
+    try { localStorage.removeItem(CLAVE_SESION); } catch (e) {}
+  }
+
+  function cabeceras(extra) {
+    var h = Object.assign({
+      apikey: cfg.ANON_KEY,
+      Authorization: 'Bearer ' + (sesion ? sesion.access_token : cfg.ANON_KEY),
+    }, extra || {});
+    return h;
+  }
+
+  function entrar(email, clave) {
+    return fetch(base + '/auth/v1/token?grant_type=password', {
+      method: 'POST',
+      headers: { apikey: cfg.ANON_KEY, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: email, password: clave }),
+    }).then(function (r) {
+      return r.json().then(function (j) {
+        if (!r.ok) throw new Error(j.error_description || j.msg || 'No se pudo entrar.');
+        return j;
+      });
+    });
+  }
+
+  // Confirma contra sacc.admins que la cuenta tiene permiso de escritura.
+  function esAdmin() {
+    return fetch(base + '/rest/v1/admins?select=user_id', {
+      headers: cabeceras({ 'Accept-Profile': esquema }),
+    }).then(function (r) { return r.ok ? r.json() : []; })
+      .then(function (filas) { return filas.length > 0; })
+      .catch(function () { return false; });
+  }
+
+  // ---------------------------------------------------------------- datos
+  function leer(tabla, orden) {
+    var q = base + '/rest/v1/' + tabla + '?select=*' + (orden ? '&order=' + orden : '');
+    return fetch(q, { headers: cabeceras({ 'Accept-Profile': esquema }) })
+      .then(function (r) {
+        if (!r.ok) throw new Error('No se pudo leer ' + tabla + ' (' + r.status + ').');
+        return r.json();
+      });
+  }
+
+  function actualizar(tabla, filtro, cambios) {
+    return fetch(base + '/rest/v1/' + tabla + '?' + filtro, {
+      method: 'PATCH',
+      headers: cabeceras({
+        'Content-Type': 'application/json',
+        'Content-Profile': esquema,
+        Prefer: 'return=representation',
+      }),
+      body: JSON.stringify(cambios),
+    }).then(function (r) {
+      return r.text().then(function (t) {
+        if (!r.ok) throw new Error(t || ('Error ' + r.status));
+        var filas = t ? JSON.parse(t) : [];
+        if (!filas.length) throw new Error('No se guardó: la cuenta no figura en sacc.admins.');
+        return filas;
+      });
+    });
+  }
+
+  function subir(archivo, slot) {
+    var ext = (archivo.name.split('.').pop() || 'jpg').toLowerCase();
+    var ruta = slot + '-' + Date.now() + '.' + ext;
+    return fetch(base + '/storage/v1/object/' + bucket + '/' + ruta, {
+      method: 'POST',
+      headers: cabeceras({ 'Content-Type': archivo.type || 'application/octet-stream', 'x-upsert': 'true' }),
+      body: archivo,
+    }).then(function (r) {
+      return r.text().then(function (t) {
+        if (!r.ok) throw new Error(t || ('No se pudo subir (' + r.status + ').'));
+        return base + '/storage/v1/object/public/' + bucket + '/' + ruta;
+      });
+    });
+  }
+
+  // -------------------------------------------------------------- pantalla
+  var contacto = null;
+
+  function pintarContacto(c) {
+    contacto = c;
+    $('c-email').value = c.email || '';
+    $('c-linkedin').value = c.linkedin || '';
+    $('c-sede-es').value = c.sede_es || '';
+    $('c-sede-en').value = c.sede_en || '';
+    $('c-bajada-es').value = c.bajada_es || '';
+    $('c-bajada-en').value = c.bajada_en || '';
+    $('sello-contacto').textContent = c.actualizado
+      ? 'Última edición: ' + new Date(c.actualizado).toLocaleString('es-PY')
+      : '';
+  }
+
+  function pintarFotos(filas) {
+    var cont = $('fotos');
+    cont.textContent = '';
+    filas.forEach(function (f) {
+      var caja = document.createElement('div');
+      caja.className = 'foto';
+
+      var marco = document.createElement('div');
+      marco.className = 'marco';
+      var img = document.createElement('img');
+      img.alt = '';
+      img.loading = 'lazy';
+      img.src = f.url || ('uploads/' + f.slot.replace(/^sacc-/, 'sacc-') + '.jpg');
+      img.onerror = function () { img.style.display = 'none'; };
+      marco.appendChild(img);
+
+      var cuerpo = document.createElement('div');
+      cuerpo.className = 'cuerpo';
+      var nombre = document.createElement('div');
+      nombre.className = 'nombre';
+      nombre.textContent = f.descripcion || f.slot;
+      var slot = document.createElement('div');
+      slot.className = 'slot';
+      slot.textContent = f.slot;
+
+      var pie = document.createElement('div');
+      pie.className = 'pie';
+      var boton = document.createElement('button');
+      boton.type = 'button';
+      boton.className = 'btn-suave';
+      boton.textContent = f.url ? 'Reemplazar' : 'Subir';
+      var entrada = document.createElement('input');
+      entrada.type = 'file';
+      entrada.accept = 'image/*';
+      var estado = document.createElement('span');
+      estado.style.cssText = 'font-size: 11.5px; color: #8A8378;';
+
+      boton.addEventListener('click', function () { entrada.click(); });
+      entrada.addEventListener('change', function () {
+        var archivo = entrada.files && entrada.files[0];
+        if (!archivo) return;
+        if (archivo.size > 8 * 1024 * 1024) { estado.textContent = 'Máximo 8 MB.'; return; }
+        boton.disabled = true;
+        estado.textContent = 'Subiendo…';
+        subir(archivo, f.slot)
+          .then(function (url) {
+            return actualizar('imagenes', 'slot=eq.' + encodeURIComponent(f.slot), { url: url })
+              .then(function () { img.src = url; img.style.display = ''; });
+          })
+          .then(function () {
+            estado.textContent = 'Listo';
+            boton.textContent = 'Reemplazar';
+            avisar('mensaje', 'Imagen actualizada: ' + (f.descripcion || f.slot));
+          })
+          .catch(function (e) { estado.textContent = ''; avisar('error', e.message); })
+          .then(function () { boton.disabled = false; entrada.value = ''; });
+      });
+
+      pie.appendChild(boton);
+      pie.appendChild(entrada);
+      pie.appendChild(estado);
+      cuerpo.appendChild(nombre);
+      cuerpo.appendChild(slot);
+      cuerpo.appendChild(pie);
+      caja.appendChild(marco);
+      caja.appendChild(cuerpo);
+      cont.appendChild(caja);
+    });
+  }
+
+  function cargarPanel() {
+    return Promise.all([leer('contacto'), leer('imagenes', 'orden')])
+      .then(function (res) {
+        if (res[0] && res[0].length) pintarContacto(res[0][0]);
+        pintarFotos(res[1] || []);
+        ver('vista-panel');
+      });
+  }
+
+  $('form-contacto').addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    var boton = $('guardar-contacto');
+    boton.disabled = true;
+    actualizar('contacto', 'id=eq.1', {
+      email: $('c-email').value.trim(),
+      linkedin: $('c-linkedin').value.trim(),
+      sede_es: $('c-sede-es').value.trim(),
+      sede_en: $('c-sede-en').value.trim(),
+      bajada_es: $('c-bajada-es').value.trim(),
+      bajada_en: $('c-bajada-en').value.trim(),
+    }).then(function (filas) {
+      pintarContacto(filas[0]);
+      avisar('mensaje', 'Datos de contacto guardados.');
+    }).catch(function (e) {
+      avisar('error', e.message);
+    }).then(function () { boton.disabled = false; });
+  });
+
+  $('form-acceso').addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    $('error-acceso').classList.add('oculto');
+    entrar($('correo').value.trim(), $('clave').value)
+      .then(function (s) {
+        guardarSesion(s);
+        return esAdmin().then(function (ok) {
+          if (!ok) {
+            borrarSesion();
+            throw new Error('La cuenta existe pero no está dada de alta en sacc.admins.');
+          }
+          $('usuario').textContent = s.user && s.user.email ? s.user.email : '';
+          $('salir').classList.remove('oculto');
+          return cargarPanel();
+        });
+      })
+      .catch(function (e) {
+        $('error-acceso').textContent = e.message;
+        $('error-acceso').classList.remove('oculto');
+      });
+  });
+
+  $('salir').addEventListener('click', function () {
+    borrarSesion();
+    location.reload();
+  });
+
+  // Sesion guardada: se reutiliza si el token sigue sirviendo.
+  if (sesion && sesion.access_token) {
+    esAdmin().then(function (ok) {
+      if (!ok) { borrarSesion(); ver('vista-acceso'); return; }
+      $('usuario').textContent = sesion.user && sesion.user.email ? sesion.user.email : '';
+      $('salir').classList.remove('oculto');
+      return cargarPanel();
+    }).catch(function () { borrarSesion(); ver('vista-acceso'); });
+  } else {
+    ver('vista-acceso');
+  }
+})();
+</script>
+
+</body>
+</html>

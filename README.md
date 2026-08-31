@@ -126,3 +126,49 @@ contacto. Como en un celular no entran a la vez logotipo, idioma, boton y
 hamburguesa, `ajustarCta()` mide y va soltando en orden: aprieta el boton, quita el
 selector de idioma, quita la bajada del logotipo y recien entonces esconde el
 boton, que igual esta dentro del menu.
+
+## Panel de administración (Supabase)
+
+`/admin` permite editar los datos de contacto y reemplazar las fotos sin volver
+a desplegar. El sitio sigue siendo estático: `sacc-datos.js` consulta Supabase
+al cargar y aplica lo que encuentra sobre el HTML ya renderizado. Todo lo
+editable conserva su valor en el HTML, así que si Supabase no responde —o ni
+siquiera está configurado— la página se ve igual que siempre.
+
+### Puesta en marcha
+
+1. Crear el proyecto en [supabase.com](https://supabase.com).
+2. **SQL Editor** → pegar y correr `supabase/schema.sql` entero. Crea el schema
+   `sacc`, las tablas, las políticas RLS y el bucket de imágenes.
+3. **Settings → API → Exposed schemas** → agregar `sacc`. Sin este paso la API
+   no ve las tablas y todo devuelve 404.
+4. **Authentication → Users → Add user**, con correo y contraseña.
+5. Copiar el UID de ese usuario y correr en el SQL Editor:
+
+```sql
+insert into sacc.admins (user_id, email) values ('EL-UID', 'correo@ejemplo.com');
+```
+
+6. Completar `sacc-config.js` con el *Project URL* y la clave *anon public* de
+   **Settings → API**.
+
+### Sobre las claves
+
+La `anon key` va en el navegador a propósito: por sí sola no da permisos. Quien
+decide qué se puede escribir son las políticas RLS, que exigen que el usuario
+figure en `sacc.admins`. La clave `service_role` **no va nunca** en el
+repositorio ni en el navegador: da permiso total y salta RLS.
+
+El panel no usa la librería `supabase-js`: habla directo con la API REST por
+`fetch`, así que el sitio no suma ninguna dependencia externa.
+
+### Qué se puede editar
+
+| Sección | Campos |
+| --- | --- |
+| Datos de contacto | correo, LinkedIn, sede (ES/EN) y la bajada del bloque de contacto (ES/EN) |
+| Imágenes | las 15 fotos, subiéndolas al bucket `sacc-imagenes` |
+
+El titular de contacto no está en el panel a propósito: va partido en dos líneas
+con un remate en cursiva, y reemplazarlo como texto plano le quitaría ese
+tratamiento. Se edita en el HTML.

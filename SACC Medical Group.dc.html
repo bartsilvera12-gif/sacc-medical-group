@@ -20,6 +20,8 @@
 <helmet>
 <meta name="description" content="SACC Medical Group — Connecting Global Healthcare with Paraguay. Pharmaceuticals, medical devices, medical supplies, regulatory affairs and market access in Paraguay." />
 <script src="./image-slot.js"></script>
+<script src="./sacc-config.js"></script>
+<script src="./sacc-datos.js" defer></script>
 <style>
   @font-face { font-family: EB Garamond; font-style: normal; font-weight: 400; font-display: swap; src: url(uploads/fonts/ebgaramond-400-latin.woff2) format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
   @font-face { font-family: EB Garamond; font-style: normal; font-weight: 500; font-display: swap; src: url(uploads/fonts/ebgaramond-500-latin.woff2) format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
@@ -594,7 +596,7 @@
 
     <h2 data-reveal="1" style="margin: clamp(26px, 3vw, 42px) 0 0; font-weight: 300; font-size: clamp(27px, 3.4vw, 50px); line-height: 1.12; letter-spacing: -.02em; color: #16161A; opacity: 0; transform: translateY(24px); transition: opacity 1000ms cubic-bezier(.16,.8,.24,1) 120ms, transform 1000ms cubic-bezier(.16,.8,.24,1) 120ms;">Let's develop the Paraguayan<br /><em style="font-family: EB Garamond, Garamond, Georgia, serif; letter-spacing: .045em; font-style: normal; font-weight: 400;">healthcare market together.</em></h2>
 
-    <p data-reveal="1" style="margin: clamp(20px, 2.4vw, 30px) auto 0; max-width: 520px; font-size: 15px; line-height: 1.8; font-weight: 300; color: #6A6A6E; opacity: 0; transform: translateY(24px); transition: opacity 1000ms cubic-bezier(.16,.8,.24,1) 220ms, transform 1000ms cubic-bezier(.16,.8,.24,1) 220ms;">If your company is exploring opportunities in Paraguay, let's talk.</p>
+    <p data-reveal="1" style="margin: clamp(20px, 2.4vw, 30px) auto 0; max-width: 520px; font-size: 15px; line-height: 1.8; font-weight: 300; color: #6A6A6E; opacity: 0; transform: translateY(24px); transition: opacity 1000ms cubic-bezier(.16,.8,.24,1) 220ms, transform 1000ms cubic-bezier(.16,.8,.24,1) 220ms;" data-sacc="contacto-bajada">If your company is exploring opportunities in Paraguay, let's talk.</p>
 
     <div data-reveal="1" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; margin-top: clamp(30px, 3.6vw, 46px); opacity: 0; transform: translateY(24px); transition: opacity 1000ms cubic-bezier(.16,.8,.24,1) 320ms, transform 1000ms cubic-bezier(.16,.8,.24,1) 320ms;">
       <a href="mailto:info@saccmedicalgroup.com" style="padding: 17px 32px; background: #16161A; color: #F5F2EC; font-size: 11px; letter-spacing: .18em; text-transform: uppercase; transition: background 500ms, transform 500ms cubic-bezier(.16,.8,.24,1);" style-hover="background: var(--accent, #C9A96A); color: #0B0B0C; transform: translateY(-2px);">Contact SACC Medical Group</a>
@@ -602,8 +604,8 @@
     </div>
 
     <div data-reveal="1" style="margin-top: clamp(40px, 5vw, 70px); border-top: 1px solid rgba(20,20,22,.12); padding-top: clamp(24px, 3vw, 34px); display: grid; grid-template-columns: 1fr 1fr; gap: 24px; text-align: center; opacity: 0; transform: translateY(20px); transition: opacity 1000ms cubic-bezier(.16,.8,.24,1) 420ms, transform 1000ms cubic-bezier(.16,.8,.24,1) 420ms;">
-      <div><div style="font-size: 10px; letter-spacing: .26em; text-transform: uppercase; color: #8A8378; margin-bottom: 8px;">Email</div><div style="font-size: 14px; font-weight: 300; color: #16161A;">info@saccmedicalgroup.com</div></div>
-      <div><div style="font-size: 10px; letter-spacing: .26em; text-transform: uppercase; color: #8A8378; margin-bottom: 8px;">Sede</div><div style="font-size: 14px; font-weight: 300; color: #16161A;">Asunción · Republic of Paraguay</div></div>
+      <div><div style="font-size: 10px; letter-spacing: .26em; text-transform: uppercase; color: #8A8378; margin-bottom: 8px;">Email</div><div data-sacc="email" style="font-size: 14px; font-weight: 300; color: #16161A;">info@saccmedicalgroup.com</div></div>
+      <div><div style="font-size: 10px; letter-spacing: .26em; text-transform: uppercase; color: #8A8378; margin-bottom: 8px;">Sede</div><div data-sacc="sede" style="font-size: 14px; font-weight: 300; color: #16161A;">Asunción · Republic of Paraguay</div></div>
     </div>
   </div>
 </section>
