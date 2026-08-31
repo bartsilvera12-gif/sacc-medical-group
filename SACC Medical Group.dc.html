@@ -27,6 +27,7 @@
   @keyframes sacc-aurora-b { from { transform: translate3d(0,0,0) scale(1.08); } to { transform: translate3d(-12%, -8%, 0) scale(1); } }
   @keyframes sacc-aurora-c { from { transform: translate3d(0,0,0) scale(1); } to { transform: translate3d(-10%, -14%, 0) scale(1.18); } }
   html { scroll-behavior: smooth; }
+  section[id] { scroll-margin-top: 96px; }
   body { margin: 0; background: #0B0B0C; -webkit-font-smoothing: antialiased; }
   * { box-sizing: border-box; }
   ::selection { background: #C9A96A; color: #0B0B0C; }
@@ -84,9 +85,20 @@
 </header>
 
 <div style="position: fixed; top: 0; right: 0; left: auto; z-index: 95; width: min(460px, 100vw); max-height: 100vh; overflow-y: auto; background: #0B0B0C; border-left: 1px solid rgba(201,169,106,.35); border-bottom: 1px solid rgba(201,169,106,.35); box-shadow: -18px 26px 60px rgba(0,0,0,.55); padding: 20px clamp(22px, 4vw, 34px) 26px; display: flex; flex-direction: column; transition: opacity 500ms cubic-bezier(.16,.8,.24,1), transform 600ms cubic-bezier(.16,.8,.24,1); opacity: {{ menuOpacity }}; transform: {{ menuTransform }}; pointer-events: {{ menuEvents }};">
-  <div style="display: flex; justify-content: space-between; align-items: center;">
-    <img src="uploads/marca/wordmark-sacc.png" alt="SACC Medical Group" style="display: block; align-self: center; height: 24px; width: auto;" />
+  <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 18px;">
+    <span style="display: inline-flex; flex-direction: column; align-items: center; gap: 6px; line-height: 1;">
+      <img src="uploads/marca/wordmark-sacc.png" alt="SACC Medical Group" style="display: block; height: 24px; width: auto;" />
+      <span style="display: flex; align-items: center; gap: 8px;">
+        <span style="width: 14px; height: 1px; background: var(--accent, #C9A96A);"></span>
+        <span style="font-size: 8px; letter-spacing: .4em; color: #B9B5AD;">MEDICAL GROUP</span>
+        <span style="width: 14px; height: 1px; background: var(--accent, #C9A96A);"></span>
+      </span>
+    </span>
     <button onClick="{{ toggleMenu }}" aria-label="Cerrar" style="background: none; border: none; color: #F5F2EC; font-size: 26px; line-height: 1; cursor: pointer;">×</button>
+  </div>
+  <div style="margin-top: 22px; display: flex; align-items: center; gap: 8px; font-size: 12px; letter-spacing: .14em;">
+    <button onClick="{{ setEs }}" style="border: 1px solid {{ esBorde }}; background: {{ esFondo }}; padding: 6px 13px; cursor: pointer; letter-spacing: .14em; font-size: 12px; color: {{ esTexto }}; transition: background 400ms, color 400ms, border-color 400ms;">ES</button>
+    <button onClick="{{ setEn }}" style="border: 1px solid {{ enBorde }}; background: {{ enFondo }}; padding: 6px 13px; cursor: pointer; letter-spacing: .14em; font-size: 12px; color: {{ enTexto }}; transition: background 400ms, color 400ms, border-color 400ms;">EN</button>
   </div>
   <a href="#contacto" onClick="{{ closeMenu }}" style="align-self: flex-start; margin-top: 26px; padding: 13px 26px; background: var(--accent, #C9A96A); color: #0B0B0C; font-size: 10.5px; letter-spacing: .18em; text-transform: uppercase;">Asociarse con SACC</a>
   <nav style="margin: 22px 0 0; width: 100%; display: flex; flex-direction: column; gap: 2px;">
@@ -96,16 +108,9 @@
     <a href="#market-access" onClick="{{ closeMenu }}" style="font-family: EB Garamond, Garamond, Georgia, serif; letter-spacing: .045em; font-size: clamp(22px, 4.6vw, 30px); color: #F5F2EC; padding: 7px 0; border-bottom: 1px solid rgba(245,242,236,.08);">Market Access</a>
     <a href="#international" onClick="{{ closeMenu }}" style="font-family: EB Garamond, Garamond, Georgia, serif; letter-spacing: .045em; font-size: clamp(22px, 4.6vw, 30px); color: #F5F2EC; padding: 7px 0; border-bottom: 1px solid rgba(245,242,236,.08);">International</a>
     <a href="#modelo" onClick="{{ closeMenu }}" style="font-family: EB Garamond, Garamond, Georgia, serif; letter-spacing: .045em; font-size: clamp(22px, 4.6vw, 30px); color: #F5F2EC; padding: 7px 0; border-bottom: 1px solid rgba(245,242,236,.08);">Modelo</a>
-    <a href="#contacto" onClick="{{ closeMenu }}" style="font-family: EB Garamond, Garamond, Georgia, serif; letter-spacing: .045em; font-size: clamp(22px, 4.6vw, 30px); color: var(--accent, #C9A96A); padding: 8px 0;">Contacto</a>
+    <a href="#contacto" onClick="{{ closeMenu }}" style="font-family: EB Garamond, Garamond, Georgia, serif; letter-spacing: .045em; font-size: clamp(22px, 4.6vw, 30px); color: #DCC08A; padding: 8px 0;">Contacto</a>
   </nav>
-  <div style="width: 100%; margin-top: 22px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px 20px;">
-    <div style="font-size: 10.5px; letter-spacing: .2em; color: #6E6B66; text-transform: uppercase;">Connecting Global Healthcare with Paraguay</div>
-    <div style="display: flex; align-items: center; gap: 9px; font-size: 13px; letter-spacing: .14em;">
-      <button onClick="{{ setEs }}" style="background: none; border: none; padding: 0; cursor: pointer; letter-spacing: .14em; font-size: 13px; color: {{ esColor }};">ES</button>
-      <span style="color: #55534F;">|</span>
-      <button onClick="{{ setEn }}" style="background: none; border: none; padding: 0; cursor: pointer; letter-spacing: .14em; font-size: 13px; color: {{ enColor }};">EN</button>
-    </div>
-  </div>
+  <div style="width: 100%; margin-top: 22px; font-size: 10.5px; letter-spacing: .2em; color: #9A968F; text-transform: uppercase;">Connecting Global Healthcare with Paraguay</div>
 </div>
 
 <section id="top" style="background: #0B0B0C; padding: 6px 6px 0;" data-hero-top="1">
@@ -136,39 +141,41 @@
 </section>
 
 <section id="nosotros" style="background: #FFFFFF; padding: clamp(32px, 6.5vw, 100px) clamp(20px, 5vw, 72px) clamp(29px, 5.5vw, 88px);">
-  <div style="max-width: 1500px; margin: 0 auto;">
+  <div style="max-width: 1500px; margin: 0 auto; display: grid; grid-template-columns: 1.05fr 1fr; gap: clamp(30px, 5vw, 88px); align-items: center;">
 
-    <div data-reveal="1" style="display: flex; align-items: center; justify-content: center; gap: 16px; opacity: 0; transform: translateY(20px); transition: opacity 1000ms cubic-bezier(.16,.8,.24,1), transform 1000ms cubic-bezier(.16,.8,.24,1);">
-      <span style="width: clamp(28px, 5vw, 60px); height: 1px; background: #B99A5F;"></span>
-      <span style="font-size: 10px; letter-spacing: .4em; text-transform: uppercase; color: #8A8378;">SACC Medical Group</span>
-      <span style="width: clamp(28px, 5vw, 60px); height: 1px; background: #B99A5F;"></span>
-    </div>
-
-    <h2 data-reveal="1" style="max-width: 1080px; margin: clamp(34px, 4vw, 56px) auto 0; text-align: center; font-weight: 300; font-size: clamp(32px, 4.4vw, 68px); line-height: 1.1; letter-spacing: -.02em; color: #16161A; opacity: 0; transform: translateY(24px); transition: opacity 1000ms cubic-bezier(.16,.8,.24,1) 100ms, transform 1000ms cubic-bezier(.16,.8,.24,1) 100ms;">Soluciones integrales para<br /><em style="font-family: EB Garamond, Garamond, Georgia, serif; letter-spacing: .045em; font-style: normal; font-weight: 400;">el sector de la salud.</em></h2>
-
-    <div data-reveal="1" style="max-width: 1060px; margin: clamp(40px, 5vw, 72px) auto 0; display: grid; grid-template-columns: 1fr 1fr; gap: clamp(28px, 4vw, 66px); opacity: 0; transform: translateY(24px); transition: opacity 1000ms cubic-bezier(.16,.8,.24,1) 220ms, transform 1000ms cubic-bezier(.16,.8,.24,1) 220ms;">
-      <p style="margin: 0; font-size: 15px; line-height: 1.85; font-weight: 300; color: #3A3A3E;">SACC Medical Group es una empresa de SACC EAS orientada al desarrollo, importación, comercialización y distribución de productos para el sector sanitario paraguayo.</p>
-      <p style="margin: 0; font-size: 15px; line-height: 1.85; font-weight: 300; color: #6A6A6E;">Nuestra actividad integra insumos médicos, dispositivos y equipos médicos, productos hospitalarios y especialidades farmacéuticas, combinando conocimiento del mercado local, gestión regulatoria y desarrollo de relaciones con fabricantes y socios estratégicos internacionales.</p>
-    </div>
-
-    <p data-reveal="1" style="max-width: 860px; margin: clamp(26px, 3vw, 44px) auto 0; text-align: center; font-size: 16px; line-height: 1.8; font-weight: 300; color: #3A3A3E; opacity: 0; transform: translateY(24px); transition: opacity 1000ms cubic-bezier(.16,.8,.24,1) 300ms, transform 1000ms cubic-bezier(.16,.8,.24,1) 300ms;">Trabajamos con una visión de largo plazo orientada a incorporar al Paraguay tecnologías, productos y soluciones sanitarias que respondan a las necesidades del mercado privado, hospitalario e institucional.</p>
-
-    <div data-reveal="1" data-reveal-clip="1" style="position: relative; margin-top: clamp(32px, 7vw, 104px); height: clamp(200px, 40vw, 560px); opacity: 0; clip-path: inset(0 0 100% 0); transition: opacity 1200ms cubic-bezier(.16,.8,.24,1) 200ms, clip-path 1200ms cubic-bezier(.16,.8,.24,1) 200ms;">
-      <image-slot id="sacc-intro" shape="rect" placeholder="Panorámica — entorno científico / producción" src="uploads/sacc-intro.jpg"></image-slot>
-    </div>
-
-    <div data-reveal="1" style="margin-top: clamp(30px, 6vw, 88px); border-top: 1px solid rgba(20,20,22,.12); padding-top: clamp(30px, 4vw, 46px); opacity: 0; transform: translateY(24px); transition: opacity 1000ms cubic-bezier(.16,.8,.24,1) 320ms, transform 1000ms cubic-bezier(.16,.8,.24,1) 320ms;">
-      <div style="max-width: 820px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: clamp(28px, 4vw, 56px); text-align: center;">
-        <div>
-          <div style="font-family: EB Garamond, Garamond, Georgia, serif; letter-spacing: .045em; font-size: clamp(38px, 4vw, 58px); line-height: 1; color: #16161A;">06</div>
-          <div style="margin-top: 14px; font-size: 10.5px; letter-spacing: .18em; text-transform: uppercase; color: #8A8378;">Áreas de actividad</div>
+    <div>
+      <div data-reveal="1" style="opacity: 0; transform: translateY(24px); transition: opacity 1000ms cubic-bezier(.16,.8,.24,1) 0ms, transform 1000ms cubic-bezier(.16,.8,.24,1) 0ms;">
+        <div style="display: flex; align-items: center; gap: 14px; margin-bottom: clamp(22px, 2.6vw, 34px);">
+          <span style="width: 48px; height: 1px; background: #B99A5F;"></span>
+          <span style="font-size: 10px; letter-spacing: .4em; text-transform: uppercase; color: #8A8378;">SACC Medical Group</span>
         </div>
-        <div>
-          <div style="font-family: EB Garamond, Garamond, Georgia, serif; letter-spacing: .045em; font-size: clamp(38px, 4vw, 58px); line-height: 1; color: #16161A;">B2B</div>
-          <div style="margin-top: 14px; font-size: 10.5px; letter-spacing: .18em; text-transform: uppercase; color: #8A8378;">International partners</div>
+        <h2 style="margin: 0 0 clamp(22px, 2.6vw, 34px); font-weight: 300; font-size: clamp(28px, 3.6vw, 54px); line-height: 1.1; letter-spacing: -.02em; color: #16161A;">Soluciones integrales para<br /><em style="font-family: EB Garamond, Garamond, Georgia, serif; letter-spacing: .045em; font-style: normal; font-weight: 400;">el sector de la salud.</em></h2>
+      </div>
+
+      <div data-reveal="1" style="opacity: 0; transform: translateY(24px); transition: opacity 1000ms cubic-bezier(.16,.8,.24,1) 140ms, transform 1000ms cubic-bezier(.16,.8,.24,1) 140ms;">
+        <p style="margin: 0 0 clamp(15px, 1.6vw, 20px); font-size: 15.5px; line-height: 1.85; font-weight: 300; color: #3A3A3E;">SACC Medical Group es una empresa de SACC EAS orientada al desarrollo, importación, comercialización y distribución de productos para el sector sanitario paraguayo.</p>
+        <p style="margin: 0 0 clamp(15px, 1.6vw, 20px); font-size: 15px; line-height: 1.85; font-weight: 300; color: #6A6A6E;">Nuestra actividad integra insumos médicos, dispositivos y equipos médicos, productos hospitalarios y especialidades farmacéuticas, combinando conocimiento del mercado local, gestión regulatoria y desarrollo de relaciones con fabricantes y socios estratégicos internacionales.</p>
+        <p style="margin: 0; font-size: 15px; line-height: 1.85; font-weight: 300; color: #6A6A6E;">Trabajamos con una visión de largo plazo orientada a incorporar al Paraguay tecnologías, productos y soluciones sanitarias que respondan a las necesidades del mercado privado, hospitalario e institucional.</p>
+      </div>
+
+      <div data-reveal="1" style="opacity: 0; transform: translateY(24px); transition: opacity 1000ms cubic-bezier(.16,.8,.24,1) 240ms, transform 1000ms cubic-bezier(.16,.8,.24,1) 240ms;">
+        <div style="margin-top: clamp(26px, 3.2vw, 44px); border-top: 1px solid rgba(20,20,22,.12); padding-top: clamp(22px, 2.6vw, 34px); display: grid; grid-template-columns: 1fr 1fr; gap: clamp(24px, 3vw, 44px);">
+          <div>
+            <div style="font-family: EB Garamond, Garamond, Georgia, serif; letter-spacing: .045em; font-size: clamp(34px, 3.4vw, 50px); line-height: 1; color: #16161A;">06</div>
+            <div style="margin-top: 12px; font-size: 10.5px; letter-spacing: .18em; text-transform: uppercase; color: #8A8378;">Áreas de actividad</div>
+          </div>
+          <div>
+            <div style="font-family: EB Garamond, Garamond, Georgia, serif; letter-spacing: .045em; font-size: clamp(34px, 3.4vw, 50px); line-height: 1; color: #16161A;">B2B</div>
+            <div style="margin-top: 12px; font-size: 10.5px; letter-spacing: .18em; text-transform: uppercase; color: #8A8378;">International partners</div>
+          </div>
         </div>
       </div>
     </div>
+
+    <div data-reveal="1" data-reveal-clip="1" style="position: relative; min-width: 0; height: clamp(300px, 42vw, 620px); opacity: 0; clip-path: inset(0 0 100% 0); transition: opacity 1200ms cubic-bezier(.16,.8,.24,1) 180ms, clip-path 1200ms cubic-bezier(.16,.8,.24,1) 180ms;">
+      <image-slot id="sacc-intro" shape="rect" placeholder="Panorámica — entorno científico / producción" src="uploads/sacc-intro.jpg"></image-slot>
+    </div>
+
   </div>
 </section>
 
@@ -202,68 +209,68 @@
 
     <div style="margin-top: clamp(30px, 6vw, 96px); display: grid; grid-template-columns: 1.35fr 1fr; gap: clamp(30px, 5vw, 80px); align-items: start;">
       <div ref="{{ areaListRef }}" style="padding-top: 13px;">
-        <article onMouseEnter="{{ hoverArea0 }}" onClick="{{ hoverArea0 }}" style="position: relative; z-index: 1; margin-top: 0; background: #FFEC9D; border: 1px solid rgba(20,20,22,.10); padding: 0 clamp(20px, 2.2vw, 34px); cursor: default; transform: translateY({{ y0 }}); box-shadow: {{ sh0 }}; transition: transform 650ms cubic-bezier(.16,.8,.24,1), box-shadow 650ms cubic-bezier(.16,.8,.24,1);">
-          <span style="position: absolute; top: -13px; left: clamp(20px, 2.2vw, 34px); width: 126px; height: 13px; background: #FFEC9D; border: 1px solid rgba(20,20,22,.10); border-bottom: none; border-radius: 2px 14px 0 0;"></span>
+        <article onMouseEnter="{{ hoverArea0 }}" onClick="{{ hoverArea0 }}" style="position: relative; z-index: 1; margin-top: 0; background: #C9A96A; border: 1px solid rgba(20,20,22,.10); padding: 0 clamp(20px, 2.2vw, 34px); cursor: default; transform: translateY({{ y0 }}); box-shadow: {{ sh0 }}; transition: transform 650ms cubic-bezier(.16,.8,.24,1), box-shadow 650ms cubic-bezier(.16,.8,.24,1);">
+          <span style="position: absolute; top: -13px; left: clamp(20px, 2.2vw, 34px); width: 126px; height: 13px; background: #C9A96A; border: 1px solid rgba(20,20,22,.10); border-bottom: none; border-radius: 2px 14px 0 0;"></span>
           <div style="padding: clamp(22px, 2.2vw, 32px) 0;">
             <div>
               <h3 style="margin: 0; font-weight: 400; font-size: clamp(19px, 1.9vw, 27px); letter-spacing: -.01em; color: #16161A;">Especialidades farmacéuticas</h3>
               <div style="overflow: hidden; max-height: {{ m0 }}; opacity: {{ o0 }}; transition: max-height 750ms cubic-bezier(.16,.8,.24,1), opacity 600ms cubic-bezier(.16,.8,.24,1);">
-                <p style="margin: 14px 0 0; max-width: 520px; font-size: 14px; line-height: 1.8; font-weight: 300; color: #3A3A3E;">Desarrollo e incorporación de medicamentos y líneas farmacéuticas destinadas tanto al mercado general como a áreas terapéuticas especializadas.</p>
+                <p style="margin: 14px 0 0; max-width: 520px; font-size: 14px; line-height: 1.8; font-weight: 300; color: #2A2318;">Desarrollo e incorporación de medicamentos y líneas farmacéuticas destinadas tanto al mercado general como a áreas terapéuticas especializadas.</p>
               </div>
             </div>
           </div>
         </article>
-        <article onMouseEnter="{{ hoverArea1 }}" onClick="{{ hoverArea1 }}" style="position: relative; z-index: 2; margin-top: -4px; background: #FFEC9D; border: 1px solid rgba(20,20,22,.10); padding: 0 clamp(20px, 2.2vw, 34px); cursor: default; transform: translateY({{ y1 }}); box-shadow: {{ sh1 }}; transition: transform 650ms cubic-bezier(.16,.8,.24,1), box-shadow 650ms cubic-bezier(.16,.8,.24,1);">
-          <span style="position: absolute; top: -13px; left: clamp(20px, 2.2vw, 34px); width: 126px; height: 13px; background: #FFEC9D; border: 1px solid rgba(20,20,22,.10); border-bottom: none; border-radius: 2px 14px 0 0;"></span>
+        <article onMouseEnter="{{ hoverArea1 }}" onClick="{{ hoverArea1 }}" style="position: relative; z-index: 2; margin-top: -4px; background: #C9A96A; border: 1px solid rgba(20,20,22,.10); padding: 0 clamp(20px, 2.2vw, 34px); cursor: default; transform: translateY({{ y1 }}); box-shadow: {{ sh1 }}; transition: transform 650ms cubic-bezier(.16,.8,.24,1), box-shadow 650ms cubic-bezier(.16,.8,.24,1);">
+          <span style="position: absolute; top: -13px; left: clamp(20px, 2.2vw, 34px); width: 126px; height: 13px; background: #C9A96A; border: 1px solid rgba(20,20,22,.10); border-bottom: none; border-radius: 2px 14px 0 0;"></span>
           <div style="padding: clamp(22px, 2.2vw, 32px) 0;">
             <div>
               <h3 style="margin: 0; font-weight: 400; font-size: clamp(19px, 1.9vw, 27px); letter-spacing: -.01em; color: #16161A;">Medical Devices</h3>
               <div style="overflow: hidden; max-height: {{ m1 }}; opacity: {{ o1 }}; transition: max-height 750ms cubic-bezier(.16,.8,.24,1), opacity 600ms cubic-bezier(.16,.8,.24,1);">
-                <p style="margin: 14px 0 0; max-width: 520px; font-size: 14px; line-height: 1.8; font-weight: 300; color: #3A3A3E;">Desarrollo de líneas de dispositivos médicos seleccionadas bajo criterios de calidad, cumplimiento regulatorio y necesidades del mercado.</p>
+                <p style="margin: 14px 0 0; max-width: 520px; font-size: 14px; line-height: 1.8; font-weight: 300; color: #2A2318;">Desarrollo de líneas de dispositivos médicos seleccionadas bajo criterios de calidad, cumplimiento regulatorio y necesidades del mercado.</p>
               </div>
             </div>
           </div>
         </article>
-        <article onMouseEnter="{{ hoverArea2 }}" onClick="{{ hoverArea2 }}" style="position: relative; z-index: 3; margin-top: -4px; background: #FFEC9D; border: 1px solid rgba(20,20,22,.10); padding: 0 clamp(20px, 2.2vw, 34px); cursor: default; transform: translateY({{ y2 }}); box-shadow: {{ sh2 }}; transition: transform 650ms cubic-bezier(.16,.8,.24,1), box-shadow 650ms cubic-bezier(.16,.8,.24,1);">
-          <span style="position: absolute; top: -13px; left: clamp(20px, 2.2vw, 34px); width: 126px; height: 13px; background: #FFEC9D; border: 1px solid rgba(20,20,22,.10); border-bottom: none; border-radius: 2px 14px 0 0;"></span>
+        <article onMouseEnter="{{ hoverArea2 }}" onClick="{{ hoverArea2 }}" style="position: relative; z-index: 3; margin-top: -4px; background: #C9A96A; border: 1px solid rgba(20,20,22,.10); padding: 0 clamp(20px, 2.2vw, 34px); cursor: default; transform: translateY({{ y2 }}); box-shadow: {{ sh2 }}; transition: transform 650ms cubic-bezier(.16,.8,.24,1), box-shadow 650ms cubic-bezier(.16,.8,.24,1);">
+          <span style="position: absolute; top: -13px; left: clamp(20px, 2.2vw, 34px); width: 126px; height: 13px; background: #C9A96A; border: 1px solid rgba(20,20,22,.10); border-bottom: none; border-radius: 2px 14px 0 0;"></span>
           <div style="padding: clamp(22px, 2.2vw, 32px) 0;">
             <div>
               <h3 style="margin: 0; font-weight: 400; font-size: clamp(19px, 1.9vw, 27px); letter-spacing: -.01em; color: #16161A;">Medical Supplies</h3>
               <div style="overflow: hidden; max-height: {{ m2 }}; opacity: {{ o2 }}; transition: max-height 750ms cubic-bezier(.16,.8,.24,1), opacity 600ms cubic-bezier(.16,.8,.24,1);">
-                <p style="margin: 14px 0 0; max-width: 520px; font-size: 14px; line-height: 1.8; font-weight: 300; color: #3A3A3E;">Insumos médicos y hospitalarios para hospitales, sanatorios, clínicas, laboratorios y profesionales de la salud.</p>
+                <p style="margin: 14px 0 0; max-width: 520px; font-size: 14px; line-height: 1.8; font-weight: 300; color: #2A2318;">Insumos médicos y hospitalarios para hospitales, sanatorios, clínicas, laboratorios y profesionales de la salud.</p>
               </div>
             </div>
           </div>
         </article>
-        <article onMouseEnter="{{ hoverArea3 }}" onClick="{{ hoverArea3 }}" style="position: relative; z-index: 4; margin-top: -4px; background: #FFEC9D; border: 1px solid rgba(20,20,22,.10); padding: 0 clamp(20px, 2.2vw, 34px); cursor: default; transform: translateY({{ y3 }}); box-shadow: {{ sh3 }}; transition: transform 650ms cubic-bezier(.16,.8,.24,1), box-shadow 650ms cubic-bezier(.16,.8,.24,1);">
-          <span style="position: absolute; top: -13px; left: clamp(20px, 2.2vw, 34px); width: 126px; height: 13px; background: #FFEC9D; border: 1px solid rgba(20,20,22,.10); border-bottom: none; border-radius: 2px 14px 0 0;"></span>
+        <article onMouseEnter="{{ hoverArea3 }}" onClick="{{ hoverArea3 }}" style="position: relative; z-index: 4; margin-top: -4px; background: #C9A96A; border: 1px solid rgba(20,20,22,.10); padding: 0 clamp(20px, 2.2vw, 34px); cursor: default; transform: translateY({{ y3 }}); box-shadow: {{ sh3 }}; transition: transform 650ms cubic-bezier(.16,.8,.24,1), box-shadow 650ms cubic-bezier(.16,.8,.24,1);">
+          <span style="position: absolute; top: -13px; left: clamp(20px, 2.2vw, 34px); width: 126px; height: 13px; background: #C9A96A; border: 1px solid rgba(20,20,22,.10); border-bottom: none; border-radius: 2px 14px 0 0;"></span>
           <div style="padding: clamp(22px, 2.2vw, 32px) 0;">
             <div>
               <h3 style="margin: 0; font-weight: 400; font-size: clamp(19px, 1.9vw, 27px); letter-spacing: -.01em; color: #16161A;">Medical Equipment</h3>
               <div style="overflow: hidden; max-height: {{ m3 }}; opacity: {{ o3 }}; transition: max-height 750ms cubic-bezier(.16,.8,.24,1), opacity 600ms cubic-bezier(.16,.8,.24,1);">
-                <p style="margin: 14px 0 0; max-width: 520px; font-size: 14px; line-height: 1.8; font-weight: 300; color: #3A3A3E;">Identificación, importación y comercialización de tecnologías y equipamiento médico.</p>
+                <p style="margin: 14px 0 0; max-width: 520px; font-size: 14px; line-height: 1.8; font-weight: 300; color: #2A2318;">Identificación, importación y comercialización de tecnologías y equipamiento médico.</p>
               </div>
             </div>
           </div>
         </article>
-        <article onMouseEnter="{{ hoverArea4 }}" onClick="{{ hoverArea4 }}" style="position: relative; z-index: 5; margin-top: -4px; background: #FFEC9D; border: 1px solid rgba(20,20,22,.10); padding: 0 clamp(20px, 2.2vw, 34px); cursor: default; transform: translateY({{ y4 }}); box-shadow: {{ sh4 }}; transition: transform 650ms cubic-bezier(.16,.8,.24,1), box-shadow 650ms cubic-bezier(.16,.8,.24,1);">
-          <span style="position: absolute; top: -13px; left: clamp(20px, 2.2vw, 34px); width: 126px; height: 13px; background: #FFEC9D; border: 1px solid rgba(20,20,22,.10); border-bottom: none; border-radius: 2px 14px 0 0;"></span>
+        <article onMouseEnter="{{ hoverArea4 }}" onClick="{{ hoverArea4 }}" style="position: relative; z-index: 5; margin-top: -4px; background: #C9A96A; border: 1px solid rgba(20,20,22,.10); padding: 0 clamp(20px, 2.2vw, 34px); cursor: default; transform: translateY({{ y4 }}); box-shadow: {{ sh4 }}; transition: transform 650ms cubic-bezier(.16,.8,.24,1), box-shadow 650ms cubic-bezier(.16,.8,.24,1);">
+          <span style="position: absolute; top: -13px; left: clamp(20px, 2.2vw, 34px); width: 126px; height: 13px; background: #C9A96A; border: 1px solid rgba(20,20,22,.10); border-bottom: none; border-radius: 2px 14px 0 0;"></span>
           <div style="padding: clamp(22px, 2.2vw, 32px) 0;">
             <div>
               <h3 style="margin: 0; font-weight: 400; font-size: clamp(19px, 1.9vw, 27px); letter-spacing: -.01em; color: #16161A;">Regulatory &amp; Market Access</h3>
               <div style="overflow: hidden; max-height: {{ m4 }}; opacity: {{ o4 }}; transition: max-height 750ms cubic-bezier(.16,.8,.24,1), opacity 600ms cubic-bezier(.16,.8,.24,1);">
-                <p style="margin: 14px 0 0; max-width: 520px; font-size: 14px; line-height: 1.8; font-weight: 300; color: #3A3A3E;">Evaluación regulatoria, registros sanitarios y estrategia de introducción de productos al mercado.</p>
+                <p style="margin: 14px 0 0; max-width: 520px; font-size: 14px; line-height: 1.8; font-weight: 300; color: #2A2318;">Evaluación regulatoria, registros sanitarios y estrategia de introducción de productos al mercado.</p>
               </div>
             </div>
           </div>
         </article>
-        <article onMouseEnter="{{ hoverArea5 }}" onClick="{{ hoverArea5 }}" style="position: relative; z-index: 6; margin-top: -4px; background: #FFEC9D; border: 1px solid rgba(20,20,22,.10); padding: 0 clamp(20px, 2.2vw, 34px); cursor: default; transform: translateY({{ y5 }}); box-shadow: {{ sh5 }}; transition: transform 650ms cubic-bezier(.16,.8,.24,1), box-shadow 650ms cubic-bezier(.16,.8,.24,1);">
-          <span style="position: absolute; top: -13px; left: clamp(20px, 2.2vw, 34px); width: 126px; height: 13px; background: #FFEC9D; border: 1px solid rgba(20,20,22,.10); border-bottom: none; border-radius: 2px 14px 0 0;"></span>
+        <article onMouseEnter="{{ hoverArea5 }}" onClick="{{ hoverArea5 }}" style="position: relative; z-index: 6; margin-top: -4px; background: #C9A96A; border: 1px solid rgba(20,20,22,.10); padding: 0 clamp(20px, 2.2vw, 34px); cursor: default; transform: translateY({{ y5 }}); box-shadow: {{ sh5 }}; transition: transform 650ms cubic-bezier(.16,.8,.24,1), box-shadow 650ms cubic-bezier(.16,.8,.24,1);">
+          <span style="position: absolute; top: -13px; left: clamp(20px, 2.2vw, 34px); width: 126px; height: 13px; background: #C9A96A; border: 1px solid rgba(20,20,22,.10); border-bottom: none; border-radius: 2px 14px 0 0;"></span>
           <div style="padding: clamp(22px, 2.2vw, 32px) 0;">
             <div>
               <h3 style="margin: 0; font-weight: 400; font-size: clamp(19px, 1.9vw, 27px); letter-spacing: -.01em; color: #16161A;">International Business Development</h3>
               <div style="overflow: hidden; max-height: {{ m5 }}; opacity: {{ o5 }}; transition: max-height 750ms cubic-bezier(.16,.8,.24,1), opacity 600ms cubic-bezier(.16,.8,.24,1);">
-                <p style="margin: 14px 0 0; max-width: 520px; font-size: 14px; line-height: 1.8; font-weight: 300; color: #3A3A3E;">Desarrollo de relaciones con fabricantes, laboratorios y compañías internacionales.</p>
+                <p style="margin: 14px 0 0; max-width: 520px; font-size: 14px; line-height: 1.8; font-weight: 300; color: #2A2318;">Desarrollo de relaciones con fabricantes, laboratorios y compañías internacionales.</p>
               </div>
             </div>
           </div>
@@ -2049,7 +2056,13 @@ class Component extends DCLogic {
       progressRef: this.progressRef, heroBgRef: this.heroBgRef,
       processRef: this.processRef, processLineRef: this.processLineRef,
       modelRef: this.modelRef, areaListRef: this.areaListRef,
-      esColor: s.lang === 'ES' ? (this.props.accent || '#C9A96A') : '#8B8781',
+      esBorde: s.lang === 'ES' ? '#C9A96A' : 'rgba(245,242,236,.20)',
+      esFondo: s.lang === 'ES' ? 'rgba(201,169,106,.16)' : 'transparent',
+      esTexto: s.lang === 'ES' ? '#DCC08A' : '#B9B5AD',
+      enBorde: s.lang === 'EN' ? '#C9A96A' : 'rgba(245,242,236,.20)',
+      enFondo: s.lang === 'EN' ? 'rgba(201,169,106,.16)' : 'transparent',
+      enTexto: s.lang === 'EN' ? '#DCC08A' : '#B9B5AD',
+      esColor: s.lang === 'ES' ? 'var(--accent, #C9A96A)' : '#8B8781',
       enColor: s.lang === 'EN' ? (this.props.accent || '#C9A96A') : '#8B8781',
       setEs: () => { this.guardarLang('ES'); this.setState({ lang: 'ES' }); },
       setEn: () => { this.guardarLang('EN'); this.setState({ lang: 'EN' }); },
