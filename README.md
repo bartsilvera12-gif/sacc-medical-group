@@ -99,10 +99,10 @@ en ese momento se oculta también el botón "Asociarse con SACC" para dejarle
 sitio.
 
 La línea de proceso de "Acceso al mercado" es la excepción: no la toca la regla
-genérica de grillas, la maneja . Por debajo de 900px rota
+genérica de grillas, la maneja `layoutProceso()`. Por debajo de 900px rota
 entera — el riel pasa de horizontal arriba a vertical por la izquierda, cada
 paso se vuelve una fila "punto · número · etiqueta", y la barra de avance
-anima  en vez de .
+anima `height` en vez de `width`.
 
 ### Scroll táctil sobre las imágenes
 
