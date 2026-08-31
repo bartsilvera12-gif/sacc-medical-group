@@ -139,7 +139,8 @@ siquiera está configurado— la página se ve igual que siempre.
 
 1. Crear el proyecto en [supabase.com](https://supabase.com).
 2. **SQL Editor** → pegar y correr `supabase/schema.sql` entero. Crea el schema
-   `sacc`, las tablas, las políticas RLS y el bucket de imágenes.
+   `sacc`, las tablas, las políticas RLS y el bucket de imágenes. Después correr
+   `supabase/schema-secciones.sql`, que agrega las áreas y los principios.
 3. **Settings → API → Exposed schemas** → agregar `sacc`. Sin este paso la API
    no ve las tablas y todo devuelve 404.
 4. **Authentication → Users → Add user**, con correo y contraseña.
@@ -172,7 +173,20 @@ El panel no usa la librería `supabase-js`: habla directo con la API REST por
 | --- | --- |
 | Datos de contacto | correo, LinkedIn, sede (ES/EN) y la bajada del bloque de contacto (ES/EN) |
 | Imágenes | las 15 fotos, subiéndolas al bucket `sacc-imagenes` |
+| Áreas de actividad | las carpetas: alta, edición, borrado, orden y visibilidad |
+| Nuestros principios | las tarjetas: alta, edición, borrado, orden y visibilidad |
 
 El titular de contacto no está en el panel a propósito: va partido en dos líneas
 con un remate en cursiva, y reemplazarlo como texto plano le quitaría ese
 tratamiento. Se edita en el HTML.
+
+### Listas de largo variable
+
+Las áreas estaban atadas a seis huecos de plantilla numerados, así que agregar
+una séptima era imposible: no habría tenido dónde engancharse. Ahora las fichas
+se pintan por índice desde `pintarAreas()`, y `sacc-datos.js` las reconstruye
+clonando la primera que hay en el HTML — así el estilo no se duplica en el JS y
+cualquier retoque de diseño se propaga solo.
+
+Si una tabla queda vacía o no responde, el sitio se queda con las seis tarjetas
+del HTML. Vaciarla por accidente no deja la sección en blanco.

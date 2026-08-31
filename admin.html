@@ -70,6 +70,33 @@
   .aviso code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12.5px; }
   .oculto { display: none !important; }
 
+  /* Avisos: cada seccion informa lo suyo, en su sitio. Los errores no se van
+     solos, porque son los que hay que leer. */
+  .estado { display: flex; align-items: center; gap: 9px; font-size: 13px; line-height: 1.5; min-height: 20px; }
+  .estado.ok { color: #3F6B44; }
+  .estado.mal { color: #9C3A26; }
+  .estado.trabajando { color: #8A8378; }
+  .estado i { flex: 0 0 auto; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+  .estado button { border: none; background: none; padding: 0 0 0 4px; color: inherit; text-decoration: underline; font-size: 12px; }
+
+  /* Listas editables */
+  .item { border: 1px solid rgba(20,20,22,.14); background: #FFFFFF; margin-bottom: 14px; }
+  .item > .cabeza { display: flex; align-items: center; gap: 12px; padding: 13px 16px; cursor: pointer; background: #FAFAF9; }
+  .item > .cabeza .titulo { flex: 1; font-size: 15px; }
+  .item > .cabeza .num { font-size: 10px; letter-spacing: .2em; color: #B99A5F; min-width: 22px; }
+  .item > .cabeza .oculta { font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: #9C3A26; }
+  .item > .cuerpo { padding: 18px 16px 20px; border-top: 1px solid rgba(20,20,22,.10); }
+  .item > .cuerpo.plegado { display: none; }
+  .mini { padding: 6px 11px; font-size: 10px; letter-spacing: .12em; text-transform: uppercase; background: transparent; border: 1px solid rgba(20,20,22,.22); color: #16161A; }
+  .mini:hover { border-color: #C9A96A; color: #8A6E32; }
+  .mini.peligro:hover { border-color: #B4462F; color: #B4462F; }
+  .mini[disabled] { opacity: .4; cursor: default; }
+  .acciones { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-top: 16px; }
+  .acciones .separa { flex: 1; }
+
+  /* Confirmacion de borrado, en el mismo lugar del boton */
+  .confirmar { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; padding: 12px 14px; border: 1px solid #B4462F; background: #FDF3F1; font-size: 13.5px; line-height: 1.5; color: #7A2C1C; margin-top: 14px; }
+
   @media (max-width: 899px) {
     .fotos { grid-template-columns: repeat(2, 1fr); }
   }
@@ -125,9 +152,6 @@
   <h1>Contenido del sitio</h1>
   <p class="sub-h1">Los cambios se publican al guardar. El sitio los toma en la siguiente carga, sin necesidad de volver a desplegar.</p>
 
-  <div class="aviso ok oculto" id="mensaje"></div>
-  <div class="aviso error oculto" id="error"></div>
-
   <form id="form-contacto">
     <fieldset>
       <legend>Datos de contacto</legend>
@@ -158,6 +182,7 @@
         </div>
         <div class="ancho-total barra">
           <button type="submit" class="btn" id="guardar-contacto">Guardar contacto</button>
+          <span class="estado" id="estado-contacto"></span>
           <span style="font-size: 12.5px; color: #8A8378;" id="sello-contacto"></span>
         </div>
       </div>
@@ -165,9 +190,32 @@
   </form>
 
   <fieldset>
+    <legend>Áreas de actividad</legend>
+    <p style="margin: 0 0 18px; font-size: 14px; line-height: 1.7; color: #6A6A6E;">Las carpetas de «Capacidades integrales en salud». El orden es el que ve el visitante.</p>
+    <div id="lista-areas"></div>
+    <div class="acciones">
+      <button type="button" class="mini" id="agregar-area">Agregar área</button>
+      <span class="separa"></span>
+      <span class="estado" id="estado-areas"></span>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>Nuestros principios</legend>
+    <p style="margin: 0 0 18px; font-size: 14px; line-height: 1.7; color: #6A6A6E;">Las tarjetas de la sección de principios.</p>
+    <div id="lista-principios"></div>
+    <div class="acciones">
+      <button type="button" class="mini" id="agregar-principio">Agregar principio</button>
+      <span class="separa"></span>
+      <span class="estado" id="estado-principios"></span>
+    </div>
+  </fieldset>
+
+  <fieldset>
     <legend>Imágenes</legend>
     <p style="margin: 0 0 20px; font-size: 14px; line-height: 1.7; color: #6A6A6E;">Cada recuadro es un lugar del sitio. Al subir una foto se reemplaza solo ahí. Si nunca se sube nada, queda la que trae el sitio.</p>
     <div class="fotos" id="fotos"></div>
+    <div class="acciones"><span class="separa"></span><span class="estado" id="estado-fotos"></span></div>
   </fieldset>
 </main>
 
@@ -188,11 +236,30 @@
       $(v).classList.toggle('oculto', v !== id);
     });
   }
-  function avisar(caja, texto) {
-    var el = $(caja);
-    el.textContent = texto;
-    el.classList.toggle('oculto', !texto);
-    if (texto) setTimeout(function () { el.classList.add('oculto'); }, 6000);
+  // Un aviso por seccion, al lado de lo que informa. Los de exito se van solos
+  // porque solo confirman; los de error se quedan hasta que el usuario los
+  // cierre, porque son los que hay que leer.
+  function estado(id, tipo, texto) {
+    var el = $(id);
+    if (!el) return;
+    el.className = 'estado ' + (tipo || '');
+    el.textContent = '';
+    if (!texto) return;
+    var punto = document.createElement('i');
+    var span = document.createElement('span');
+    span.textContent = texto;
+    el.appendChild(punto);
+    el.appendChild(span);
+    if (tipo === 'ok') {
+      clearTimeout(el._t);
+      el._t = setTimeout(function () { el.className = 'estado'; el.textContent = ''; }, 4000);
+    } else if (tipo === 'mal') {
+      var cerrar = document.createElement('button');
+      cerrar.type = 'button';
+      cerrar.textContent = 'cerrar';
+      cerrar.addEventListener('click', function () { el.className = 'estado'; el.textContent = ''; });
+      el.appendChild(cerrar);
+    }
   }
 
   if (!base || !cfg.ANON_KEY) { ver('vista-config'); return; }
@@ -269,6 +336,39 @@
     });
   }
 
+  function crear(tabla, fila) {
+    return fetch(base + '/rest/v1/' + tabla, {
+      method: 'POST',
+      headers: cabeceras({
+        'Content-Type': 'application/json',
+        'Content-Profile': esquema,
+        Prefer: 'return=representation',
+      }),
+      body: JSON.stringify(fila),
+    }).then(function (r) {
+      return r.text().then(function (t) {
+        if (!r.ok) throw new Error(t || ('Error ' + r.status));
+        var filas = t ? JSON.parse(t) : [];
+        if (!filas.length) throw new Error('No se creó: la cuenta no figura en sacc.admins.');
+        return filas[0];
+      });
+    });
+  }
+
+  function borrar(tabla, id) {
+    return fetch(base + '/rest/v1/' + tabla + '?id=eq.' + encodeURIComponent(id), {
+      method: 'DELETE',
+      headers: cabeceras({ 'Content-Profile': esquema, Prefer: 'return=representation' }),
+    }).then(function (r) {
+      return r.text().then(function (t) {
+        if (!r.ok) throw new Error(t || ('Error ' + r.status));
+        var filas = t ? JSON.parse(t) : [];
+        if (!filas.length) throw new Error('No se borró: la cuenta no figura en sacc.admins.');
+        return true;
+      });
+    });
+  }
+
   function subir(archivo, slot) {
     var ext = (archivo.name.split('.').pop() || 'jpg').toLowerCase();
     var ruta = slot + '-' + Date.now() + '.' + ext;
@@ -334,33 +434,33 @@
       var entrada = document.createElement('input');
       entrada.type = 'file';
       entrada.accept = 'image/*';
-      var estado = document.createElement('span');
-      estado.style.cssText = 'font-size: 11.5px; color: #8A8378;';
+      var estadoFoto = document.createElement('span');
+      estadoFoto.style.cssText = 'font-size: 11.5px; color: #8A8378;';
 
       boton.addEventListener('click', function () { entrada.click(); });
       entrada.addEventListener('change', function () {
         var archivo = entrada.files && entrada.files[0];
         if (!archivo) return;
-        if (archivo.size > 8 * 1024 * 1024) { estado.textContent = 'Máximo 8 MB.'; return; }
+        if (archivo.size > 8 * 1024 * 1024) { estado('estado-fotos', 'mal', 'La imagen supera los 8 MB.'); return; }
         boton.disabled = true;
-        estado.textContent = 'Subiendo…';
+        estadoFoto.textContent = 'Subiendo…';
         subir(archivo, f.slot)
           .then(function (url) {
             return actualizar('imagenes', 'slot=eq.' + encodeURIComponent(f.slot), { url: url })
               .then(function () { img.src = url; img.style.display = ''; });
           })
           .then(function () {
-            estado.textContent = 'Listo';
+            estadoFoto.textContent = '';
             boton.textContent = 'Reemplazar';
-            avisar('mensaje', 'Imagen actualizada: ' + (f.descripcion || f.slot));
+            estado('estado-fotos', 'ok', 'Actualizada: ' + (f.descripcion || f.slot));
           })
-          .catch(function (e) { estado.textContent = ''; avisar('error', e.message); })
+          .catch(function (e) { estadoFoto.textContent = ''; estado('estado-fotos', 'mal', e.message); })
           .then(function () { boton.disabled = false; entrada.value = ''; });
       });
 
       pie.appendChild(boton);
       pie.appendChild(entrada);
-      pie.appendChild(estado);
+      pie.appendChild(estadoFoto);
       cuerpo.appendChild(nombre);
       cuerpo.appendChild(slot);
       cuerpo.appendChild(pie);
@@ -370,13 +470,262 @@
     });
   }
 
-  function cargarPanel() {
-    return Promise.all([leer('contacto'), leer('imagenes', 'orden')])
-      .then(function (res) {
-        if (res[0] && res[0].length) pintarContacto(res[0][0]);
-        pintarFotos(res[1] || []);
-        ver('vista-panel');
+  // Las dos listas comparten toda la mecanica y solo cambian los campos.
+  var LISTAS = {
+    areas: {
+      tabla: 'areas',
+      lista: 'lista-areas',
+      estado: 'estado-areas',
+      etiqueta: 'área',
+      campos: [
+        { k: 'titulo_es', t: 'Título — español', tipo: 'text' },
+        { k: 'titulo_en', t: 'Título — inglés', tipo: 'text' },
+        { k: 'descripcion_es', t: 'Descripción — español', tipo: 'area' },
+        { k: 'descripcion_en', t: 'Descripción — inglés', tipo: 'area' },
+      ],
+      nueva: { titulo_es: 'Área nueva', titulo_en: 'New area', descripcion_es: '', descripcion_en: '' },
+    },
+    principios: {
+      tabla: 'principios',
+      lista: 'lista-principios',
+      estado: 'estado-principios',
+      etiqueta: 'principio',
+      campos: [
+        { k: 'titulo_es', t: 'Título — español', tipo: 'text' },
+        { k: 'titulo_en', t: 'Título — inglés', tipo: 'text' },
+        { k: 'texto_es', t: 'Texto — español', tipo: 'area' },
+        { k: 'texto_en', t: 'Texto — inglés', tipo: 'area' },
+      ],
+      nueva: { titulo_es: 'Principio nuevo', titulo_en: 'New principle', texto_es: '', texto_en: '' },
+    },
+  };
+  var datos = { areas: [], principios: [] };
+
+  function ordenar(cfg) {
+    datos[cfg.tabla].sort(function (a, b) { return (a.orden || 0) - (b.orden || 0); });
+  }
+
+  function pintarLista(cfg) {
+    var cont = $(cfg.lista);
+    cont.textContent = '';
+    ordenar(cfg);
+    datos[cfg.tabla].forEach(function (fila, i) {
+      cont.appendChild(pintarItem(cfg, fila, i));
+    });
+  }
+
+  function pintarItem(cfg, fila, i) {
+    var caja = document.createElement('div');
+    caja.className = 'item';
+
+    var cabeza = document.createElement('div');
+    cabeza.className = 'cabeza';
+    var num = document.createElement('span');
+    num.className = 'num';
+    num.textContent = String(i + 1).padStart(2, '0');
+    var titulo = document.createElement('span');
+    titulo.className = 'titulo';
+    titulo.textContent = fila.titulo_es || '(sin título)';
+    cabeza.appendChild(num);
+    cabeza.appendChild(titulo);
+    if (fila.visible === false) {
+      var oculta = document.createElement('span');
+      oculta.className = 'oculta';
+      oculta.textContent = 'Oculto';
+      cabeza.appendChild(oculta);
+    }
+
+    var cuerpo = document.createElement('div');
+    cuerpo.className = 'cuerpo plegado';
+    cabeza.addEventListener('click', function () { cuerpo.classList.toggle('plegado'); });
+
+    var rejilla = document.createElement('div');
+    rejilla.className = 'rejilla';
+    var entradas = {};
+    cfg.campos.forEach(function (campo) {
+      var env = document.createElement('div');
+      var lab = document.createElement('label');
+      lab.textContent = campo.t;
+      var inp = campo.tipo === 'area' ? document.createElement('textarea') : document.createElement('input');
+      if (campo.tipo !== 'area') inp.type = 'text';
+      inp.value = fila[campo.k] || '';
+      inp.addEventListener('input', function () {
+        if (campo.k === 'titulo_es') titulo.textContent = inp.value || '(sin título)';
       });
+      entradas[campo.k] = inp;
+      env.appendChild(lab);
+      env.appendChild(inp);
+      rejilla.appendChild(env);
+    });
+
+    var acciones = document.createElement('div');
+    acciones.className = 'acciones';
+
+    var guardar = document.createElement('button');
+    guardar.type = 'button';
+    guardar.className = 'mini';
+    guardar.textContent = 'Guardar';
+    guardar.addEventListener('click', function () {
+      var cambios = {};
+      cfg.campos.forEach(function (c) { cambios[c.k] = entradas[c.k].value.trim(); });
+      guardar.disabled = true;
+      estado(cfg.estado, 'trabajando', 'Guardando…');
+      actualizar(cfg.tabla, 'id=eq.' + encodeURIComponent(fila.id), cambios)
+        .then(function (r) {
+          Object.assign(fila, r[0]);
+          estado(cfg.estado, 'ok', 'Guardado: ' + (fila.titulo_es || cfg.etiqueta));
+        })
+        .catch(function (e) { estado(cfg.estado, 'mal', e.message); })
+        .then(function () { guardar.disabled = false; });
+    });
+
+    var verse = document.createElement('button');
+    verse.type = 'button';
+    verse.className = 'mini';
+    verse.textContent = fila.visible === false ? 'Mostrar' : 'Ocultar';
+    verse.addEventListener('click', function () {
+      var nuevo = fila.visible === false;
+      verse.disabled = true;
+      actualizar(cfg.tabla, 'id=eq.' + encodeURIComponent(fila.id), { visible: nuevo })
+        .then(function (r) {
+          Object.assign(fila, r[0]);
+          pintarLista(cfg);
+          estado(cfg.estado, 'ok', nuevo ? 'Se muestra en el sitio.' : 'Ya no se muestra en el sitio.');
+        })
+        .catch(function (e) { estado(cfg.estado, 'mal', e.message); verse.disabled = false; });
+    });
+
+    var arriba = document.createElement('button');
+    arriba.type = 'button';
+    arriba.className = 'mini';
+    arriba.textContent = '↑';
+    arriba.disabled = i === 0;
+    arriba.addEventListener('click', function () { mover(cfg, i, -1); });
+
+    var abajo = document.createElement('button');
+    abajo.type = 'button';
+    abajo.className = 'mini';
+    abajo.textContent = '↓';
+    abajo.disabled = i === datos[cfg.tabla].length - 1;
+    abajo.addEventListener('click', function () { mover(cfg, i, 1); });
+
+    var separa = document.createElement('span');
+    separa.className = 'separa';
+
+    var quitar = document.createElement('button');
+    quitar.type = 'button';
+    quitar.className = 'mini peligro';
+    quitar.textContent = 'Borrar';
+
+    acciones.appendChild(guardar);
+    acciones.appendChild(verse);
+    acciones.appendChild(arriba);
+    acciones.appendChild(abajo);
+    acciones.appendChild(separa);
+    acciones.appendChild(quitar);
+
+    // La confirmacion aparece en el mismo lugar, sin ventana del navegador:
+    // dice exactamente que se va a borrar y no se puede aceptar de un golpe.
+    var confirmar = document.createElement('div');
+    confirmar.className = 'confirmar oculto';
+    var texto = document.createElement('span');
+    texto.textContent = 'Se va a borrar «' + (fila.titulo_es || cfg.etiqueta) + '». No se puede deshacer.';
+    var si = document.createElement('button');
+    si.type = 'button';
+    si.className = 'mini peligro';
+    si.textContent = 'Sí, borrar';
+    var no = document.createElement('button');
+    no.type = 'button';
+    no.className = 'mini';
+    no.textContent = 'Cancelar';
+    confirmar.appendChild(texto);
+    confirmar.appendChild(si);
+    confirmar.appendChild(no);
+
+    quitar.addEventListener('click', function () {
+      confirmar.classList.remove('oculto');
+      texto.textContent = 'Se va a borrar «' + (entradas.titulo_es.value || cfg.etiqueta) + '». No se puede deshacer.';
+    });
+    no.addEventListener('click', function () { confirmar.classList.add('oculto'); });
+    si.addEventListener('click', function () {
+      si.disabled = true;
+      estado(cfg.estado, 'trabajando', 'Borrando…');
+      borrar(cfg.tabla, fila.id)
+        .then(function () {
+          datos[cfg.tabla] = datos[cfg.tabla].filter(function (x) { return x.id !== fila.id; });
+          pintarLista(cfg);
+          estado(cfg.estado, 'ok', 'Borrado.');
+        })
+        .catch(function (e) { estado(cfg.estado, 'mal', e.message); si.disabled = false; });
+    });
+
+    cuerpo.appendChild(rejilla);
+    cuerpo.appendChild(acciones);
+    cuerpo.appendChild(confirmar);
+    caja.appendChild(cabeza);
+    caja.appendChild(cuerpo);
+    return caja;
+  }
+
+  function mover(cfg, i, paso) {
+    var lista = datos[cfg.tabla];
+    var j = i + paso;
+    if (j < 0 || j >= lista.length) return;
+    var a = lista[i], b = lista[j];
+    var ordenA = a.orden, ordenB = b.orden;
+    if (ordenA === ordenB) { ordenA = i + 1; ordenB = j + 1; }
+    estado(cfg.estado, 'trabajando', 'Reordenando…');
+    Promise.all([
+      actualizar(cfg.tabla, 'id=eq.' + encodeURIComponent(a.id), { orden: ordenB }),
+      actualizar(cfg.tabla, 'id=eq.' + encodeURIComponent(b.id), { orden: ordenA }),
+    ]).then(function () {
+      a.orden = ordenB; b.orden = ordenA;
+      pintarLista(cfg);
+      estado(cfg.estado, 'ok', 'Orden actualizado.');
+    }).catch(function (e) { estado(cfg.estado, 'mal', e.message); });
+  }
+
+  function agregar(cfg) {
+    var maximo = datos[cfg.tabla].reduce(function (m, x) { return Math.max(m, x.orden || 0); }, 0);
+    var fila = Object.assign({}, cfg.nueva, { orden: maximo + 1 });
+    estado(cfg.estado, 'trabajando', 'Creando…');
+    crear(cfg.tabla, fila).then(function (creada) {
+      datos[cfg.tabla].push(creada);
+      pintarLista(cfg);
+      estado(cfg.estado, 'ok', 'Creado. Completá los textos y guardá.');
+      var items = $(cfg.lista).children;
+      var ultimo = items[items.length - 1];
+      if (ultimo) {
+        ultimo.querySelector('.cuerpo').classList.remove('plegado');
+        ultimo.scrollIntoView({ block: 'center' });
+      }
+    }).catch(function (e) { estado(cfg.estado, 'mal', e.message); });
+  }
+
+  $('agregar-area').addEventListener('click', function () { agregar(LISTAS.areas); });
+  $('agregar-principio').addEventListener('click', function () { agregar(LISTAS.principios); });
+
+  function cargarPanel() {
+    return Promise.all([
+      leer('contacto'),
+      leer('imagenes', 'orden'),
+      leer('areas', 'orden').catch(function () { return null; }),
+      leer('principios', 'orden').catch(function () { return null; }),
+    ]).then(function (res) {
+      if (res[0] && res[0].length) pintarContacto(res[0][0]);
+      pintarFotos(res[1] || []);
+      // Si falta correr schema-secciones.sql, se dice donde esta el problema
+      // en vez de dejar la seccion muda.
+      [['areas', res[2], LISTAS.areas], ['principios', res[3], LISTAS.principios]].forEach(function (par) {
+        if (par[1] === null) {
+          estado(par[2].estado, 'mal', 'La tabla sacc.' + par[0] + ' no responde. Falta correr supabase/schema-secciones.sql.');
+        } else {
+          datos[par[0]] = par[1];
+          pintarLista(par[2]);
+        }
+      });
+      ver('vista-panel');
+    });
   }
 
   $('form-contacto').addEventListener('submit', function (ev) {
@@ -392,9 +741,9 @@
       bajada_en: $('c-bajada-en').value.trim(),
     }).then(function (filas) {
       pintarContacto(filas[0]);
-      avisar('mensaje', 'Datos de contacto guardados.');
+      estado('estado-contacto', 'ok', 'Datos de contacto guardados.');
     }).catch(function (e) {
-      avisar('error', e.message);
+      estado('estado-contacto', 'mal', e.message);
     }).then(function () { boton.disabled = false; });
   });
 
