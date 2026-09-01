@@ -22,6 +22,7 @@
 <script src="./image-slot.js"></script>
 <script src="./sacc-config.js"></script>
 <script src="./sacc-datos.js" defer></script>
+<script src="./sacc-formulario.js" defer></script>
 <style>
   @font-face { font-family: Poppins; font-style: normal; font-weight: 200; font-display: swap; src: url(uploads/fonts/poppins-200-latin.woff2) format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
   @font-face { font-family: Poppins; font-style: normal; font-weight: 300; font-display: swap; src: url(uploads/fonts/poppins-300-latin.woff2) format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
@@ -633,6 +634,37 @@
       <a href="mailto:info@saccmedicalgroup.com" style="padding: 17px 32px; background: #132133; color: #F5F6F6; font-size: 11px; letter-spacing: .18em; text-transform: uppercase; transition: background 500ms, transform 500ms cubic-bezier(.16,.8,.24,1);" style-hover="background: var(--accent, #B9BFC4); color: #0B1626; transform: translateY(-2px);">Contact SACC Medical Group</a>
       <a href="mailto:info@saccmedicalgroup.com" style="padding: 17px 32px; border: 1px solid rgba(11,22,38,.25); color: #132133; font-size: 11px; letter-spacing: .18em; text-transform: uppercase; transition: border-color 500ms, color 500ms, transform 500ms cubic-bezier(.16,.8,.24,1);" style-hover="border-color: #979FA8; color: #555D65; transform: translateY(-2px);">Business Partnership</a>
     </div>
+
+    <form data-form-contacto="1" novalidate="novalidate" style="margin: clamp(40px, 5vw, 64px) auto 0; max-width: 660px; text-align: left;">
+      <div data-reveal="1" style="display: grid; grid-template-columns: 1fr 1fr; gap: clamp(16px, 1.8vw, 22px); opacity: 0; transform: translateY(20px); transition: opacity 900ms cubic-bezier(.16,.8,.24,1) 0ms, transform 900ms cubic-bezier(.16,.8,.24,1) 0ms;">
+        <div><label for="sacc-nombre" style="display: block; font-size: 10px; letter-spacing: .26em; text-transform: uppercase; color: #485463; margin-bottom: 9px;">Full name</label><input id="sacc-nombre" name="sacc-nombre" type="text" required="required" autocomplete="name" style="width: 100%; box-sizing: border-box; font-family: inherit; font-size: 15px; font-weight: 300; color: #132133; background: #FFFFFF; border: 1px solid rgba(11,22,38,.18); padding: 13px 14px; transition: border-color 300ms;" /></div>
+        <div><label for="sacc-empresa" style="display: block; font-size: 10px; letter-spacing: .26em; text-transform: uppercase; color: #485463; margin-bottom: 9px;">Organization</label><input id="sacc-empresa" name="sacc-empresa" type="text" autocomplete="organization" style="width: 100%; box-sizing: border-box; font-family: inherit; font-size: 15px; font-weight: 300; color: #132133; background: #FFFFFF; border: 1px solid rgba(11,22,38,.18); padding: 13px 14px; transition: border-color 300ms;" /></div>
+        <div><label for="sacc-email" style="display: block; font-size: 10px; letter-spacing: .26em; text-transform: uppercase; color: #485463; margin-bottom: 9px;">Work email</label><input id="sacc-email" name="sacc-email" type="email" required="required" autocomplete="email" style="width: 100%; box-sizing: border-box; font-family: inherit; font-size: 15px; font-weight: 300; color: #132133; background: #FFFFFF; border: 1px solid rgba(11,22,38,.18); padding: 13px 14px; transition: border-color 300ms;" /></div>
+        <div><label for="sacc-telefono" style="display: block; font-size: 10px; letter-spacing: .26em; text-transform: uppercase; color: #485463; margin-bottom: 9px;">Phone (optional)</label><input id="sacc-telefono" name="sacc-telefono" type="tel" autocomplete="tel" style="width: 100%; box-sizing: border-box; font-family: inherit; font-size: 15px; font-weight: 300; color: #132133; background: #FFFFFF; border: 1px solid rgba(11,22,38,.18); padding: 13px 14px; transition: border-color 300ms;" /></div>
+      </div>
+      <div data-reveal="1" style="margin-top: clamp(16px, 1.8vw, 22px); opacity: 0; transform: translateY(20px); transition: opacity 900ms cubic-bezier(.16,.8,.24,1) 90ms, transform 900ms cubic-bezier(.16,.8,.24,1) 90ms;">
+        <label for="sacc-interes" style="display: block; font-size: 10px; letter-spacing: .26em; text-transform: uppercase; color: #485463; margin-bottom: 9px;">Reason for contact</label>
+        <select id="sacc-interes" name="sacc-interes" style="width: 100%; box-sizing: border-box; font-family: inherit; font-size: 15px; font-weight: 300; color: #132133; background: #FFFFFF; border: 1px solid rgba(11,22,38,.18); padding: 13px 14px; transition: border-color 300ms;">
+          <option>Product representation</option>
+          <option>Distribution and supply</option>
+          <option>Regulatory and registration</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div data-reveal="1" style="margin-top: clamp(16px, 1.8vw, 22px); opacity: 0; transform: translateY(20px); transition: opacity 900ms cubic-bezier(.16,.8,.24,1) 160ms, transform 900ms cubic-bezier(.16,.8,.24,1) 160ms;">
+        <label for="sacc-mensaje" style="display: block; font-size: 10px; letter-spacing: .26em; text-transform: uppercase; color: #485463; margin-bottom: 9px;">Message</label>
+        <textarea id="sacc-mensaje" name="sacc-mensaje" rows="5" required="required" style="width: 100%; box-sizing: border-box; font-family: inherit; font-size: 15px; font-weight: 300; color: #132133; background: #FFFFFF; border: 1px solid rgba(11,22,38,.18); padding: 13px 14px; transition: border-color 300ms; resize: vertical; line-height: 1.7;"></textarea>
+      </div>
+      <div aria-hidden="true" style="position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden;">
+        <label for="sacc-sitio">Do not fill this field</label>
+        <input id="sacc-sitio" name="sacc-sitio" type="text" tabindex="-1" autocomplete="off" />
+      </div>
+      <div data-reveal="1" style="margin-top: clamp(20px, 2.2vw, 28px); display: flex; flex-wrap: wrap; align-items: center; gap: 18px; opacity: 0; transform: translateY(20px); transition: opacity 900ms cubic-bezier(.16,.8,.24,1) 230ms, transform 900ms cubic-bezier(.16,.8,.24,1) 230ms;">
+        <button type="submit" data-form-enviar="1" style="font-family: inherit; padding: 17px 32px; background: #132133; color: #F5F6F6; border: none; cursor: pointer; font-size: 11px; letter-spacing: .18em; text-transform: uppercase; transition: background 500ms, transform 500ms cubic-bezier(.16,.8,.24,1);" style-hover="background: var(--accent, #B9BFC4); color: #0B1626; transform: translateY(-2px);">Send message</button>
+        <p data-form-aviso="1" role="status" aria-live="polite" style="margin: 0; flex: 1 1 240px; min-height: 20px; font-size: 13.5px; line-height: 1.6; font-weight: 300; color: #485463;"></p>
+      </div>
+      <p data-reveal="1" style="margin: clamp(16px, 1.8vw, 22px) 0 0; font-size: 12.5px; line-height: 1.7; font-weight: 300; color: #646F7D; opacity: 0; transform: translateY(16px); transition: opacity 900ms cubic-bezier(.16,.8,.24,1) 300ms, transform 900ms cubic-bezier(.16,.8,.24,1) 300ms;">Your data is used only to answer this enquiry. <a href="/privacidad" style="color: #3F5E80; border-bottom: 1px solid rgba(63,94,128,.35);">Política de privacidad</a></p>
+    </form>
 
     <div data-reveal="1" style="margin-top: clamp(40px, 5vw, 70px); border-top: 1px solid rgba(11,22,38,.12); padding-top: clamp(24px, 3vw, 34px); display: grid; grid-template-columns: 1fr 1fr; gap: 24px; text-align: center; opacity: 0; transform: translateY(20px); transition: opacity 1000ms cubic-bezier(.16,.8,.24,1) 420ms, transform 1000ms cubic-bezier(.16,.8,.24,1) 420ms;">
       <div><div style="font-size: 10px; letter-spacing: .26em; text-transform: uppercase; color: #485463; margin-bottom: 8px;">Email</div><div data-sacc="email" style="font-size: 14px; font-weight: 300; color: #132133;">info@saccmedicalgroup.com</div></div>
@@ -2158,6 +2190,19 @@ class Component extends DCLogic {
       'Regulatory Strategy': { es: 'Estrategia regulatoria', en: 'Regulatory Strategy' },
       'Commercial Development': { es: 'Desarrollo comercial', en: 'Commercial Development' },
       'Who we work with': { es: 'Con quiénes trabajamos', en: 'Who we work with' },
+      'Full name': { es: 'Nombre y apellido', en: 'Full name' },
+      'Organization': { es: 'Empresa o institución', en: 'Organization' },
+      'Work email': { es: 'Correo electrónico', en: 'Work email' },
+      'Phone (optional)': { es: 'Teléfono (opcional)', en: 'Phone (optional)' },
+      'Reason for contact': { es: 'Motivo de contacto', en: 'Reason for contact' },
+      'Product representation': { es: 'Representación de productos', en: 'Product representation' },
+      'Distribution and supply': { es: 'Distribución y provisión', en: 'Distribution and supply' },
+      'Regulatory and registration': { es: 'Regulatorio y registro sanitario', en: 'Regulatory and registration' },
+      'Other': { es: 'Otro', en: 'Other' },
+      'Message': { es: 'Mensaje', en: 'Message' },
+      'Send message': { es: 'Enviar mensaje', en: 'Send message' },
+      'Your data is used only to answer this enquiry.': { es: 'Usamos tus datos únicamente para responder esta consulta.', en: 'Your data is used only to answer this enquiry.' },
+      'Do not fill this field': { es: 'No completes este campo', en: 'Do not fill this field' },
       'Manufacturers': { es: 'Fabricantes', en: 'Manufacturers' },
       'Pharmaceutical Companies': { es: 'Compañías farmacéuticas', en: 'Pharmaceutical Companies' },
       'Medical Device Companies': { es: 'Empresas de dispositivos médicos', en: 'Medical Device Companies' },

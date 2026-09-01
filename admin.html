@@ -159,6 +159,17 @@
   <h1>Contenido del sitio</h1>
   <p class="sub-h1">Los cambios se publican al guardar. El sitio los toma en la siguiente carga, sin necesidad de volver a desplegar.</p>
 
+  <fieldset>
+    <legend>Mensajes recibidos</legend>
+    <p style="margin: 0 0 18px; font-size: 14px; line-height: 1.7; color: #646F7D;">Consultas que llegaron por el formulario del sitio. Se guardan acá aunque todavía no estén reenviándose por correo.</p>
+    <div id="lista-mensajes"></div>
+    <div class="acciones">
+      <button type="button" class="mini" id="ver-todos-mensajes">Ver también los leídos</button>
+      <span class="separa"></span>
+      <span class="estado" id="estado-mensajes"></span>
+    </div>
+  </fieldset>
+
   <form id="form-contacto">
     <fieldset>
       <legend>Datos de contacto</legend>
@@ -399,6 +410,110 @@
 
   // -------------------------------------------------------------- pantalla
   var contacto = null;
+
+  // Los mensajes no se editan: se leen y se marcan. Por eso no usan el
+  // renderizador de listas, que esta hecho para campos editables.
+  var mensajes = [];
+  var mostrarLeidos = false;
+
+  function fecha(iso) {
+    var d = new Date(iso);
+    if (isNaN(d)) return '';
+    var meses = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'];
+    return d.getDate() + ' ' + meses[d.getMonth()] + ' ' + d.getFullYear() +
+      ', ' + String(d.getHours()).padStart(2, '0') + ':' + String(d.getMinutes()).padStart(2, '0');
+  }
+
+  function pintarMensajes() {
+    var cont = document.getElementById('lista-mensajes');
+    if (!cont) return;
+    cont.innerHTML = '';
+    var visibles = mostrarLeidos ? mensajes : mensajes.filter(function (m) { return !m.leido; });
+
+    if (!visibles.length) {
+      var vacio = document.createElement('p');
+      vacio.style.cssText = 'margin: 0; font-size: 14px; color: #646F7D;';
+      vacio.textContent = mensajes.length
+        ? 'No hay mensajes sin leer.'
+        : 'Todavía no llegó ningún mensaje.';
+      cont.appendChild(vacio);
+      return;
+    }
+
+    visibles.forEach(function (m) {
+      var item = document.createElement('div');
+      item.className = 'item';
+
+      var cab = document.createElement('div');
+      cab.className = 'cabeza';
+      var f1 = document.createElement('span');
+      f1.className = 'num';
+      f1.style.minWidth = '128px';
+      f1.textContent = fecha(m.creado_en);
+      var t = document.createElement('span');
+      t.className = 'titulo';
+      t.textContent = m.nombre + (m.empresa ? ' · ' + m.empresa : '');
+      cab.appendChild(f1);
+      cab.appendChild(t);
+      if (!m.leido) {
+        var nuevo = document.createElement('span');
+        nuevo.className = 'oculta';
+        nuevo.textContent = 'SIN LEER';
+        cab.appendChild(nuevo);
+      }
+
+      var cuerpo = document.createElement('div');
+      cuerpo.className = 'cuerpo plegado';
+
+      var ficha = document.createElement('p');
+      ficha.style.cssText = 'margin: 0 0 14px; font-size: 13.5px; line-height: 1.8; color: #646F7D;';
+      var lineas = [];
+      lineas.push('Correo: ' + m.email);
+      if (m.telefono) lineas.push('Teléfono: ' + m.telefono);
+      if (m.interes) lineas.push('Motivo: ' + m.interes);
+      ficha.textContent = lineas.join('   ·   ');
+
+      var texto = document.createElement('p');
+      texto.style.cssText = 'margin: 0; font-size: 15px; line-height: 1.75; color: #132133; white-space: pre-wrap;';
+      texto.textContent = m.mensaje;
+
+      var acc = document.createElement('div');
+      acc.className = 'acciones';
+      var responder = document.createElement('a');
+      responder.className = 'mini';
+      responder.style.textDecoration = 'none';
+      responder.href = 'mailto:' + m.email + '?subject=' + encodeURIComponent('Re: consulta a SACC Medical Group');
+      responder.textContent = 'Responder';
+      acc.appendChild(responder);
+      var marcar = document.createElement('button');
+      marcar.type = 'button';
+      marcar.className = 'mini';
+      marcar.textContent = m.leido ? 'Marcar como no leído' : 'Marcar como leído';
+      marcar.addEventListener('click', function () {
+        marcar.disabled = true;
+        actualizar('mensajes', 'id=eq.' + m.id, { leido: !m.leido })
+          .then(function () {
+            m.leido = !m.leido;
+            pintarMensajes();
+            estado('estado-mensajes', 'ok', 'Mensaje actualizado.');
+          })
+          .catch(function (e) {
+            marcar.disabled = false;
+            estado('estado-mensajes', 'mal', e.message);
+          });
+      });
+      acc.appendChild(marcar);
+
+      cuerpo.appendChild(ficha);
+      cuerpo.appendChild(texto);
+      cuerpo.appendChild(acc);
+
+      cab.addEventListener('click', function () { cuerpo.classList.toggle('plegado'); });
+      item.appendChild(cab);
+      item.appendChild(cuerpo);
+      cont.appendChild(item);
+    });
+  }
 
   function pintarContacto(c) {
     contacto = c;
@@ -718,18 +833,39 @@
   $('agregar-area').addEventListener('click', function () { agregar(LISTAS.areas); });
   $('agregar-principio').addEventListener('click', function () { agregar(LISTAS.principios); });
 
+  var alternar = document.getElementById('ver-todos-mensajes');
+  if (alternar) {
+    alternar.addEventListener('click', function () {
+      mostrarLeidos = !mostrarLeidos;
+      alternar.textContent = mostrarLeidos ? 'Ver solo los no leídos' : 'Ver también los leídos';
+      pintarMensajes();
+    });
+  }
+
   function cargarPanel() {
     return Promise.all([
+      leer('mensajes', 'creado_en.desc').catch(function (e) { return { fallo: e }; }),
       leer('contacto'),
       leer('imagenes', 'orden'),
       leer('areas', 'orden').catch(function (e) { return { fallo: e }; }),
       leer('principios', 'orden').catch(function (e) { return { fallo: e }; }),
     ]).then(function (res) {
-      if (res[0] && res[0].length) pintarContacto(res[0][0]);
-      pintarFotos(res[1] || []);
+      if (res[0] && res[0].fallo) {
+        var em = res[0].fallo;
+        estado('estado-mensajes', 'mal', em.codigo === 'PGRST205'
+          ? 'La tabla sacc.mensajes existe pero PostgREST no la ve todavía. Corré en el SQL Editor:  notify pgrst, "reload schema";'
+          : 'La tabla sacc.mensajes no responde. Falta correr supabase/schema-mensajes.sql. (' + em.message + ')');
+      } else {
+        mensajes = res[0] || [];
+        pintarMensajes();
+        var sinLeer = mensajes.filter(function (m) { return !m.leido; }).length;
+        if (sinLeer) estado('estado-mensajes', 'ok', sinLeer === 1 ? '1 mensaje sin leer.' : sinLeer + ' mensajes sin leer.');
+      }
+      if (res[1] && res[1].length) pintarContacto(res[1][0]);
+      pintarFotos(res[2] || []);
       // Si falta correr schema-secciones.sql, se dice donde esta el problema
       // en vez de dejar la seccion muda.
-      [['areas', res[2], LISTAS.areas], ['principios', res[3], LISTAS.principios]].forEach(function (par) {
+      [['areas', res[3], LISTAS.areas], ['principios', res[4], LISTAS.principios]].forEach(function (par) {
         if (par[1] && par[1].fallo) {
           // PGRST205 significa que la tabla existe pero PostgREST todavia no la
           // ve: su cache del esquema quedo vieja. Es un problema distinto de
