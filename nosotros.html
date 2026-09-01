@@ -43,6 +43,11 @@
   .fila { display: flex; align-items: center; justify-content: space-between; gap: 40px; }
   .marca { display: flex; flex-direction: column; align-items: center; gap: 6px; line-height: 1; }
   .marca img { display: block; height: 34px; width: auto; }
+  /* La fotografia viene de banco y trae su propio color. Se la baja de
+     saturacion para que conviva con la paleta de plateado, azul y blanco, sin
+     dejarla lavada: el brillo medio no se mueve. No alcanza al logo, que va en
+     su propio img y tiene que conservar su degrade metalico. */
+  .figura img { filter: saturate(.55) contrast(1.04); }
   .marca .luz { position: absolute; inset: 0; overflow: hidden; pointer-events: none; -webkit-mask-image: url(uploads/marca/wordmark-sacc.png); mask-image: url(uploads/marca/wordmark-sacc.png); -webkit-mask-size: 100% 100%; mask-size: 100% 100%; -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; }
   .marca .luz i { position: absolute; top: -25%; bottom: -25%; left: 0; width: 42%; background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,.85) 50%, rgba(255,255,255,0) 100%); transform: translateX(-130%) skewX(-16deg); animation: sacc-brillo 7s cubic-bezier(.45,0,.25,1) infinite; }
   .marca .logo { position: relative; display: block; }

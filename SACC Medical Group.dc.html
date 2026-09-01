@@ -55,6 +55,11 @@
      imagen propia. En los slots ya precargados con foto sobra, asi que lo
      apagamos; un slot sin src lo conserva para seguir marcando el area. */
   image-slot[src]::part(ring) { display: none; }
+  /* La fotografia viene de banco y trae su propio color. Se la baja de
+     saturacion para que conviva con la paleta de plateado, azul y blanco, sin
+     dejarla lavada: el brillo medio no se mueve. No alcanza al logo, que va en
+     su propio img y tiene que conservar su degrade metalico. */
+  image-slot { filter: saturate(.55) contrast(1.04); }
   /* Velos de la portada. El video va a opacidad plena y son estos dos los que
      dosifican cuanto se ve. El vertical asienta la imagen; el horizontal
      oscurece solo la franja izquierda, que es donde se apoyan el titular y el
