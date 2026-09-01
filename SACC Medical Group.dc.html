@@ -44,6 +44,10 @@
   a:hover { color: #B9BFC4; }
   input, select, textarea, button { font-family: inherit; }
   :focus-visible { outline: 1px solid #B9BFC4; outline-offset: 3px; }
+  /* El destello del logo: espera, cruza en algo mas de un segundo y vuelve
+     a esperar. El salto de vuelta al inicio cae con la banda ya fuera de la
+     mascara, asi que no se ve. */
+  @keyframes sacc-brillo { 0%, 55% { transform: translateX(-130%) skewX(-16deg); } 78%, 100% { transform: translateX(340%) skewX(-16deg); } }
   @keyframes sacc-drift { 0% { transform: scale(1.06) translate3d(0,0,0); } 100% { transform: scale(1.16) translate3d(-1.5%, -1.5%, 0); } }
   @keyframes sacc-marquee { from { transform: translate3d(0,0,0); } to { transform: translate3d(-50%,0,0); } }
   /* El anillo punteado del hueco de imagen solo se oculta al soltar una
@@ -77,7 +81,7 @@
 <header ref="{{ navRef }}" style="position: fixed; top: 0; left: 0; right: 0; z-index: 90; background: #0B1626; border-bottom: 1px solid rgba(185,191,196,.35); padding: 15px clamp(20px, 5vw, 72px);">
   <div style="display: flex; align-items: center; justify-content: space-between; gap: 40px;">
     <a href="#top" style="display: flex; flex-direction: column; align-items: center; gap: 6px; line-height: 1;">
-      <img src="uploads/marca/wordmark-sacc.png" alt="SACC Medical Group" style="display: block; align-self: center; height: 27px; width: auto;" />
+      <span data-marca-logo="1" style="position: relative; display: block; align-self: center;"><img src="uploads/marca/wordmark-sacc.png" alt="SACC Medical Group" style="display: block; height: 34px; width: auto;" /><span aria-hidden="true" style="position: absolute; inset: 0; overflow: hidden; pointer-events: none; -webkit-mask-image: url(uploads/marca/wordmark-sacc.png); mask-image: url(uploads/marca/wordmark-sacc.png); -webkit-mask-size: 100% 100%; mask-size: 100% 100%; -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;"><span style="position: absolute; top: -25%; bottom: -25%; left: 0; width: 42%; background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,.85) 50%, rgba(255,255,255,0) 100%); transform: translateX(-130%) skewX(-16deg); animation: sacc-brillo 7s cubic-bezier(.45,0,.25,1) infinite;"></span></span></span>
       <span data-marca-sub="1" style="display: flex; align-items: center; gap: 8px;">
         <span style="width: 14px; height: 1px; background: var(--accent, #B9BFC4);"></span>
         <span style="font-size: 8.5px; letter-spacing: .42em; font-weight: 400; color: #B0B6BD;">MEDICAL GROUP</span>

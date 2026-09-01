@@ -42,7 +42,14 @@
   header { position: fixed; top: 0; left: 0; right: 0; z-index: 90; background: #0B1626; border-bottom: 1px solid rgba(185,191,196,.35); padding: 15px clamp(20px, 5vw, 72px); }
   .fila { display: flex; align-items: center; justify-content: space-between; gap: 40px; }
   .marca { display: flex; flex-direction: column; align-items: center; gap: 6px; line-height: 1; }
-  .marca img { display: block; height: 27px; width: auto; }
+  .marca img { display: block; height: 34px; width: auto; }
+  .marca .luz { position: absolute; inset: 0; overflow: hidden; pointer-events: none; -webkit-mask-image: url(uploads/marca/wordmark-sacc.png); mask-image: url(uploads/marca/wordmark-sacc.png); -webkit-mask-size: 100% 100%; mask-size: 100% 100%; -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; }
+  .marca .luz i { position: absolute; top: -25%; bottom: -25%; left: 0; width: 42%; background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,.85) 50%, rgba(255,255,255,0) 100%); transform: translateX(-130%) skewX(-16deg); animation: sacc-brillo 7s cubic-bezier(.45,0,.25,1) infinite; }
+  .marca .logo { position: relative; display: block; }
+  /* El destello del logo: espera, cruza en algo mas de un segundo y vuelve
+     a esperar. El salto de vuelta al inicio cae con la banda ya fuera de la
+     mascara, asi que no se ve. */
+  @keyframes sacc-brillo { 0%, 55% { transform: translateX(-130%) skewX(-16deg); } 78%, 100% { transform: translateX(340%) skewX(-16deg); } }
   .sub { display: flex; align-items: center; gap: 8px; }
   .sub i { display: block; width: 14px; height: 1px; background: #B9BFC4; }
   .sub span { font-size: 8.5px; letter-spacing: .42em; color: #B0B6BD; }
@@ -183,7 +190,7 @@
 <header>
   <div class="fila">
     <a class="marca" href="/">
-      <img src="uploads/marca/wordmark-sacc.png" alt="SACC Medical Group">
+      <span class="logo"><img src="uploads/marca/wordmark-sacc.png" alt="SACC Medical Group"><span class="luz" aria-hidden="true"><i></i></span></span>
       <span class="sub"><i></i><span data-t="MEDICAL GROUP">MEDICAL GROUP</span><i></i></span>
     </a>
     <nav class="enlaces">
