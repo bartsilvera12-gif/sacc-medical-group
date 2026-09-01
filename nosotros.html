@@ -8,7 +8,7 @@
 <link rel="icon" type="image/png" sizes="32x32" href="uploads/marca/favicon-32.png">
 <link rel="icon" type="image/png" sizes="256x256" href="uploads/marca/favicon-256.png">
 <link rel="apple-touch-icon" href="uploads/marca/apple-touch-icon.png">
-<meta name="theme-color" content="#0B0B0C">
+<meta name="theme-color" content="#0B1626">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Nosotros — SACC Medical Group">
 <meta property="og:description" content="Quiénes somos, misión, visión y capacidades de SACC Medical Group.">
@@ -19,7 +19,7 @@
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
   section[id] { scroll-margin-top: 96px; }
-  body { margin: 0; background: #0B0B0C; color: #16161A; font-family: EB Garamond, Garamond, Georgia, serif; -webkit-font-smoothing: antialiased; }
+  body { margin: 0; background: #0B1626; color: #132133; font-family: EB Garamond, Garamond, Georgia, serif; -webkit-font-smoothing: antialiased; }
   a { color: inherit; text-decoration: none; }
   img { max-width: 100%; }
 
@@ -32,120 +32,120 @@
   }
 
   /* ---------------------------------------------------------------- header */
-  header { position: fixed; top: 0; left: 0; right: 0; z-index: 90; background: #0D0D0E; border-bottom: 1px solid rgba(201,169,106,.35); padding: 15px clamp(20px, 5vw, 72px); }
+  header { position: fixed; top: 0; left: 0; right: 0; z-index: 90; background: #0B1626; border-bottom: 1px solid rgba(175,192,208,.35); padding: 15px clamp(20px, 5vw, 72px); }
   .fila { display: flex; align-items: center; justify-content: space-between; gap: 40px; }
   .marca { display: flex; flex-direction: column; align-items: center; gap: 6px; line-height: 1; }
   .marca img { display: block; height: 27px; width: auto; }
   .sub { display: flex; align-items: center; gap: 8px; }
-  .sub i { display: block; width: 14px; height: 1px; background: #C9A96A; }
-  .sub span { font-size: 8.5px; letter-spacing: .42em; color: #B9B5AD; }
+  .sub i { display: block; width: 14px; height: 1px; background: #AFC0D0; }
+  .sub span { font-size: 8.5px; letter-spacing: .42em; color: #AEB6C0; }
   nav.enlaces { display: flex; align-items: center; gap: clamp(14px, 2vw, 30px); }
-  nav.enlaces a { font-size: 11.5px; letter-spacing: .1em; text-transform: uppercase; white-space: nowrap; color: #F5F2EC; padding: 6px 0; border-bottom: 1px solid transparent; transition: color 400ms, border-color 400ms; }
-  nav.enlaces a:hover { color: #C9A96A; border-color: #C9A96A; }
-  nav.enlaces a[aria-current] { color: #C9A96A; border-color: #C9A96A; }
+  nav.enlaces a { font-size: 11.5px; letter-spacing: .1em; text-transform: uppercase; white-space: nowrap; color: #F2F6FA; padding: 6px 0; border-bottom: 1px solid transparent; transition: color 400ms, border-color 400ms; }
+  nav.enlaces a:hover { color: #AFC0D0; border-color: #AFC0D0; }
+  nav.enlaces a[aria-current] { color: #AFC0D0; border-color: #AFC0D0; }
   .lado { display: flex; align-items: center; gap: 22px; }
   .idiomas { display: flex; align-items: center; gap: 7px; font-size: 11px; letter-spacing: .14em; }
-  .idiomas button { background: none; border: none; padding: 0; cursor: pointer; font: inherit; letter-spacing: .14em; color: #6E6B66; }
-  .idiomas button[aria-pressed="true"] { color: #C9A96A; }
-  .idiomas span { color: #55534F; }
-  .cta { display: inline-block; white-space: nowrap; padding: 13px 24px; border: 1px solid rgba(201,169,106,.75); font-size: 10.5px; letter-spacing: .18em; text-transform: uppercase; color: #F5F2EC; transition: background 500ms, color 500ms, border-color 500ms; }
-  .cta:hover { background: #C9A96A; color: #0B0B0C; border-color: #C9A96A; }
+  .idiomas button { background: none; border: none; padding: 0; cursor: pointer; font: inherit; letter-spacing: .14em; color: #5E6D7D; }
+  .idiomas button[aria-pressed="true"] { color: #AFC0D0; }
+  .idiomas span { color: #485463; }
+  .cta { display: inline-block; white-space: nowrap; padding: 13px 24px; border: 1px solid rgba(175,192,208,.75); font-size: 10.5px; letter-spacing: .18em; text-transform: uppercase; color: #F2F6FA; transition: background 500ms, color 500ms, border-color 500ms; }
+  .cta:hover { background: #AFC0D0; color: #0B1626; border-color: #AFC0D0; }
   .burger { display: none; background: none; border: none; padding: 6px; cursor: pointer; flex-direction: column; gap: 6px; }
   .burger span { display: block; width: 26px; height: 1px; background: #FFFFFF; }
 
-  .menu { position: fixed; top: 0; bottom: 0; right: 0; left: auto; z-index: 95; width: min(460px, 100vw); overflow-y: auto; background: #0B0B0C; border-left: 1px solid rgba(201,169,106,.35); box-shadow: -18px 0 60px rgba(0,0,0,.55); padding: 20px clamp(22px, 4vw, 34px) 26px; display: flex; flex-direction: column; opacity: 0; transform: translateX(18px); pointer-events: none; transition: opacity 500ms cubic-bezier(.16,.8,.24,1), transform 600ms cubic-bezier(.16,.8,.24,1); }
+  .menu { position: fixed; top: 0; bottom: 0; right: 0; left: auto; z-index: 95; width: min(460px, 100vw); overflow-y: auto; background: #0B1626; border-left: 1px solid rgba(175,192,208,.35); box-shadow: -18px 0 60px rgba(0,0,0,.55); padding: 20px clamp(22px, 4vw, 34px) 26px; display: flex; flex-direction: column; opacity: 0; transform: translateX(18px); pointer-events: none; transition: opacity 500ms cubic-bezier(.16,.8,.24,1), transform 600ms cubic-bezier(.16,.8,.24,1); }
   .menu[data-abierto] { opacity: 1; transform: translateX(0); pointer-events: auto; }
   .menu .top { display: flex; justify-content: space-between; align-items: center; }
   .menu .top img { display: block; height: 24px; width: auto; }
-  .menu .cerrar { background: none; border: none; color: #F5F2EC; font-size: 26px; line-height: 1; cursor: pointer; }
+  .menu .cerrar { background: none; border: none; color: #F2F6FA; font-size: 26px; line-height: 1; cursor: pointer; }
   .menu nav { margin: 22px 0 0; width: 100%; display: flex; flex-direction: column; gap: 2px; }
-  .menu nav a { font-size: clamp(22px, 4.6vw, 30px); color: #F5F2EC; padding: 7px 0; border-bottom: 1px solid rgba(245,242,236,.08); }
-  .menu nav a:last-child { color: #C9A96A; border-bottom: none; }
+  .menu nav a { font-size: clamp(22px, 4.6vw, 30px); color: #F2F6FA; padding: 7px 0; border-bottom: 1px solid rgba(242,246,250,.08); }
+  .menu nav a:last-child { color: #AFC0D0; border-bottom: none; }
   .menu .pie { width: 100%; margin-top: auto; padding-top: 26px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px 20px; }
-  .menu .pie .lema { font-size: 10.5px; letter-spacing: .2em; color: #9A968F; text-transform: uppercase; }
+  .menu .pie .lema { font-size: 10.5px; letter-spacing: .2em; color: #8C98A5; text-transform: uppercase; }
   .menu .top .marca { display: inline-flex; flex-direction: column; align-items: center; gap: 6px; line-height: 1; }
   .menu .top .marca img { height: 24px; }
   .menu .top .marca .sub span { font-size: 8px; }
   /* El idioma sube al principio del panel y se marca con un recuadro: en
-     dorado plano sobre negro el activo no se distinguia lo suficiente. */
+     plateado plano sobre azul el activo no se distinguia lo suficiente. */
   .fila-panel { margin-top: 22px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 14px; }
   .idiomas-panel { gap: 8px; }
-  .idiomas-panel button { border: 1px solid rgba(245,242,236,.20); padding: 6px 13px; font-size: 12px; color: #B9B5AD; transition: background 400ms, color 400ms, border-color 400ms; }
-  .idiomas-panel button[aria-pressed="true"] { border-color: #C9A96A; background: rgba(201,169,106,.16); color: #DCC08A; }
-  .menu nav a:last-child { color: #DCC08A; }
+  .idiomas-panel button { border: 1px solid rgba(242,246,250,.20); padding: 6px 13px; font-size: 12px; color: #AEB6C0; transition: background 400ms, color 400ms, border-color 400ms; }
+  .idiomas-panel button[aria-pressed="true"] { border-color: #AFC0D0; background: rgba(175,192,208,.16); color: #C8D6E2; }
+  .menu nav a:last-child { color: #C8D6E2; }
 
   /* -------------------------------------------------------------- secciones */
   section { padding: clamp(34px, 7vw, 104px) clamp(20px, 5vw, 72px); }
   .caja { max-width: 1500px; margin: 0 auto; }
   .eyebrow { display: flex; align-items: center; gap: 14px; margin-bottom: clamp(24px, 3vw, 38px); }
-  .eyebrow i { display: block; width: 48px; height: 1px; background: #B99A5F; }
-  .eyebrow span { font-size: 10px; letter-spacing: .4em; text-transform: uppercase; color: #8A8378; }
+  .eyebrow i { display: block; width: 48px; height: 1px; background: #8DA0B6; }
+  .eyebrow span { font-size: 10px; letter-spacing: .4em; text-transform: uppercase; color: #778596; }
   .dos { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(30px, 5vw, 80px); align-items: start; }
 
   /* Portada oscura: da entrada a la pagina bajo el header fijo. */
-  .portada { background: #0B0B0C; padding-top: clamp(112px, 13vw, 190px); position: relative; overflow: hidden; }
-  .portada .aura { position: absolute; top: -30%; right: -10%; width: 60%; height: 120%; border-radius: 50%; filter: blur(110px); background: radial-gradient(circle, rgba(201,169,106,.16), transparent 70%); pointer-events: none; }
+  .portada { background: #0B1626; padding-top: clamp(112px, 13vw, 190px); position: relative; overflow: hidden; }
+  .portada .aura { position: absolute; top: -30%; right: -10%; width: 60%; height: 120%; border-radius: 50%; filter: blur(110px); background: radial-gradient(circle, rgba(175,192,208,.16), transparent 70%); pointer-events: none; }
   .portada .caja { position: relative; }
-  .portada .eyebrow i { background: #C9A96A; }
-  .portada .eyebrow span { color: #9A968F; }
-  .portada h1 { margin: 0 0 clamp(28px, 3.4vw, 48px); max-width: 1100px; font-weight: 300; font-size: clamp(32px, 4.4vw, 66px); line-height: 1.1; letter-spacing: -.02em; color: #F5F2EC; }
-  .portada h1 em { font-family: EB Garamond, Garamond, Georgia, serif; letter-spacing: .045em; font-style: normal; font-weight: 400; color: #C9A96A; }
-  .portada p { margin: 0; font-size: 15.5px; line-height: 1.85; font-weight: 300; color: #A9A5A0; }
-  /* #6E6B66 sobre #0B0B0C da 3.7:1, por debajo del minimo para texto corrido. */
-  .portada p.tenue { color: #8E8A84; }
-  .portada .borde { margin-top: clamp(30px, 4vw, 56px); border-top: 1px solid rgba(245,242,236,.12); }
+  .portada .eyebrow i { background: #AFC0D0; }
+  .portada .eyebrow span { color: #8C98A5; }
+  .portada h1 { margin: 0 0 clamp(28px, 3.4vw, 48px); max-width: 1100px; font-weight: 300; font-size: clamp(32px, 4.4vw, 66px); line-height: 1.1; letter-spacing: -.02em; color: #F2F6FA; }
+  .portada h1 em { font-family: EB Garamond, Garamond, Georgia, serif; letter-spacing: .045em; font-style: normal; font-weight: 400; color: #AFC0D0; }
+  .portada p { margin: 0; font-size: 15.5px; line-height: 1.85; font-weight: 300; color: #9DA7B2; }
+  /* #5E6D7D sobre #0B1626 da 3.7:1, por debajo del minimo para texto corrido. */
+  .portada p.tenue { color: #7F8C9B; }
+  .portada .borde { margin-top: clamp(30px, 4vw, 56px); border-top: 1px solid rgba(242,246,250,.12); }
 
   /* Capacidades: matriz de celdas separadas por filetes. */
-  .capacidades { background: #FAFAF9; }
-  .capacidades .lead { max-width: 620px; margin: 0 0 clamp(26px, 3vw, 40px); font-size: 16px; line-height: 1.8; font-weight: 300; color: #3A3A3E; }
-  .matriz { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: rgba(20,20,22,.12); border: 1px solid rgba(20,20,22,.12); }
+  .capacidades { background: #F7F9FC; }
+  .capacidades .lead { max-width: 620px; margin: 0 0 clamp(26px, 3vw, 40px); font-size: 16px; line-height: 1.8; font-weight: 300; color: #303B48; }
+  .matriz { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: rgba(11,22,38,.12); border: 1px solid rgba(11,22,38,.12); }
   .cap { background: #FFFFFF; padding: clamp(22px, 2.4vw, 32px) clamp(18px, 2vw, 28px); min-height: clamp(132px, 12vw, 168px); display: flex; flex-direction: column; gap: 14px; transition: background 500ms; }
-  .cap:hover { background: #FFFCF2; }
-  .cap i { display: block; width: 22px; height: 1px; background: #B99A5F; }
-  .cap span { font-size: 15px; line-height: 1.55; font-weight: 300; color: #3A3A3E; }
-  .cierre { max-width: 920px; margin: clamp(30px, 3.6vw, 52px) 0 0; font-size: 17px; line-height: 1.75; font-weight: 300; color: #16161A; }
+  .cap:hover { background: #FFFFFF; }
+  .cap i { display: block; width: 22px; height: 1px; background: #8DA0B6; }
+  .cap span { font-size: 15px; line-height: 1.55; font-weight: 300; color: #303B48; }
+  .cierre { max-width: 920px; margin: clamp(30px, 3.6vw, 52px) 0 0; font-size: 17px; line-height: 1.75; font-weight: 300; color: #132133; }
 
   /* Mision y vision. */
   .mv { background: #FFFFFF; }
-  .panel { border-top: 1px solid rgba(20,20,22,.16); padding-top: clamp(22px, 2.4vw, 34px); }
+  .panel { border-top: 1px solid rgba(11,22,38,.16); padding-top: clamp(22px, 2.4vw, 34px); }
   .panel .rot { display: flex; align-items: center; gap: 12px; margin-bottom: clamp(18px, 2vw, 30px); }
-  .panel .rot i { display: block; width: 26px; height: 1px; background: #B99A5F; }
-  .panel .rot span { font-size: 10px; letter-spacing: .42em; text-transform: uppercase; color: #8A8378; }
-  .panel p { margin: 0; font-weight: 300; font-size: clamp(17px, 1.55vw, 24px); line-height: 1.6; letter-spacing: -.01em; color: #16161A; }
-  .panel p + p { margin-top: clamp(16px, 1.6vw, 22px); font-size: 15px; line-height: 1.85; letter-spacing: 0; color: #6A6A6E; }
+  .panel .rot i { display: block; width: 26px; height: 1px; background: #8DA0B6; }
+  .panel .rot span { font-size: 10px; letter-spacing: .42em; text-transform: uppercase; color: #778596; }
+  .panel p { margin: 0; font-weight: 300; font-size: clamp(17px, 1.55vw, 24px); line-height: 1.6; letter-spacing: -.01em; color: #132133; }
+  .panel p + p { margin-top: clamp(16px, 1.6vw, 22px); font-size: 15px; line-height: 1.85; letter-spacing: 0; color: #5E6C7C; }
   .figura { margin-top: clamp(28px, 4vw, 62px); height: clamp(200px, 26vw, 400px); overflow: hidden; background: #EDEEEF; }
   .figura img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
   /* Datos generales sobre fondo oscuro. */
 
   /* Cierre. */
-  .final { background: #FAFAF9; text-align: center; }
-  .final h2 { margin: 0 0 clamp(22px, 2.6vw, 34px); font-weight: 300; font-size: clamp(24px, 3vw, 42px); line-height: 1.15; letter-spacing: -.02em; color: #16161A; }
+  .final { background: #F7F9FC; text-align: center; }
+  .final h2 { margin: 0 0 clamp(22px, 2.6vw, 34px); font-weight: 300; font-size: clamp(24px, 3vw, 42px); line-height: 1.15; letter-spacing: -.02em; color: #132133; }
   .botones { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; }
-  .btn-lleno { padding: 16px 30px; background: #16161A; color: #F5F2EC; font-size: 11px; letter-spacing: .18em; text-transform: uppercase; transition: background 500ms, transform 500ms; }
-  .btn-lleno:hover { background: #C9A96A; color: #0B0B0C; transform: translateY(-2px); }
-  .btn-borde { padding: 16px 30px; border: 1px solid rgba(20,20,22,.25); font-size: 11px; letter-spacing: .18em; text-transform: uppercase; transition: border-color 400ms, color 400ms, transform 500ms; }
-  .btn-borde:hover { border-color: #C9A96A; color: #B99A5F; transform: translateY(-2px); }
+  .btn-lleno { padding: 16px 30px; background: #132133; color: #F2F6FA; font-size: 11px; letter-spacing: .18em; text-transform: uppercase; transition: background 500ms, transform 500ms; }
+  .btn-lleno:hover { background: #AFC0D0; color: #0B1626; transform: translateY(-2px); }
+  .btn-borde { padding: 16px 30px; border: 1px solid rgba(11,22,38,.25); font-size: 11px; letter-spacing: .18em; text-transform: uppercase; transition: border-color 400ms, color 400ms, transform 500ms; }
+  .btn-borde:hover { border-color: #AFC0D0; color: #8DA0B6; transform: translateY(-2px); }
 
   /* Pie: el mismo del sitio, para que la pagina no termine en seco. */
-  footer { background: #0B0B0C; padding: clamp(38px, 4.5vw, 66px) clamp(20px, 5vw, 72px) 26px; }
-  footer .rejilla { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: clamp(26px, 4vw, 64px); padding-bottom: clamp(28px, 3.6vw, 48px); border-bottom: 1px solid rgba(245,242,236,.10); }
+  footer { background: #0B1626; padding: clamp(38px, 4.5vw, 66px) clamp(20px, 5vw, 72px) 26px; }
+  footer .rejilla { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: clamp(26px, 4vw, 64px); padding-bottom: clamp(28px, 3.6vw, 48px); border-bottom: 1px solid rgba(242,246,250,.10); }
   footer .marca-pie { display: inline-flex; flex-direction: column; align-items: center; gap: 7px; line-height: 1; }
   footer .marca-pie img { display: block; height: 33px; width: auto; }
   footer .marca-pie .sub i { width: 16px; }
   footer .marca-pie .sub span { font-size: 9px; }
-  footer .lema-pie { margin: 18px 0 0; max-width: 330px; font-size: 14px; line-height: 1.75; font-weight: 300; color: #85817B; }
+  footer .lema-pie { margin: 18px 0 0; max-width: 330px; font-size: 14px; line-height: 1.75; font-weight: 300; color: #748394; }
   footer nav { display: flex; flex-direction: column; gap: 10px; }
-  footer nav a { font-size: 12.5px; letter-spacing: .08em; color: #C7C3BC; transition: color 400ms; }
+  footer nav a { font-size: 12.5px; letter-spacing: .08em; color: #BDC4CC; transition: color 400ms; }
   footer .datos-pie { display: flex; flex-direction: column; gap: 10px; }
-  footer .datos-pie div { font-size: 12.5px; font-weight: 300; color: #85817B; }
-  footer .datos-pie a { font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: #F5F2EC; transition: color 400ms; }
+  footer .datos-pie div { font-size: 12.5px; font-weight: 300; color: #748394; }
+  footer .datos-pie a { font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: #F2F6FA; transition: color 400ms; }
   footer .datos-pie a:first-of-type { margin-top: 12px; }
-  footer .barra { padding-top: 20px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-size: 11px; letter-spacing: .1em; color: #55534F; }
+  footer .barra { padding-top: 20px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-size: 11px; letter-spacing: .1em; color: #485463; }
   footer .barra .legal { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 18px; }
-  footer .barra .legal a { color: #85817B; letter-spacing: .1em; transition: color 400ms; }
-  footer .barra .legal .punto { color: #35332F; }
-  footer a:hover { color: #C9A96A; }
+  footer .barra .legal a { color: #748394; letter-spacing: .1em; transition: color 400ms; }
+  footer .barra .legal .punto { color: #2B343E; }
+  footer a:hover { color: #AFC0D0; }
 
   /* El paso a hamburguesa no lo decide un breakpoint fijo sino la medicion
      del propio header, igual que en el sitio principal. */
@@ -213,7 +213,7 @@
       <button type="button" data-lang="ES" aria-pressed="true">ES</button>
       <button type="button" data-lang="EN" aria-pressed="false">EN</button>
     </div>
-    <a class="cta menu-cta" href="/#contacto" style="background: #C9A96A; color: #0B0B0C; border-color: #C9A96A; padding: 11px 20px; font-size: 10px; letter-spacing: .16em;" data-t="Asociarse con SACC">Asociarse con SACC</a>
+    <a class="cta menu-cta" href="/#contacto" style="background: #AFC0D0; color: #0B1626; border-color: #AFC0D0; padding: 11px 20px; font-size: 10px; letter-spacing: .16em;" data-t="Asociarse con SACC">Asociarse con SACC</a>
   </div>
   <nav>
     <a href="/" data-t="Inicio">Inicio</a>
