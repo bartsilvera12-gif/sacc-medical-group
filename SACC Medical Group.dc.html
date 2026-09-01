@@ -1084,7 +1084,7 @@ class Component extends DCLogic {
     const CAPAS = 16;
     for (let k = 0; k <= CAPAS; k++) {
       const u = k / CAPAS;
-      ctx.fillStyle = 'rgb(' + Math.round(118 + 83 * u) + ',' + Math.round(92 + 77 * u) + ',' + Math.round(46 + 60 * u) + ')';
+      ctx.fillStyle = 'rgb(' + Math.round(100 + 76 * u) + ',' + Math.round(105 + 77 * u) + ',' + Math.round(110 + 78 * u) + ')';
       camino(base, u * ALTO);
       ctx.fill('nonzero');
     }
@@ -1111,11 +1111,11 @@ class Component extends DCLogic {
       for (let k = 0; k <= CAPAS; k++) {
         const u = k / CAPAS;
         const b = lev * 24;
-        ctx.fillStyle = 'rgb(' + Math.round(118 + 83 * u + b) + ',' + Math.round(92 + 77 * u + b) + ',' + Math.round(46 + 60 * u + b) + ')';
+        ctx.fillStyle = 'rgb(' + Math.round(100 + 76 * u + b) + ',' + Math.round(105 + 77 * u + b) + ',' + Math.round(110 + 78 * u + b) + ')';
         camino(d.a, desde + u * ALTO);
         ctx.fill('nonzero');
       }
-      ctx.fillStyle = 'rgb(' + Math.round(228 + 22 * lev) + ',' + Math.round(213 + 22 * lev) + ',' + Math.round(176 + 24 * lev) + ')';
+      ctx.fillStyle = 'rgb(' + Math.round(234 + 21 * lev) + ',' + Math.round(237 + 18 * lev) + ',' + Math.round(240 + 15 * lev) + ')';
       camino(d.a, desde + ALTO);
       ctx.fill('nonzero');
       ctx.strokeStyle = 'rgba(42,66,96,.75)';
@@ -1530,7 +1530,7 @@ class Component extends DCLogic {
     ctx.drawImage(this._off, 0, 0, this._w, this._h);
 
     const origin = this.project(-57.64, -25.28);
-    const accent = '201,169,106';
+    const accent = '185,191,196';
     const routes = Component.ROUTES;
 
     for (let k = 0; k < routes.length; k++) {
