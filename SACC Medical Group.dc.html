@@ -43,6 +43,24 @@
      imagen propia. En los slots ya precargados con foto sobra, asi que lo
      apagamos; un slot sin src lo conserva para seguir marcando el area. */
   image-slot[src]::part(ring) { display: none; }
+  /* Velos de la portada. El video va a opacidad plena y son estos dos los que
+     dosifican cuanto se ve. El vertical asienta la imagen; el horizontal
+     oscurece solo la franja izquierda, que es donde se apoyan el titular y el
+     parrafo, y deja limpio el lado donde se luce la helice. */
+  [data-hero-velo="v"] { background: linear-gradient(180deg, rgba(11,22,38,.80) 0%, rgba(11,22,38,.34) 45%, rgba(11,22,38,.92) 100%); }
+  /* Los topes van en px, no en porcentaje: la banda de texto mide siempre lo
+     mismo (el parrafo llega a 560px y el titular a 1000px mas el margen), asi
+     que en porcentajes el velo se corria y dejaba el texto afuera en cuanto la
+     ventana se angostaba. */
+  [data-hero-velo="h"] { background: linear-gradient(90deg, rgba(11,22,38,.78) 0px, rgba(11,22,38,.60) 560px, rgba(11,22,38,.42) 960px, rgba(11,22,38,.22) 1300px, rgba(11,22,38,0) 1700px); }
+  /* En pantalla angosta el texto ocupa todo el ancho, asi que separar por
+     lados deja de servir: el velo lateral se vuelve parejo y el vertical se
+     mantiene casi tan cerrado como antes. El video se aclara menos, pero el
+     parrafo de 14px sigue siendo legible sobre la helice. */
+  @media (max-width: 900px) {
+    [data-hero-velo="v"] { background: linear-gradient(180deg, rgba(11,22,38,.88) 0%, rgba(11,22,38,.56) 45%, rgba(11,22,38,.96) 100%); }
+    [data-hero-velo="h"] { background: rgba(11,22,38,.34); }
+  }
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; } }
 </style>
 </helmet>
@@ -120,9 +138,10 @@
 <section id="top" style="background: #0B1626; padding: 6px 6px 0;" data-hero-top="1">
   <div style="position: relative; overflow: hidden; border-radius: clamp(18px, 2.6vw, 44px); border: 1px solid rgba(245,246,246,.08); min-height: clamp(600px, 94vh, 1020px); display: flex; align-items: flex-end;">
     <div ref="{{ heroBgRef }}" style="position: absolute; inset: 0;">
-      <video data-hero-video="true" autoplay="true" loop="true" muted="true" playsinline="true" preload="auto" poster="uploads/hero-poster.jpg" style="width: 100%; height: 100%; object-fit: cover; opacity: .55;"></video>
+      <video data-hero-video="true" autoplay="true" loop="true" muted="true" playsinline="true" preload="auto" poster="uploads/hero-poster.jpg" style="width: 100%; height: 100%; object-fit: cover; opacity: 1;"></video>
     </div>
-    <div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(11,22,38,.88) 0%, rgba(11,22,38,.55) 45%, rgba(11,22,38,.96) 100%); pointer-events: none;"></div>
+    <div data-hero-velo="v" style="position: absolute; inset: 0; pointer-events: none;"></div>
+    <div data-hero-velo="h" style="position: absolute; inset: 0; pointer-events: none;"></div>
     <div style="position: absolute; inset: 0; background: radial-gradient(ellipse 60% 60% at 80% 30%, rgba(185,191,196,.10), transparent 70%); pointer-events: none;"></div>
 
     <div style="position: relative; width: 100%; padding: clamp(130px, 12vh, 180px) clamp(24px, 5vw, 80px) clamp(60px, 18vh, 180px); display: grid; grid-template-columns: minmax(0, 1fr); align-items: end;">
