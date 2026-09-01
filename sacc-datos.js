@@ -87,6 +87,13 @@
   // Areas y principios son listas de largo variable. Se reconstruyen clonando
   // la primera tarjeta que ya esta en el HTML: asi el estilo no se duplica
   // aca y cualquier retoque de diseño se propaga solo.
+  // Antes esto vaciaba el contenedor y volvia a llenarlo con clones. El
+  // vaciado se llevaba puestos los nodos de React, que despues no los
+  // encontraba y rompia el render de toda la pagina.
+  //
+  // Ahora se reescriben en el lugar los que ya estan, se ocultan los que
+  // sobran y solo se agregan clones al final si hacen falta. Agregar al final
+  // se tolera; sacarle un hijo a React, no.
   function reconstruir(contenedor, filas, pintar) {
     if (!contenedor || !filas || !filas.length) return false;
     var molde = contenedor.firstElementChild;
@@ -94,13 +101,22 @@
     var visibles = filas.filter(function (f) { return f.visible !== false; })
       .sort(function (a, b) { return (a.orden || 0) - (b.orden || 0); });
     if (!visibles.length) return false;
-    var nuevos = visibles.map(function (fila, i) {
-      var el = molde.cloneNode(true);
+
+    var actuales = Array.prototype.slice.call(contenedor.children);
+    visibles.forEach(function (fila, i) {
+      var el = actuales[i];
+      if (!el) {
+        el = molde.cloneNode(true);
+        el.dataset.saccAgregado = '1';
+        contenedor.appendChild(el);
+      }
+      el.style.display = '';
       pintar(el, fila, i);
-      return el;
     });
-    contenedor.textContent = '';
-    nuevos.forEach(function (el) { contenedor.appendChild(el); });
+    // Los que sobran se esconden en vez de borrarse.
+    for (var j = visibles.length; j < actuales.length; j++) {
+      actuales[j].style.display = 'none';
+    }
     return true;
   }
 

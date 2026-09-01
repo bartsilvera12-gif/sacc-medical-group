@@ -966,45 +966,41 @@ class Component extends DCLogic {
   // no al elemento marcado con data-reveal: ese ya usa transform para su
   // animacion de entrada y se pisarian.
   initCards3D() {
-    window.__saccInitCards3D = () => { this._cardsInit = false; this.initCards3D(); };
-    if (this._cardsInit) return;
-    const items = Array.from(document.querySelectorAll('[data-card3d]'));
-    if (!items.length) return;
-    this._cardsInit = true;
-    this._cards = items.map((el) => {
-      const dentro = document.createElement('div');
-      dentro.style.cssText = 'position: relative; transform-style: preserve-3d; transition: transform 420ms cubic-bezier(.16,.8,.24,1), background 420ms; border-radius: 10px; margin: 0 -14px; padding: 0 14px 14px;';
-      while (el.firstChild) dentro.appendChild(el.firstChild);
-      const brillo = document.createElement('div');
-      brillo.setAttribute('aria-hidden', 'true');
-      brillo.style.cssText = 'position: absolute; inset: 0; border-radius: 10px; pointer-events: none; opacity: 0; transition: opacity 420ms; background: transparent;';
-      dentro.appendChild(brillo);
-      el.appendChild(dentro);
-      el.addEventListener('pointermove', (e) => this.moverCard(el, dentro, brillo, e));
-      el.addEventListener('pointerleave', () => this.salirCard(dentro, brillo));
-      return { el, dentro, brillo };
+    window.__saccInitCards3D = () => { this.initCards3D(); };
+    Array.from(document.querySelectorAll('[data-card3d]')).forEach((el) => {
+      // La marca va en el nodo, no en el componente: si React rehace la
+      // tarjeta, la nueva entra sin marca y recibe sus escuchas.
+      if (el._card3d) return;
+      el._card3d = true;
+      el.style.transition = 'opacity 900ms cubic-bezier(.16,.8,.24,1), transform 420ms cubic-bezier(.16,.8,.24,1), background-color 420ms';
+      el.addEventListener('pointermove', (e) => this.moverCard(el, e));
+      el.addEventListener('pointerleave', () => this.salirCard(el));
     });
   }
 
   teardownCards3D() { this._cardsInit = false; }
 
-  moverCard(el, dentro, brillo, e) {
+  moverCard(el, e) {
     if (this.reduced) return;
+    // Mientras la tarjeta esta entrando, transform es de la animacion de
+    // entrada: no se le pisa.
+    if (!el.hasAttribute('data-shown')) return;
     const r = el.getBoundingClientRect();
     const px = (e.clientX - r.left) / r.width;
     const py = (e.clientY - r.top) / r.height;
-    const rx = (0.5 - py) * 9;
-    const ry = (px - 0.5) * 11;
-    dentro.style.transform = 'rotateX(' + rx.toFixed(2) + 'deg) rotateY(' + ry.toFixed(2) + 'deg) translateZ(14px)';
-    dentro.style.background = 'rgba(245,246,246,.035)';
-    brillo.style.opacity = '1';
-    brillo.style.background = 'radial-gradient(420px circle at ' + (px * 100).toFixed(1) + '% ' + (py * 100).toFixed(1) + '%, rgba(185,191,196,.16), transparent 62%)';
+    const rx = (0.5 - py) * 7;
+    const ry = (px - 0.5) * 9;
+    // El giro y el brillo se aplican sobre la propia tarjeta. El brillo es un
+    // degrade de fondo y no un elemento nuevo, asi no se agrega ni un nodo.
+    el.style.transform = 'perspective(760px) rotateX(' + rx.toFixed(2) + 'deg) rotateY(' + ry.toFixed(2) + 'deg)';
+    el.style.backgroundColor = 'rgba(245,246,246,.04)';
+    el.style.backgroundImage = 'radial-gradient(360px circle at ' + (px * 100).toFixed(1) + '% ' + (py * 100).toFixed(1) + '%, rgba(245,246,246,.11), rgba(245,246,246,0) 62%)';
   }
 
-  salirCard(dentro, brillo) {
-    dentro.style.transform = 'rotateX(0deg) rotateY(0deg) translateZ(0px)';
-    dentro.style.background = 'transparent';
-    brillo.style.opacity = '0';
+  salirCard(el) {
+    el.style.transform = 'none';
+    el.style.backgroundColor = '';
+    el.style.backgroundImage = '';
   }
 
   // Mapa de Paraguay por departamentos, extruido en 3D. Vista fija: al pasar
@@ -1850,6 +1846,10 @@ class Component extends DCLogic {
       el.style.padding = narrow ? '30px 0' : el.dataset.pad;
     });
     root.querySelectorAll('[style*="position: sticky"], [style*="position:sticky"], [data-sticky-top]').forEach(function (el) {
+      // La columna de fotos del modelo la maneja layoutModelo, que en
+      // celular la quiere justamente sticky: si se degradara aca, la foto se
+      // iria de pantalla y volveria el problema que esto vino a resolver.
+      if (el.hasAttribute('data-modelo-columna')) return;
       if (el.dataset.stickyTop === undefined) el.dataset.stickyTop = el.style.top || '0px';
       el.style.position = narrow ? 'relative' : 'sticky';
       el.style.top = narrow ? 'auto' : el.dataset.stickyTop;
@@ -1935,36 +1935,44 @@ class Component extends DCLogic {
     if (!columna || fotos.length !== 4) return;
     const marco = columna.firstElementChild;
 
-    if (this._modeloApilado !== apilado) {
-      this._modeloApilado = apilado;
-      const pilares = Array.from(document.querySelectorAll('[data-pillar]'));
-      fotos.forEach((foto, i) => {
-        if (apilado) {
-          const destino = pilares[i];
-          if (!destino) return;
-          foto.style.position = 'relative';
-          foto.style.inset = 'auto';
-          foto.style.opacity = '1';
-          foto.style.marginTop = 'clamp(20px, 4vw, 30px)';
-          foto.style.height = 'clamp(200px, 52vw, 320px)';
-          destino.appendChild(foto);
-        } else {
-          foto.style.position = 'absolute';
-          foto.style.inset = '0';
-          foto.style.marginTop = '';
-          foto.style.height = '';
-          if (marco) marco.appendChild(foto);
-        }
-      });
-      columna.style.display = apilado ? 'none' : 'flex';
+    // Los valores de origen se guardan una sola vez: al volver a escritorio
+    // hay que reponerlos, y vaciar la propiedad borraria tambien el valor que
+    // trae la plantilla.
+    if (!this._modeloOrig) {
+      this._modeloOrig = {
+        position: columna.style.position,
+        top: columna.style.top,
+        height: columna.style.height,
+        zIndex: columna.style.zIndex,
+        marginBottom: columna.style.marginBottom,
+      };
     }
 
-    // El cruce por opacidad solo tiene sentido cuando comparten recuadro.
-    if (!apilado) {
-      fotos.forEach((foto, i) => {
-        foto.style.opacity = this.state.pillar === i ? '1' : '0';
-      });
+    if (this._modeloApilado !== apilado) {
+      this._modeloApilado = apilado;
+      if (apilado) {
+        // En celular la columna se queda pegada arriba mientras las etapas
+        // pasan por debajo. Antes las fotos se mudaban adentro de cada etapa,
+        // y mover nodos que React cree suyos era lo que rompia el render.
+        columna.style.position = 'sticky';
+        columna.style.top = '84px';
+        columna.style.height = 'clamp(190px, 44vw, 280px)';
+        columna.style.zIndex = '2';
+        columna.style.marginBottom = 'clamp(18px, 4vw, 28px)';
+      } else {
+        const o = this._modeloOrig;
+        columna.style.position = o.position;
+        columna.style.top = o.top;
+        columna.style.height = o.height;
+        columna.style.zIndex = o.zIndex;
+        columna.style.marginBottom = o.marginBottom;
+      }
     }
+
+    // El cruce por opacidad vale en los dos casos: la columna sigue a la vista.
+    fotos.forEach((foto, i) => {
+      foto.style.opacity = this.state.pillar === i ? '1' : '0';
+    });
   }
 
   pintarAreas() {
