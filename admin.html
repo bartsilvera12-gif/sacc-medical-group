@@ -25,12 +25,12 @@
 
   main { max-width: 1080px; margin: 0 auto; padding: clamp(26px, 4vw, 52px) clamp(20px, 4vw, 44px) 80px; }
   h1 { margin: 0 0 6px; font-weight: 400; font-size: clamp(26px, 3vw, 40px); letter-spacing: -.015em; }
-  .sub-h1 { margin: 0 0 clamp(26px, 3.4vw, 44px); font-size: 14.5px; line-height: 1.7; color: #626C76; }
+  .sub-h1 { margin: 0 0 clamp(26px, 3.4vw, 44px); font-size: 14.5px; line-height: 1.7; color: #1B2C42; }
 
   fieldset { border: 1px solid rgba(11,22,38,.14); background: #FFFFFF; padding: clamp(20px, 2.6vw, 32px); margin: 0 0 24px; }
-  legend { padding: 0 10px; font-size: 10px; letter-spacing: .34em; text-transform: uppercase; color: #7B8591; }
+  legend { padding: 0 10px; font-size: 10px; letter-spacing: .34em; text-transform: uppercase; color: #485463; }
   .rejilla { display: grid; grid-template-columns: 1fr 1fr; gap: 18px 22px; }
-  label { display: block; font-size: 10px; letter-spacing: .22em; text-transform: uppercase; color: #7B8591; margin-bottom: 7px; }
+  label { display: block; font-size: 10px; letter-spacing: .22em; text-transform: uppercase; color: #485463; margin-bottom: 7px; }
   input[type=text], input[type=email], input[type=password], textarea {
     width: 100%; font: inherit; font-size: 15px; color: #132133; background: #F8F9F9;
     border: 1px solid rgba(11,22,38,.18); padding: 11px 13px; border-radius: 0;
@@ -54,14 +54,14 @@
   .foto .marco img { width: 100%; height: 100%; object-fit: cover; display: block; }
   .foto .cuerpo { padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
   .foto .nombre { font-size: 13.5px; line-height: 1.4; color: #132133; }
-  .foto .slot { font-size: 10px; letter-spacing: .16em; color: #7B8591; }
+  .foto .slot { font-size: 10px; letter-spacing: .16em; color: #485463; }
   .foto .pie { margin-top: auto; display: flex; align-items: center; gap: 10px; }
   .foto input[type=file] { display: none; }
 
   /* Acceso */
   .acceso { max-width: 380px; margin: clamp(50px, 10vh, 120px) auto; background: #FFFFFF; border: 1px solid rgba(11,22,38,.14); padding: 34px; }
   .acceso h2 { margin: 0 0 8px; font-weight: 400; font-size: 24px; }
-  .acceso p { margin: 0 0 24px; font-size: 14px; line-height: 1.7; color: #626C76; }
+  .acceso p { margin: 0 0 24px; font-size: 14px; line-height: 1.7; color: #1B2C42; }
   .acceso .campo { margin-bottom: 16px; }
 
   .aviso { padding: 14px 18px; border-left: 2px solid #979FA8; background: #FFFFFF; font-size: 14px; line-height: 1.7; color: #303B48; margin: 0 0 24px; }
@@ -75,7 +75,7 @@
   .estado { display: flex; align-items: center; gap: 9px; font-size: 13px; line-height: 1.5; min-height: 20px; }
   .estado.ok { color: #3F6B44; }
   .estado.mal { color: #9C3A26; }
-  .estado.trabajando { color: #7B8591; }
+  .estado.trabajando { color: #485463; }
   .estado i { flex: 0 0 auto; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
   .estado button { border: none; background: none; padding: 0 0 0 4px; color: inherit; text-decoration: underline; font-size: 12px; }
 
@@ -183,7 +183,7 @@
         <div class="ancho-total barra">
           <button type="submit" class="btn" id="guardar-contacto">Guardar contacto</button>
           <span class="estado" id="estado-contacto"></span>
-          <span style="font-size: 12.5px; color: #7B8591;" id="sello-contacto"></span>
+          <span style="font-size: 12.5px; color: #485463;" id="sello-contacto"></span>
         </div>
       </div>
     </fieldset>
@@ -191,7 +191,7 @@
 
   <fieldset>
     <legend>Áreas de actividad</legend>
-    <p style="margin: 0 0 18px; font-size: 14px; line-height: 1.7; color: #626C76;">Las carpetas de «Capacidades integrales en salud». El orden es el que ve el visitante.</p>
+    <p style="margin: 0 0 18px; font-size: 14px; line-height: 1.7; color: #1B2C42;">Las carpetas de «Capacidades integrales en salud». El orden es el que ve el visitante.</p>
     <div id="lista-areas"></div>
     <div class="acciones">
       <button type="button" class="mini" id="agregar-area">Agregar área</button>
@@ -202,7 +202,7 @@
 
   <fieldset>
     <legend>Nuestros principios</legend>
-    <p style="margin: 0 0 18px; font-size: 14px; line-height: 1.7; color: #626C76;">Las tarjetas de la sección de principios.</p>
+    <p style="margin: 0 0 18px; font-size: 14px; line-height: 1.7; color: #1B2C42;">Las tarjetas de la sección de principios.</p>
     <div id="lista-principios"></div>
     <div class="acciones">
       <button type="button" class="mini" id="agregar-principio">Agregar principio</button>
@@ -213,7 +213,7 @@
 
   <fieldset>
     <legend>Imágenes</legend>
-    <p style="margin: 0 0 20px; font-size: 14px; line-height: 1.7; color: #626C76;">Cada recuadro es un lugar del sitio. Al subir una foto se reemplaza solo ahí. Si nunca se sube nada, queda la que trae el sitio.</p>
+    <p style="margin: 0 0 20px; font-size: 14px; line-height: 1.7; color: #1B2C42;">Cada recuadro es un lugar del sitio. Al subir una foto se reemplaza solo ahí. Si nunca se sube nada, queda la que trae el sitio.</p>
     <div class="fotos" id="fotos"></div>
     <div class="acciones"><span class="separa"></span><span class="estado" id="estado-fotos"></span></div>
   </fieldset>
@@ -441,7 +441,7 @@
       entrada.type = 'file';
       entrada.accept = 'image/*';
       var estadoFoto = document.createElement('span');
-      estadoFoto.style.cssText = 'font-size: 11.5px; color: #7B8591;';
+      estadoFoto.style.cssText = 'font-size: 11.5px; color: #485463;';
 
       boton.addEventListener('click', function () { entrada.click(); });
       entrada.addEventListener('change', function () {
