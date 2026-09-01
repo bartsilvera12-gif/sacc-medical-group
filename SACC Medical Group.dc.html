@@ -986,6 +986,10 @@ class Component extends DCLogic {
     this._mctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     this._pgw = rect.width;
     this._pgh = rect.height;
+    // Reasignar width/height vacia el canvas. Sin esto el mapa quedaba en
+    // blanco hasta que algo volviera a marcar cambio, y lo unico que lo hacia
+    // era pasar el cursor por encima.
+    this._primerCuadro = true;
   };
 
   // Proyeccion: giro en el plano, luego inclinacion, luego ortografica.
