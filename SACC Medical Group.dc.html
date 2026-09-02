@@ -2019,6 +2019,9 @@ class Component extends DCLogic {
         height: columna.style.height,
         zIndex: columna.style.zIndex,
         marginBottom: columna.style.marginBottom,
+        background: columna.style.background,
+        padding: columna.style.padding,
+        boxShadow: columna.style.boxShadow,
       };
     }
 
@@ -2033,6 +2036,9 @@ class Component extends DCLogic {
         columna.style.height = 'clamp(190px, 44vw, 280px)';
         columna.style.zIndex = '2';
         columna.style.marginBottom = 'clamp(18px, 4vw, 28px)';
+        columna.style.background = '#FFFFFF';
+        columna.style.padding = '0 0 12px';
+        columna.style.boxShadow = '0 14px 22px -16px rgba(11,22,38,.30)';
       } else {
         const o = this._modeloOrig;
         columna.style.position = o.position;
@@ -2040,6 +2046,9 @@ class Component extends DCLogic {
         columna.style.height = o.height;
         columna.style.zIndex = o.zIndex;
         columna.style.marginBottom = o.marginBottom;
+        columna.style.background = o.background;
+        columna.style.padding = o.padding;
+        columna.style.boxShadow = o.boxShadow;
       }
     }
 
