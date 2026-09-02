@@ -1061,8 +1061,14 @@ class Component extends DCLogic {
   }
 
   salirCard(el) {
+    // Si el efecto nunca corrio en esta tarjeta no hay nada que restaurar, y
+    // escribirle un fondo vacio le borra el suyo. Eso pasaba al tocar en el
+    // telefono: moverCard se salta el tacto, asi que el fondo nunca se
+    // guardaba, pero pointerleave si llega y dejaba la ficha en blanco con el
+    // texto claro encima, ilegible.
+    if (el._fondoBase === undefined) return;
     el.style.transform = 'none';
-    el.style.backgroundImage = el._fondoBase || '';
+    el.style.backgroundImage = el._fondoBase;
   }
 
   // Mapa de Paraguay por departamentos, extruido en 3D. Vista fija: al pasar
