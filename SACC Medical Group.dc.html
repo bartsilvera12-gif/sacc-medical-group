@@ -49,6 +49,8 @@
      a esperar. El salto de vuelta al inicio cae con la banda ya fuera de la
      mascara, asi que no se ve. */
   @keyframes sacc-brillo { 0%, 55% { transform: translateX(-130%) skewX(-16deg); } 78%, 100% { transform: translateX(340%) skewX(-16deg); } }
+  /* Los hilos del fondo: cada trazo se dibuja recorriendo su propia curva. */
+  @keyframes sacc-hilo { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
   @keyframes sacc-drift { 0% { transform: scale(1.06) translate3d(0,0,0); } 100% { transform: scale(1.16) translate3d(-1.5%, -1.5%, 0); } }
   @keyframes sacc-marquee { from { transform: translate3d(0,0,0); } to { transform: translate3d(-50%,0,0); } }
   /* El anillo punteado del hueco de imagen solo se oculta al soltar una
@@ -580,7 +582,44 @@
 
 <section style="position: relative; overflow: clip; background: #F8F9F9; padding: clamp(26px, 5vw, 76px) clamp(20px, 5vw, 72px) clamp(29px, 5.5vw, 84px);">
   <div aria-hidden="true" style="position: absolute; inset: 0; z-index: 0; pointer-events: none; overflow: clip;">
-    <canvas data-veil="1" style="position: absolute; inset: 0; width: 100%; height: 100%; display: block;"></canvas>
+    <svg data-hilos="1" aria-hidden="true" viewBox="0 0 696 316" preserveAspectRatio="xMidYMid slice" style="position: absolute; inset: 0; width: 100%; height: 100%; display: block;">
+      <path d="M-380 -189C-380 -189 -312 216 152 343C616 470 684 875 684 875" pathLength="1" fill="none" stroke="#0B1626" stroke-width="0.50" stroke-opacity="0.0350" style="stroke-dasharray: .32 .68; animation: sacc-hilo 20.1s linear -19.5s infinite;" />
+      <path d="M-385 -195C-385 -195 -317 210 157 337C621 464 689 869 689 869" pathLength="1" fill="none" stroke="#0B1626" stroke-width="0.53" stroke-opacity="0.0397" style="stroke-dasharray: .32 .68; animation: sacc-hilo 29.9s linear -21.8s infinite;" />
+      <path d="M-390 -201C-390 -201 -322 204 162 331C626 458 694 863 694 863" pathLength="1" fill="none" stroke="#0B1626" stroke-width="0.55" stroke-opacity="0.0444" style="stroke-dasharray: .32 .68; animation: sacc-hilo 20.2s linear -10.8s infinite;" />
+      <path d="M-395 -207C-395 -207 -327 198 167 325C631 452 699 857 699 857" pathLength="1" fill="none" stroke="#0B1626" stroke-width="0.57" stroke-opacity="0.0491" style="stroke-dasharray: .32 .68; animation: sacc-hilo 28.7s linear -25.0s infinite;" />
+      <path d="M-400 -213C-400 -213 -332 192 172 319C636 446 704 851 704 851" pathLength="1" fill="none" stroke="#0B1626" stroke-width="0.60" stroke-opacity="0.0538" style="stroke-dasharray: .32 .68; animation: sacc-hilo 27.1s linear -13.1s infinite;" />
+      <path d="M-405 -219C-405 -219 -337 186 177 313C641 440 709 845 709 845" pathLength="1" fill="none" stroke="#0B1626" stroke-width="0.63" stroke-opacity="0.0585" style="stroke-dasharray: .32 .68; animation: sacc-hilo 29.7s linear -11.1s infinite;" />
+      <path d="M-410 -225C-410 -225 -342 180 182 307C646 434 714 839 714 839" pathLength="1" fill="none" stroke="#0B1626" stroke-width="0.65" stroke-opacity="0.0632" style="stroke-dasharray: .32 .68; animation: sacc-hilo 26.4s linear -24.2s infinite;" />
+      <path d="M-415 -231C-415 -231 -347 174 187 301C651 428 719 833 719 833" pathLength="1" fill="none" stroke="#0B1626" stroke-width="0.68" stroke-opacity="0.0679" style="stroke-dasharray: .32 .68; animation: sacc-hilo 20.8s linear -20.6s infinite;" />
+      <path d="M-420 -237C-420 -237 -352 168 192 295C656 422 724 827 724 827" pathLength="1" fill="none" stroke="#0B1626" stroke-width="0.70" stroke-opacity="0.0726" style="stroke-dasharray: .32 .68; animation: sacc-hilo 27.7s linear -15.5s infinite;" />
+      <path d="M-425 -243C-425 -243 -357 162 197 289C661 416 729 821 729 821" pathLength="1" fill="none" stroke="#0B1626" stroke-width="0.72" stroke-opacity="0.0773" style="stroke-dasharray: .32 .68; animation: sacc-hilo 23.7s linear -10.1s infinite;" />
+      <path d="M-430 -249C-430 -249 -362 156 202 283C666 410 734 815 734 815" pathLength="1" fill="none" stroke="#0B1626" stroke-width="0.75" stroke-opacity="0.0820" style="stroke-dasharray: .32 .68; animation: sacc-hilo 22.2s linear -14.4s infinite;" />
+      <path d="M-435 -255C-435 -255 -367 150 207 277C671 404 739 809 739 809" pathLength="1" fill="none" stroke="#0B1626" stroke-width="0.78" stroke-opacity="0.0867" style="stroke-dasharray: .32 .68; animation: sacc-hilo 22.3s linear -25.3s infinite;" />
+      <path d="M-440 -261C-440 -261 -372 144 212 271C676 398 744 803 744 803" pathLength="1" fill="none" stroke="#0B1626" stroke-width="0.80" stroke-opacity="0.0914" style="stroke-dasharray: .32 .68; animation: sacc-hilo 29.0s linear -0.2s infinite;" />
+      <path d="M-445 -267C-445 -267 -377 138 217 265C681 392 749 797 749 797" pathLength="1" fill="none" stroke="#0B1626" stroke-width="0.82" stroke-opacity="0.0961" style="stroke-dasharray: .32 .68; animation: sacc-hilo 21.8s linear -22.7s infinite;" />
+      <path d="M-450 -273C-450 -273 -382 132 222 259C686 386 754 791 754 791" pathLength="1" fill="none" stroke="#0B1626" stroke-width="0.85" stroke-opacity="0.1008" style="stroke-dasharray: .32 .68; animation: sacc-hilo 22.5s linear -9.7s infinite;" />
+      <path d="M-455 -279C-455 -279 -387 126 227 253C691 380 759 785 759 785" pathLength="1" fill="none" stroke="#0B1626" stroke-width="0.88" stroke-opacity="0.1055" style="stroke-dasharray: .32 .68; animation: sacc-hilo 27.5s linear -6.9s infinite;" />
+      <path d="M-460 -285C-460 -285 -392 120 232 247C696 374 764 779 764 779" pathLength="1" fill="none" stroke="#0B1626" stroke-width="0.90" stroke-opacity="0.1102" style="stroke-dasharray: .32 .68; animation: sacc-hilo 29.8s linear -25.9s infinite;" />
+      <path d="M-465 -291C-465 -291 -397 114 237 241C701 368 769 773 769 773" pathLength="1" fill="none" stroke="#0B1626" stroke-width="0.93" stroke-opacity="0.1149" style="stroke-dasharray: .32 .68; animation: sacc-hilo 29.8s linear -23.8s infinite;" />
+      <path d="M-470 -297C-470 -297 -402 108 242 235C706 362 774 767 774 767" pathLength="1" fill="none" stroke="#0B1626" stroke-width="0.95" stroke-opacity="0.1196" style="stroke-dasharray: .32 .68; animation: sacc-hilo 28.8s linear -21.3s infinite;" />
+      <path d="M-475 -303C-475 -303 -407 102 247 229C711 356 779 761 779 761" pathLength="1" fill="none" stroke="#0B1626" stroke-width="0.98" stroke-opacity="0.1243" style="stroke-dasharray: .32 .68; animation: sacc-hilo 26.9s linear -25.8s infinite;" />
+      <path d="M-480 -309C-480 -309 -412 96 252 223C716 350 784 755 784 755" pathLength="1" fill="none" stroke="#0B1626" stroke-width="1.00" stroke-opacity="0.1290" style="stroke-dasharray: .32 .68; animation: sacc-hilo 20.2s linear -2.1s infinite;" />
+      <path d="M-485 -315C-485 -315 -417 90 257 217C721 344 789 749 789 749" pathLength="1" fill="none" stroke="#0B1626" stroke-width="1.02" stroke-opacity="0.1337" style="stroke-dasharray: .32 .68; animation: sacc-hilo 23.3s linear -27.8s infinite;" />
+      <path d="M-490 -321C-490 -321 -422 84 262 211C726 338 794 743 794 743" pathLength="1" fill="none" stroke="#0B1626" stroke-width="1.05" stroke-opacity="0.1384" style="stroke-dasharray: .32 .68; animation: sacc-hilo 26.3s linear -8.1s infinite;" />
+      <path d="M-495 -327C-495 -327 -427 78 267 205C731 332 799 737 799 737" pathLength="1" fill="none" stroke="#0B1626" stroke-width="1.08" stroke-opacity="0.1431" style="stroke-dasharray: .32 .68; animation: sacc-hilo 25.9s linear -21.4s infinite;" />
+      <path d="M-500 -333C-500 -333 -432 72 272 199C736 326 804 731 804 731" pathLength="1" fill="none" stroke="#0B1626" stroke-width="1.10" stroke-opacity="0.1478" style="stroke-dasharray: .32 .68; animation: sacc-hilo 21.2s linear -13.0s infinite;" />
+      <path d="M-505 -339C-505 -339 -437 66 277 193C741 320 809 725 809 725" pathLength="1" fill="none" stroke="#0B1626" stroke-width="1.13" stroke-opacity="0.1525" style="stroke-dasharray: .32 .68; animation: sacc-hilo 25.4s linear -3.0s infinite;" />
+      <path d="M-510 -345C-510 -345 -442 60 282 187C746 314 814 719 814 719" pathLength="1" fill="none" stroke="#0B1626" stroke-width="1.15" stroke-opacity="0.1572" style="stroke-dasharray: .32 .68; animation: sacc-hilo 24.3s linear -28.0s infinite;" />
+      <path d="M-515 -351C-515 -351 -447 54 287 181C751 308 819 713 819 713" pathLength="1" fill="none" stroke="#0B1626" stroke-width="1.18" stroke-opacity="0.1619" style="stroke-dasharray: .32 .68; animation: sacc-hilo 28.1s linear -4.1s infinite;" />
+      <path d="M-520 -357C-520 -357 -452 48 292 175C756 302 824 707 824 707" pathLength="1" fill="none" stroke="#0B1626" stroke-width="1.20" stroke-opacity="0.1666" style="stroke-dasharray: .32 .68; animation: sacc-hilo 28.1s linear -8.0s infinite;" />
+      <path d="M-525 -363C-525 -363 -457 42 297 169C761 296 829 701 829 701" pathLength="1" fill="none" stroke="#0B1626" stroke-width="1.23" stroke-opacity="0.1713" style="stroke-dasharray: .32 .68; animation: sacc-hilo 29.5s linear -4.5s infinite;" />
+      <path d="M-530 -369C-530 -369 -462 36 302 163C766 290 834 695 834 695" pathLength="1" fill="none" stroke="#0B1626" stroke-width="1.25" stroke-opacity="0.1760" style="stroke-dasharray: .32 .68; animation: sacc-hilo 20.7s linear -18.6s infinite;" />
+      <path d="M-535 -375C-535 -375 -467 30 307 157C771 284 839 689 839 689" pathLength="1" fill="none" stroke="#0B1626" stroke-width="1.27" stroke-opacity="0.1807" style="stroke-dasharray: .32 .68; animation: sacc-hilo 21.3s linear -29.4s infinite;" />
+      <path d="M-540 -381C-540 -381 -472 24 312 151C776 278 844 683 844 683" pathLength="1" fill="none" stroke="#0B1626" stroke-width="1.30" stroke-opacity="0.1854" style="stroke-dasharray: .32 .68; animation: sacc-hilo 27.7s linear -20.1s infinite;" />
+      <path d="M-545 -387C-545 -387 -477 18 317 145C781 272 849 677 849 677" pathLength="1" fill="none" stroke="#0B1626" stroke-width="1.33" stroke-opacity="0.1901" style="stroke-dasharray: .32 .68; animation: sacc-hilo 25.3s linear -21.2s infinite;" />
+      <path d="M-550 -393C-550 -393 -482 12 322 139C786 266 854 671 854 671" pathLength="1" fill="none" stroke="#0B1626" stroke-width="1.35" stroke-opacity="0.1948" style="stroke-dasharray: .32 .68; animation: sacc-hilo 22.2s linear -27.6s infinite;" />
+      <path d="M-555 -399C-555 -399 -487 6 327 133C791 260 859 665 859 665" pathLength="1" fill="none" stroke="#0B1626" stroke-width="1.38" stroke-opacity="0.1995" style="stroke-dasharray: .32 .68; animation: sacc-hilo 21.8s linear -14.7s infinite;" />
+    </svg>
     <div style="position: absolute; top: -18%; left: -12%; width: 55%; height: 70%; border-radius: 50%; filter: blur(90px); background: radial-gradient(circle, rgba(185,191,196,.30), transparent 70%); animation: sacc-aurora-a 26s ease-in-out infinite alternate;"></div>
     <div style="position: absolute; top: 18%; right: -14%; width: 60%; height: 78%; border-radius: 50%; filter: blur(100px); background: radial-gradient(circle, rgba(151,159,168,.24), transparent 70%); animation: sacc-aurora-b 32s ease-in-out infinite alternate;"></div>
     <div style="position: absolute; bottom: -22%; left: 28%; width: 50%; height: 62%; border-radius: 50%; filter: blur(90px); background: radial-gradient(circle, rgba(120,132,150,.16), transparent 70%); animation: sacc-aurora-c 38s ease-in-out infinite alternate;"></div>
@@ -887,7 +926,6 @@ class Component extends DCLogic {
     this.initSphere();
     this.initTopo();
     this.initMapa();
-    this.initVeil();
     this.initCards3D();
     this.scan();
     this.onScroll();
@@ -908,7 +946,7 @@ class Component extends DCLogic {
     }
   }
 
-  componentDidUpdate() { this.pintarAreas(); this.liberarTactil(); this.initVideo(); this.initStack(); this.initGlobe(); this.initSphere(); this.initTopo(); this.initMapa(); this.initVeil(); this.initCards3D(); this.scan(); this.applyLang(); this.applyResponsive(); }
+  componentDidUpdate() { this.pintarAreas(); this.liberarTactil(); this.initVideo(); this.initStack(); this.initGlobe(); this.initSphere(); this.initTopo(); this.initMapa(); this.initCards3D(); this.scan(); this.applyLang(); this.applyResponsive(); }
 
   componentWillUnmount() {
     this.teardownVideo();
@@ -916,7 +954,6 @@ class Component extends DCLogic {
     this.teardownSphere();
     this.teardownTopo();
     this.teardownMapa();
-    this.teardownVeil();
     this.teardownCards3D();
     window.removeEventListener('scroll', this.onScroll);
     window.removeEventListener('resize', this.onResize);
@@ -967,170 +1004,12 @@ class Component extends DCLogic {
     ['pointerdown', 'keydown', 'touchstart', 'wheel'].forEach((e) => window.removeEventListener(e, this.playVideo));
   }
 
-  onResize = () => { this.applyResponsive(); this.onScroll(); this.layoutGlobe(); this.layoutSphere(); this.layoutTopo(); this.layoutMapa(); this.layoutVeil(); };
+  onResize = () => { this.applyResponsive(); this.onScroll(); this.layoutGlobe(); this.layoutSphere(); this.layoutTopo(); this.layoutMapa(); };
 
   // Tarjetas con inclinacion 3D siguiendo el cursor, mas un brillo que barre
   // en la direccion del movimiento. El giro se aplica a un envoltorio interno,
   // no al elemento marcado con data-reveal: ese ya usa transform para su
   // animacion de entrada y se pisarian.
-// Fondo animado de la seccion de mercado local.
-  //
-  // El shader es el de DarkVeil, de React Bits (MIT). Aca se porta a WebGL a
-  // secas: el componente original trae React, JSX y la libreria ogl, y este
-  // sitio no tiene ninguno de los tres. Ogl solo servia para dibujar un
-  // triangulo a pantalla completa, que son las diez lineas de abajo, asi que
-  // no hacia falta sumar una dependencia.
-  //
-  // El original pinta en color. Aca se descarta el tono que sale de la red y
-  // se repinta con la paleta: el fondo queda transparente y solo se dibuja la
-  // tinta, del plata al azul acero, para que el fondo de la seccion siga
-  // viendose por debajo.
-  static get VEIL_VS() {
-    return 'attribute vec2 position;void main(){gl_Position=vec4(position,0.0,1.0);}';
-  }
-
-  static get VEIL_FS() {
-    return [
-      '#ifdef GL_FRAGMENT_PRECISION_HIGH',
-      'precision highp float;',
-      '#else',
-      'precision mediump float;',
-      '#endif',
-      'uniform vec2 uResolution;uniform float uTime;uniform float uWarp;',
-      'vec4 buf[8];',
-      'vec4 sigmoid(vec4 x){return 1./(1.+exp(-x));}',
-      'vec4 cppn_fn(vec2 coordinate,float in0,float in1,float in2){',
-      'buf[6]=vec4(coordinate.x,coordinate.y,0.3948333106474662+in0,0.36+in1);',
-      'buf[7]=vec4(0.14+in2,sqrt(coordinate.x*coordinate.x+coordinate.y*coordinate.y),0.,0.);',
-      'buf[0]=mat4(vec4(6.5404263,-3.6126034,0.7590882,-1.13613),vec4(2.4582713,3.1660357,1.2219609,0.06276096),vec4(-5.478085,-6.159632,1.8701609,-4.7742867),vec4(6.039214,-5.542865,-0.90925294,3.251348))*buf[6]+mat4(vec4(0.8473259,-5.722911,3.975766,1.6522468),vec4(-0.24321538,0.5839259,-1.7661959,-5.350116),vec4(0.,0.,0.,0.),vec4(0.,0.,0.,0.))*buf[7]+vec4(0.21808943,1.1243913,-1.7969975,5.0294676);',
-      'buf[1]=mat4(vec4(-3.3522482,-6.0612736,0.55641043,-4.4719114),vec4(0.8631464,1.7432913,5.643898,1.6106541),vec4(2.4941394,-3.5012043,1.7184316,6.357333),vec4(3.310376,8.209261,1.1355612,-1.165539))*buf[6]+mat4(vec4(5.24046,-13.034365,0.009859298,15.870829),vec4(2.987511,3.129433,-0.89023495,-1.6822904),vec4(0.,0.,0.,0.),vec4(0.,0.,0.,0.))*buf[7]+vec4(-5.9457836,-6.573602,-0.8812491,1.5436668);',
-      'buf[0]=sigmoid(buf[0]);buf[1]=sigmoid(buf[1]);',
-      'buf[2]=mat4(vec4(-15.219568,8.095543,-2.429353,-1.9381982),vec4(-5.951362,4.3115187,2.6393783,1.274315),vec4(-7.3145227,6.7297835,5.2473326,5.9411426),vec4(5.0796127,8.979051,-1.7278991,-1.158976))*buf[6]+mat4(vec4(-11.967154,-11.608155,6.1486754,11.237008),vec4(2.124141,-6.263192,-1.7050359,-0.7021966),vec4(0.,0.,0.,0.),vec4(0.,0.,0.,0.))*buf[7]+vec4(-4.17164,-3.2281182,-4.576417,-3.6401186);',
-      'buf[3]=mat4(vec4(3.1832156,-13.738922,1.879223,3.233465),vec4(0.64300746,12.768129,1.9141049,0.50990224),vec4(-0.049295485,4.4807224,1.4733979,1.801449),vec4(5.0039253,13.000481,3.3991797,-4.5561905))*buf[6]+mat4(vec4(-0.1285731,7.720628,-3.1425676,4.742367),vec4(0.6393625,3.714393,-0.8108378,-0.39174938),vec4(0.,0.,0.,0.),vec4(0.,0.,0.,0.))*buf[7]+vec4(-1.1811101,-21.621881,0.7851888,1.2329718);',
-      'buf[2]=sigmoid(buf[2]);buf[3]=sigmoid(buf[3]);',
-      'buf[4]=mat4(vec4(5.214916,-7.183024,2.7228765,2.6592617),vec4(-5.601878,-25.3591,4.067988,0.4602802),vec4(-10.57759,24.286327,21.102104,37.546658),vec4(4.3024497,-1.9625226,2.3458803,-1.372816))*buf[0]+mat4(vec4(-17.6526,-10.507558,2.2587414,12.462782),vec4(6.265566,-502.75443,-12.642513,0.9112289),vec4(-10.983244,20.741234,-9.701768,-0.7635988),vec4(5.383626,1.4819539,-4.1911616,-4.8444734))*buf[1]+mat4(vec4(12.785233,-16.345072,-0.39901125,1.7955981),vec4(-30.48365,-1.8345358,1.4542528,-1.1118771),vec4(19.872723,-7.337935,-42.941723,-98.52709),vec4(8.337645,-2.7312303,-2.2927687,-36.142323))*buf[2]+mat4(vec4(-16.298317,3.5471997,-0.44300047,-9.444417),vec4(57.5077,-35.609753,16.163465,-4.1534753),vec4(-0.07470326,-3.8656476,-7.0901804,3.1523974),vec4(-12.559385,-7.077619,1.490437,-0.8211543))*buf[3]+vec4(-7.67914,15.927437,1.3207729,-1.6686112);',
-      'buf[5]=mat4(vec4(-1.4109162,-0.372762,-3.770383,-21.367174),vec4(-6.2103205,-9.35908,0.92529047,8.82561),vec4(11.460242,-22.348068,13.625772,-18.693201),vec4(-0.3429052,-3.9905605,-2.4626114,-0.45033523))*buf[0]+mat4(vec4(7.3481627,-4.3661838,-6.3037653,-3.868115),vec4(1.5462853,6.5488915,1.9701879,-0.58291394),vec4(6.5858274,-2.2180402,3.7127688,-1.3730392),vec4(-5.7973905,10.134961,-2.3395722,-5.965605))*buf[1]+mat4(vec4(-2.5132585,-6.6685553,-1.4029363,-0.16285264),vec4(-0.37908727,0.53738135,4.389061,-1.3024765),vec4(-0.70647055,2.0111287,-5.1659346,-3.728635),vec4(-13.562562,10.487719,-0.9173751,-2.6487076))*buf[2]+mat4(vec4(-8.645013,6.5546675,-6.3944063,-5.5933375),vec4(-0.57783127,-1.077275,36.91025,5.736769),vec4(14.283112,3.7146652,7.1452246,-4.5958776),vec4(2.7192075,3.6021907,-4.366337,-2.3653464))*buf[3]+vec4(-5.9000807,-4.329569,1.2427121,8.59503);',
-      'buf[4]=sigmoid(buf[4]);buf[5]=sigmoid(buf[5]);',
-      'buf[6]=mat4(vec4(-1.61102,0.7970257,1.4675229,0.20917463),vec4(-28.793737,-7.1390953,1.5025433,4.656581),vec4(-10.94861,39.66238,0.74318546,-10.095605),vec4(-0.7229728,-1.5483948,0.7301322,2.1687684))*buf[0]+mat4(vec4(3.2547753,21.489103,-1.0194173,-3.3100595),vec4(-3.7316632,-3.3792162,-7.223193,-0.23685838),vec4(13.1804495,0.7916005,5.338587,5.687114),vec4(-4.167605,-17.798311,-6.815736,-1.6451967))*buf[1]+mat4(vec4(0.604885,-7.800309,-7.213122,-2.741014),vec4(-3.522382,-0.12359311,-0.5258442,0.43852118),vec4(9.6752825,-22.853785,2.062431,0.099892326),vec4(-4.3196306,-17.730087,2.5184598,5.30267))*buf[2]+mat4(vec4(-6.545563,-15.790176,-6.0438633,-5.415399),vec4(-43.591583,28.551912,-16.00161,18.84728),vec4(4.212382,8.394307,3.0958717,8.657522),vec4(-5.0237565,-4.450633,-4.4768,-5.5010443))*buf[3]+mat4(vec4(1.6985557,-67.05806,6.897715,1.9004834),vec4(1.8680354,2.3915145,2.5231109,4.081538),vec4(11.158006,1.7294737,2.0738268,7.386411),vec4(-4.256034,-306.24686,8.258898,-17.132736))*buf[4]+mat4(vec4(1.6889864,-4.5852966,3.8534803,-6.3482175),vec4(1.3543309,-1.2640043,9.932754,2.9079645),vec4(-5.2770967,0.07150358,-0.13962056,3.3269649),vec4(28.34703,-4.918278,6.1044083,4.085355))*buf[5]+vec4(6.6818056,12.522166,-3.7075126,-4.104386);',
-      'buf[7]=mat4(vec4(-8.265602,-4.7027016,5.098234,0.7509808),vec4(8.6507845,-17.15949,16.51939,-8.884479),vec4(-4.036479,-2.3946867,-2.6055532,-1.9866527),vec4(-2.2167742,-1.8135649,-5.9759874,4.8846445))*buf[0]+mat4(vec4(6.7790847,3.5076547,-2.8191125,-2.7028968),vec4(-5.743024,-0.27844876,1.4958696,-5.0517144),vec4(13.122226,15.735168,-2.9397483,-4.101023),vec4(-14.375265,-5.030483,-6.2599335,2.9848232))*buf[1]+mat4(vec4(4.0950394,-0.94011575,-5.674733,4.755022),vec4(4.3809423,4.8310084,1.7425908,-3.437416),vec4(2.117492,0.16342592,-104.56341,16.949184),vec4(-5.22543,-2.994248,3.8350096,-1.9364246))*buf[2]+mat4(vec4(-5.900337,1.7946124,-13.604192,-3.8060522),vec4(6.6583457,31.911177,25.164474,91.81147),vec4(11.840538,4.1503043,-0.7314397,6.768467),vec4(-6.3967767,4.034772,6.1714606,-0.32874924))*buf[3]+mat4(vec4(3.4992442,-196.91893,-8.923708,2.8142626),vec4(3.4806502,-3.1846354,5.1725626,5.1804223),vec4(-2.4009497,15.585794,1.2863957,2.0252278),vec4(-71.25271,-62.441242,-8.138444,0.50670296))*buf[4]+mat4(vec4(-12.291733,-11.176166,-7.3474145,4.390294),vec4(10.805477,5.6337385,-0.9385842,-4.7348723),vec4(-12.869276,-7.039391,5.3029537,7.5436664),vec4(1.4593618,8.91898,3.5101583,5.840625))*buf[5]+vec4(2.2415268,-6.705987,-0.98861027,-2.117676);',
-      'buf[6]=sigmoid(buf[6]);buf[7]=sigmoid(buf[7]);',
-      'buf[0]=mat4(vec4(1.6794263,1.3817469,2.9625452,0.),vec4(-1.8834411,-1.4806935,-3.5924516,0.),vec4(-1.3279216,-1.0918057,-2.3124623,0.),vec4(0.2662234,0.23235129,0.44178495,0.))*buf[0]+mat4(vec4(-0.6299101,-0.5945583,-0.9125601,0.),vec4(0.17828953,0.18300213,0.18182953,0.),vec4(-2.96544,-2.5819945,-4.9001055,0.),vec4(1.4195864,1.1868085,2.5176322,0.))*buf[1]+mat4(vec4(-1.2584374,-1.0552157,-2.1688404,0.),vec4(-0.7200217,-0.52666044,-1.438251,0.),vec4(0.15345335,0.15196142,0.272854,0.),vec4(0.945728,0.8861938,1.2766753,0.))*buf[2]+mat4(vec4(-2.4218085,-1.968602,-4.35166,0.),vec4(-22.683098,-18.0544,-41.954372,0.),vec4(0.63792,0.5470648,1.1078634,0.),vec4(-1.5489894,-1.3075932,-2.6444845,0.))*buf[3]+mat4(vec4(-0.49252132,-0.39877754,-0.91366625,0.),vec4(0.95609266,0.7923952,1.640221,0.),vec4(0.30616966,0.15693925,0.8639857,0.),vec4(1.1825981,0.94504964,2.176963,0.))*buf[4]+mat4(vec4(0.35446745,0.3293795,0.59547555,0.),vec4(-0.58784515,-0.48177817,-1.0614829,0.),vec4(2.5271258,1.9991658,4.6846647,0.),vec4(0.13042648,0.08864098,0.30187556,0.))*buf[5]+mat4(vec4(-1.7718065,-1.4033192,-3.3355875,0.),vec4(3.1664357,2.638297,5.378702,0.),vec4(-3.1724713,-2.6107926,-5.549295,0.),vec4(-2.851368,-2.249092,-5.3013067,0.))*buf[6]+mat4(vec4(1.5203838,1.2212278,2.8404984,0.),vec4(1.5210563,1.2651345,2.683903,0.),vec4(2.9789467,2.4364579,5.2347264,0.),vec4(2.2270417,1.8825914,3.8028636,0.))*buf[7]+vec4(-1.5468478,-3.6171484,0.24762098,0.);',
-      'buf[0]=sigmoid(buf[0]);',
-      'return vec4(buf[0].x,buf[0].y,buf[0].z,1.);}',
-      'void main(){',
-      'vec2 uv=gl_FragCoord.xy/uResolution.xy*2.-1.;',
-      'uv.x*=uResolution.x/uResolution.y;',
-      'uv.y*=-1.;',
-      'uv+=uWarp*vec2(sin(uv.y*6.283+uTime*0.5),cos(uv.x*6.283+uTime*0.5))*0.05;',
-      'vec4 col=cppn_fn(uv,0.1*sin(0.3*uTime),0.1*sin(0.69*uTime),0.1*sin(0.44*uTime));',
-      'vec3 c=clamp(col.rgb,0.0,1.0);',
-      // Se descarta el tono de la red y se repinta con la paleta. El alfa deja
-      // ver el fondo de la seccion por debajo, en vez de taparlo con blanco.
-      'float e=dot(c,vec3(0.299,0.587,0.114));',
-      'float cob=smoothstep(0.02,0.26,e);',
-      'vec3 tinta=mix(vec3(0.89,0.91,0.93),vec3(0.77,0.80,0.85),cob);',
-      'gl_FragColor=vec4(tinta,cob*0.85);}',
-    ].join('\n');
-  }
-
-  initVeil() {
-    const cv = document.querySelector('canvas[data-veil]');
-    if (!cv || this._veilInit) return;
-    let gl = null;
-    try {
-      gl = cv.getContext('webgl', { alpha: true, premultipliedAlpha: false, antialias: false, depth: false });
-    } catch (e) { gl = null; }
-    // Sin WebGL la seccion queda como estaba: el canvas es decorativo.
-    if (!gl) return;
-
-    const compilar = (tipo, fuente) => {
-      const sh = gl.createShader(tipo);
-      gl.shaderSource(sh, fuente);
-      gl.compileShader(sh);
-      if (!gl.getShaderParameter(sh, gl.COMPILE_STATUS)) { gl.deleteShader(sh); return null; }
-      return sh;
-    };
-    const vs = compilar(gl.VERTEX_SHADER, Component.VEIL_VS);
-    const fs = compilar(gl.FRAGMENT_SHADER, Component.VEIL_FS);
-    if (!vs || !fs) return;
-    const prog = gl.createProgram();
-    gl.attachShader(prog, vs);
-    gl.attachShader(prog, fs);
-    gl.linkProgram(prog);
-    if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) return;
-
-    this._veilInit = true;
-    this._vgl = gl;
-    this._vcv = cv;
-    gl.useProgram(prog);
-    // Un solo triangulo que cubre la pantalla: mas barato que dos y sin costura.
-    const buf = gl.createBuffer();
-    gl.bindBuffer(gl.ARRAY_BUFFER, buf);
-    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
-    const pos = gl.getAttribLocation(prog, 'position');
-    gl.enableVertexAttribArray(pos);
-    gl.vertexAttribPointer(pos, 2, gl.FLOAT, false, 0, 0);
-    this._vu = {
-      t: gl.getUniformLocation(prog, 'uTime'),
-      r: gl.getUniformLocation(prog, 'uResolution'),
-      w: gl.getUniformLocation(prog, 'uWarp'),
-    };
-    this._vt0 = performance.now();
-    this.layoutVeil();
-    this._vraf = requestAnimationFrame(this.tickVeil);
-  }
-
-  layoutVeil = () => {
-    const cv = this._vcv, gl = this._vgl;
-    if (!cv || !gl) return;
-    const r = cv.getBoundingClientRect();
-    if (!r.width || !r.height) return;
-    // Se dibuja a media resolucion: el shader es caro por pixel y el resultado
-    // es una mancha difusa, asi que no se nota y cuesta la cuarta parte.
-    const esc = window.innerWidth < 900 ? 0.34 : 0.5;
-    const w = Math.max(1, Math.round(r.width * esc));
-    const h = Math.max(1, Math.round(r.height * esc));
-    if (cv.width !== w || cv.height !== h) { cv.width = w; cv.height = h; }
-    gl.viewport(0, 0, w, h);
-    this._vdibujado = false;
-  };
-
-  tickVeil = () => {
-    if (!this._veilInit) return;
-    const gl = this._vgl, cv = this._vcv;
-    const r = cv.getBoundingClientRect();
-    // La seccion cambia de alto cuando entran las fuentes y las fotos, y el
-    // lienzo se habia dimensionado antes. Se recalcula si su caja cambio.
-    if (Math.abs(r.width - (this._vw || 0)) > 2 || Math.abs(r.height - (this._vh || 0)) > 2) {
-      this._vw = r.width; this._vh = r.height;
-      this.layoutVeil();
-    }
-    const aLaVista = r.bottom > -200 && r.top < window.innerHeight + 200;
-    // Con animaciones reducidas se dibuja un cuadro y se corta el bucle.
-    if (this.reduced) {
-      if (!this._vdibujado && aLaVista) {
-        gl.uniform1f(this._vu.t, 6.0);
-        gl.uniform2f(this._vu.r, cv.width, cv.height);
-        gl.uniform1f(this._vu.w, 0.05);
-        gl.drawArrays(gl.TRIANGLES, 0, 3);
-        this._vdibujado = true;
-      }
-      this._vraf = requestAnimationFrame(this.tickVeil);
-      return;
-    }
-    this._vraf = requestAnimationFrame(this.tickVeil);
-    if (!aLaVista) return;
-    gl.uniform1f(this._vu.t, ((performance.now() - this._vt0) / 1000) * 0.22);
-    gl.uniform2f(this._vu.r, cv.width, cv.height);
-    gl.uniform1f(this._vu.w, 0.05);
-    gl.drawArrays(gl.TRIANGLES, 0, 3);
-  };
-
-  teardownVeil() {
-    this._veilInit = false;
-    cancelAnimationFrame(this._vraf);
-  }
-
   initCards3D() {
     window.__saccInitCards3D = () => { this.initCards3D(); };
     Array.from(document.querySelectorAll('[data-card3d]')).forEach((el) => {
