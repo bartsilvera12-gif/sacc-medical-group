@@ -600,7 +600,7 @@
         <div><div style="font-size: 10.5px; letter-spacing: .16em; text-transform: uppercase; color: #485463;">Mercado institucional</div></div>
       </div>
     </div>
-    <div data-reveal="1" style="position: relative; width: 100%; max-width: 470px; margin: 0 auto; aspect-ratio: 1 / 1; display: flex; align-items: center; justify-content: center; opacity: 0; transform: translateY(24px); transition: opacity 1200ms cubic-bezier(.16,.8,.24,1) 150ms, transform 1200ms cubic-bezier(.16,.8,.24,1) 150ms;">
+    <div data-reveal="1" style="position: relative; width: 100%; max-width: 600px; margin: 0 auto; aspect-ratio: 1 / 1; display: flex; align-items: center; justify-content: center; opacity: 0; transform: translateY(24px); transition: opacity 1200ms cubic-bezier(.16,.8,.24,1) 150ms, transform 1200ms cubic-bezier(.16,.8,.24,1) 150ms;">
       <canvas data-paraguay="1" style="width: 100%; height: 100%; cursor: default;"></canvas>
     </div>
   </div>
@@ -1012,7 +1012,7 @@ class Component extends DCLogic {
   // el cursor, el departamento debajo se levanta.
   static get MAPA_YAW() { return 0; }
   static get MAPA_TILT() { return 0.60; }
-  static get MAPA_ESCALA() { return 0.72; }
+  static get MAPA_ESCALA() { return 0.78; }
   static get MAPA_ALTO() { return 0.115; }
 
   initMapa() {
@@ -1059,7 +1059,8 @@ class Component extends DCLogic {
   // Proyeccion: giro en el plano, luego inclinacion, luego ortografica.
   proyMapa(px, py, pz) {
     const S = Math.min(this._pgw, this._pgh) * Component.MAPA_ESCALA;
-    const ca = Math.cos(Component.MAPA_YAW), sa = Math.sin(Component.MAPA_YAW);
+    const yaw = Component.MAPA_YAW + (this._giro || 0);
+    const ca = Math.cos(yaw), sa = Math.sin(yaw);
     const ct = Math.cos(Component.MAPA_TILT), st = Math.sin(Component.MAPA_TILT);
     const x = px - 0.5, y = py - 0.5;
     const xr = x * ca - y * sa;
@@ -1070,7 +1071,8 @@ class Component extends DCLogic {
   // La inversa, para saber que departamento esta bajo el cursor.
   invMapa(sx, sy, pz) {
     const S = Math.min(this._pgw, this._pgh) * Component.MAPA_ESCALA;
-    const ca = Math.cos(Component.MAPA_YAW), sa = Math.sin(Component.MAPA_YAW);
+    const yaw = Component.MAPA_YAW + (this._giro || 0);
+    const ca = Math.cos(yaw), sa = Math.sin(yaw);
     const ct = Math.cos(Component.MAPA_TILT), st = Math.sin(Component.MAPA_TILT);
     const xr = (sx - this._pgw / 2) / S;
     const yr = ((sy - this._pgh / 2) / S + pz * st) / ct;
@@ -1105,8 +1107,18 @@ class Component extends DCLogic {
     this._mraf = requestAnimationFrame(this.tickMapa);
     const rect = this._mcv.getBoundingClientRect();
     if (rect.bottom < 0 || rect.top > window.innerHeight) return;
-    // El levantado se interpola: sin esto el salto seria brusco.
+
+    // Giro de entrada: el reloj arranca la primera vez que el mapa se ve, no
+    // al cargar la pagina, para que nadie se lo pierda por haber llegado
+    // tarde. Con animaciones reducidas no gira.
     let cambio = false;
+    if (this._giroDesde === undefined) this._giroDesde = performance.now();
+    const avance = this.reduced ? 1 : Math.min(1, (performance.now() - this._giroDesde) / 1600);
+    const suave = 1 - Math.pow(1 - avance, 3);
+    const giro = (1 - suave) * -0.85;
+    if (this._giro !== giro) { this._giro = giro; cambio = true; }
+
+    // El levantado se interpola: sin esto el salto seria brusco.
     for (let i = 0; i < this._alturas.length; i++) {
       const objetivo = i === this._hover ? 1 : 0;
       const d = objetivo - this._alturas[i];
