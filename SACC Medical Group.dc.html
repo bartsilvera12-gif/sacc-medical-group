@@ -49,6 +49,30 @@
      a esperar. El salto de vuelta al inicio cae con la banda ya fuera de la
      mascara, asi que no se ve. */
   @keyframes sacc-brillo { 0%, 55% { transform: translateX(-130%) skewX(-16deg); } 78%, 100% { transform: translateX(340%) skewX(-16deg); } }
+  /* Areas de actividad. La foto se acerca despacio al pasar el cursor; la
+     tarjeta no se mueve, porque el revelado de entrada le escribe
+     transform: none y se pisarian. */
+  [data-area] { position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; min-height: clamp(290px, 24vw, 390px); background: #0B1626; box-shadow: 0 1px 2px rgba(11,22,38,.06), 0 18px 34px -22px rgba(11,22,38,.45); }
+  [data-area]:hover { box-shadow: 0 2px 5px rgba(11,22,38,.10), 0 34px 58px -24px rgba(11,22,38,.55); }
+  [data-area-foto] { position: absolute; inset: 0; transform: scale(1.01); transition: transform 1300ms cubic-bezier(.16,.8,.24,1); }
+  [data-area]:hover [data-area-foto] { transform: scale(1.08); }
+  /* El velo es lo que hace legible el texto: arranca suave arriba, donde no
+     hay letras, y cierra casi opaco abajo, donde si las hay. */
+  [data-area-velo] { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(11,22,38,.30) 0%, rgba(11,22,38,.48) 34%, rgba(11,22,38,.86) 68%, rgba(11,22,38,.95) 100%); transition: background 700ms; }
+  [data-area]:hover [data-area-velo] { background: linear-gradient(180deg, rgba(11,22,38,.24) 0%, rgba(11,22,38,.44) 34%, rgba(11,22,38,.86) 68%, rgba(11,22,38,.95) 100%); }
+  [data-area-texto] { position: relative; z-index: 1; padding: clamp(56px, 7vw, 92px) clamp(22px, 2.2vw, 32px) clamp(22px, 2.2vw, 32px); background: linear-gradient(180deg, rgba(11,22,38,0) 0%, rgba(11,22,38,.50) 26%, rgba(11,22,38,.66) 62%, rgba(11,22,38,.74) 100%); }
+  [data-area-numero] { display: block; font-size: 11px; letter-spacing: .3em; font-weight: 500; color: #FFFFFF; }
+  [data-area-filete] { display: block; width: 34px; height: 2px; margin: 13px 0 15px; background: linear-gradient(90deg, #B9BFC4 0%, rgba(185,191,196,.25) 100%); transition: width 700ms cubic-bezier(.16,.8,.24,1); }
+  [data-area]:hover [data-area-filete] { width: 78px; }
+  [data-area] h3 { margin: 0 0 11px; font-family: Poppins, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif; font-weight: 400; font-size: clamp(19px, 1.7vw, 25px); line-height: 1.2; letter-spacing: -.005em; color: #FFFFFF; }
+  [data-area] p { margin: 0; font-size: 14.5px; line-height: 1.72; font-weight: 400; color: #D5DAE0; }
+  @media (max-width: 619px) {
+    /* En celular el texto ocupa casi toda la tarjeta: si el alto minimo
+       fuera menor, en las pantallas mas angostas la primera linea se saldria
+       por arriba y el recorte la cortaria. */
+    [data-area] { min-height: 380px; }
+  }
+
   /* Los hilos del fondo: cada trazo se dibuja recorriendo su propia curva. */
   /* Los hilos se apagan sobre la columna de texto, que llega hasta el 47%
      del ancho, y recien tienen fuerza plena al 66%, donde esta el mapa y no
@@ -257,90 +281,67 @@
       <p style="margin: 0; font-size: 15px; line-height: 1.8; font-weight: 400; color: #1B2C42;">Una plataforma integral para desarrollar productos y tecnologías sanitarias en Paraguay.</p>
     </div>
 
-    <div style="margin-top: clamp(30px, 6vw, 96px); display: grid; grid-template-columns: 1.35fr 1fr; gap: clamp(30px, 5vw, 80px); align-items: start;">
-      <div ref="{{ areaListRef }}" style="padding-top: 13px;">
-        <article data-area="0" style="position: relative; z-index: 1; margin-top: 0; background: linear-gradient(170deg, #C6CBD0 0%, #BABFC5 42%, #AFB5BB 78%, #B7BDC2 100%); border: 2px solid rgba(11,22,38,.55); padding: 0 clamp(20px, 2.2vw, 34px); cursor: default; transform: translateY(0px); box-shadow: 0 -3px 12px rgba(11,22,38,.05), inset 0 1px 0 rgba(255,255,255,.55), inset 0 -1px 0 rgba(11,22,38,.13); transition: transform 650ms cubic-bezier(.16,.8,.24,1), box-shadow 650ms cubic-bezier(.16,.8,.24,1);">
-          <span style="position: absolute; top: -13px; left: clamp(20px, 2.2vw, 34px); width: 126px; height: 13px; background: linear-gradient(180deg, #C9CED3 0%, #C1C6CB 100%); border: 2px solid rgba(11,22,38,.55); border-bottom: none; border-radius: 2px 14px 0 0;"></span>
-          <div style="padding: clamp(22px, 2.2vw, 32px) 0;">
-            <div>
-              <h3 style="margin: 0; font-weight: 400; font-size: clamp(19px, 1.9vw, 27px); letter-spacing: -.01em; color: #132133;">Especialidades farmacéuticas</h3>
-              <div data-area-cuerpo="1" style="overflow: hidden; max-height: 0px; opacity: 0; transition: max-height 750ms cubic-bezier(.16,.8,.24,1), opacity 600ms cubic-bezier(.16,.8,.24,1);">
-                <p style="margin: 14px 0 0; max-width: 520px; font-size: 14px; line-height: 1.8; font-weight: 400; color: #1B2C42;">Desarrollo e incorporación de medicamentos y líneas farmacéuticas destinadas tanto al mercado general como a áreas terapéuticas especializadas.</p>
-              </div>
-            </div>
+    <div data-area-rejilla="1" style="margin-top: clamp(30px, 6vw, 96px); display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(12px, 1.4vw, 20px);">
+        <article data-area="0" data-reveal="1" style="opacity: 0; transform: translateY(26px); transition: opacity 900ms cubic-bezier(.16,.8,.24,1) 0ms, transform 900ms cubic-bezier(.16,.8,.24,1) 0ms, box-shadow 600ms cubic-bezier(.16,.8,.24,1);">
+          <div data-area-foto="1"><image-slot id="sacc-area-1" shape="rect" fit="cover" placeholder="Farmacéutica" src="uploads/sacc-area-1.jpg"></image-slot></div>
+          <div data-area-velo="1" aria-hidden="true"></div>
+          <div data-area-texto="1">
+            <span data-area-numero="1">01</span>
+            <span data-area-filete="1" aria-hidden="true"></span>
+            <h3>Especialidades farmacéuticas</h3>
+            <p>Desarrollo e incorporación de medicamentos y líneas farmacéuticas destinadas tanto al mercado general como a áreas terapéuticas especializadas.</p>
           </div>
         </article>
-        <article data-area="1" style="position: relative; z-index: 2; margin-top: -4px; background: linear-gradient(170deg, #C6CBD0 0%, #BABFC5 42%, #AFB5BB 78%, #B7BDC2 100%); border: 2px solid rgba(11,22,38,.55); padding: 0 clamp(20px, 2.2vw, 34px); cursor: default; transform: translateY(0px); box-shadow: 0 -3px 12px rgba(11,22,38,.05), inset 0 1px 0 rgba(255,255,255,.55), inset 0 -1px 0 rgba(11,22,38,.13); transition: transform 650ms cubic-bezier(.16,.8,.24,1), box-shadow 650ms cubic-bezier(.16,.8,.24,1);">
-          <span style="position: absolute; top: -13px; left: clamp(20px, 2.2vw, 34px); width: 126px; height: 13px; background: linear-gradient(180deg, #C9CED3 0%, #C1C6CB 100%); border: 2px solid rgba(11,22,38,.55); border-bottom: none; border-radius: 2px 14px 0 0;"></span>
-          <div style="padding: clamp(22px, 2.2vw, 32px) 0;">
-            <div>
-              <h3 style="margin: 0; font-weight: 400; font-size: clamp(19px, 1.9vw, 27px); letter-spacing: -.01em; color: #132133;">Medical Devices</h3>
-              <div data-area-cuerpo="1" style="overflow: hidden; max-height: 0px; opacity: 0; transition: max-height 750ms cubic-bezier(.16,.8,.24,1), opacity 600ms cubic-bezier(.16,.8,.24,1);">
-                <p style="margin: 14px 0 0; max-width: 520px; font-size: 14px; line-height: 1.8; font-weight: 400; color: #1B2C42;">Desarrollo de líneas de dispositivos médicos seleccionadas bajo criterios de calidad, cumplimiento regulatorio y necesidades del mercado.</p>
-              </div>
-            </div>
+        <article data-area="1" data-reveal="1" style="opacity: 0; transform: translateY(26px); transition: opacity 900ms cubic-bezier(.16,.8,.24,1) 90ms, transform 900ms cubic-bezier(.16,.8,.24,1) 90ms, box-shadow 600ms cubic-bezier(.16,.8,.24,1);">
+          <div data-area-foto="1"><image-slot id="sacc-area-2" shape="rect" fit="cover" placeholder="Medical devices" src="uploads/sacc-area-2.jpg"></image-slot></div>
+          <div data-area-velo="1" aria-hidden="true"></div>
+          <div data-area-texto="1">
+            <span data-area-numero="1">02</span>
+            <span data-area-filete="1" aria-hidden="true"></span>
+            <h3>Medical Devices</h3>
+            <p>Desarrollo de líneas de dispositivos médicos seleccionadas bajo criterios de calidad, cumplimiento regulatorio y necesidades del mercado.</p>
           </div>
         </article>
-        <article data-area="2" style="position: relative; z-index: 3; margin-top: -4px; background: linear-gradient(170deg, #C6CBD0 0%, #BABFC5 42%, #AFB5BB 78%, #B7BDC2 100%); border: 2px solid rgba(11,22,38,.55); padding: 0 clamp(20px, 2.2vw, 34px); cursor: default; transform: translateY(0px); box-shadow: 0 -3px 12px rgba(11,22,38,.05), inset 0 1px 0 rgba(255,255,255,.55), inset 0 -1px 0 rgba(11,22,38,.13); transition: transform 650ms cubic-bezier(.16,.8,.24,1), box-shadow 650ms cubic-bezier(.16,.8,.24,1);">
-          <span style="position: absolute; top: -13px; left: clamp(20px, 2.2vw, 34px); width: 126px; height: 13px; background: linear-gradient(180deg, #C9CED3 0%, #C1C6CB 100%); border: 2px solid rgba(11,22,38,.55); border-bottom: none; border-radius: 2px 14px 0 0;"></span>
-          <div style="padding: clamp(22px, 2.2vw, 32px) 0;">
-            <div>
-              <h3 style="margin: 0; font-weight: 400; font-size: clamp(19px, 1.9vw, 27px); letter-spacing: -.01em; color: #132133;">Medical Supplies</h3>
-              <div data-area-cuerpo="1" style="overflow: hidden; max-height: 0px; opacity: 0; transition: max-height 750ms cubic-bezier(.16,.8,.24,1), opacity 600ms cubic-bezier(.16,.8,.24,1);">
-                <p style="margin: 14px 0 0; max-width: 520px; font-size: 14px; line-height: 1.8; font-weight: 400; color: #1B2C42;">Insumos médicos y hospitalarios para hospitales, sanatorios, clínicas, laboratorios y profesionales de la salud.</p>
-              </div>
-            </div>
+        <article data-area="2" data-reveal="1" style="opacity: 0; transform: translateY(26px); transition: opacity 900ms cubic-bezier(.16,.8,.24,1) 180ms, transform 900ms cubic-bezier(.16,.8,.24,1) 180ms, box-shadow 600ms cubic-bezier(.16,.8,.24,1);">
+          <div data-area-foto="1"><image-slot id="sacc-area-3" shape="rect" fit="cover" placeholder="Medical supplies" src="uploads/sacc-area-3.jpg"></image-slot></div>
+          <div data-area-velo="1" aria-hidden="true"></div>
+          <div data-area-texto="1">
+            <span data-area-numero="1">03</span>
+            <span data-area-filete="1" aria-hidden="true"></span>
+            <h3>Medical Supplies</h3>
+            <p>Insumos médicos y hospitalarios para hospitales, sanatorios, clínicas, laboratorios y profesionales de la salud.</p>
           </div>
         </article>
-        <article data-area="3" style="position: relative; z-index: 4; margin-top: -4px; background: linear-gradient(170deg, #C6CBD0 0%, #BABFC5 42%, #AFB5BB 78%, #B7BDC2 100%); border: 2px solid rgba(11,22,38,.55); padding: 0 clamp(20px, 2.2vw, 34px); cursor: default; transform: translateY(0px); box-shadow: 0 -3px 12px rgba(11,22,38,.05), inset 0 1px 0 rgba(255,255,255,.55), inset 0 -1px 0 rgba(11,22,38,.13); transition: transform 650ms cubic-bezier(.16,.8,.24,1), box-shadow 650ms cubic-bezier(.16,.8,.24,1);">
-          <span style="position: absolute; top: -13px; left: clamp(20px, 2.2vw, 34px); width: 126px; height: 13px; background: linear-gradient(180deg, #C9CED3 0%, #C1C6CB 100%); border: 2px solid rgba(11,22,38,.55); border-bottom: none; border-radius: 2px 14px 0 0;"></span>
-          <div style="padding: clamp(22px, 2.2vw, 32px) 0;">
-            <div>
-              <h3 style="margin: 0; font-weight: 400; font-size: clamp(19px, 1.9vw, 27px); letter-spacing: -.01em; color: #132133;">Medical Equipment</h3>
-              <div data-area-cuerpo="1" style="overflow: hidden; max-height: 0px; opacity: 0; transition: max-height 750ms cubic-bezier(.16,.8,.24,1), opacity 600ms cubic-bezier(.16,.8,.24,1);">
-                <p style="margin: 14px 0 0; max-width: 520px; font-size: 14px; line-height: 1.8; font-weight: 400; color: #1B2C42;">Identificación, importación y comercialización de tecnologías y equipamiento médico.</p>
-              </div>
-            </div>
+        <article data-area="3" data-reveal="1" style="opacity: 0; transform: translateY(26px); transition: opacity 900ms cubic-bezier(.16,.8,.24,1) 0ms, transform 900ms cubic-bezier(.16,.8,.24,1) 0ms, box-shadow 600ms cubic-bezier(.16,.8,.24,1);">
+          <div data-area-foto="1"><image-slot id="sacc-area-4" shape="rect" fit="cover" placeholder="Medical equipment" src="uploads/sacc-area-4.jpg"></image-slot></div>
+          <div data-area-velo="1" aria-hidden="true"></div>
+          <div data-area-texto="1">
+            <span data-area-numero="1">04</span>
+            <span data-area-filete="1" aria-hidden="true"></span>
+            <h3>Medical Equipment</h3>
+            <p>Identificación, importación y comercialización de tecnologías y equipamiento médico.</p>
           </div>
         </article>
-        <article data-area="4" style="position: relative; z-index: 5; margin-top: -4px; background: linear-gradient(170deg, #C6CBD0 0%, #BABFC5 42%, #AFB5BB 78%, #B7BDC2 100%); border: 2px solid rgba(11,22,38,.55); padding: 0 clamp(20px, 2.2vw, 34px); cursor: default; transform: translateY(0px); box-shadow: 0 -3px 12px rgba(11,22,38,.05), inset 0 1px 0 rgba(255,255,255,.55), inset 0 -1px 0 rgba(11,22,38,.13); transition: transform 650ms cubic-bezier(.16,.8,.24,1), box-shadow 650ms cubic-bezier(.16,.8,.24,1);">
-          <span style="position: absolute; top: -13px; left: clamp(20px, 2.2vw, 34px); width: 126px; height: 13px; background: linear-gradient(180deg, #C9CED3 0%, #C1C6CB 100%); border: 2px solid rgba(11,22,38,.55); border-bottom: none; border-radius: 2px 14px 0 0;"></span>
-          <div style="padding: clamp(22px, 2.2vw, 32px) 0;">
-            <div>
-              <h3 style="margin: 0; font-weight: 400; font-size: clamp(19px, 1.9vw, 27px); letter-spacing: -.01em; color: #132133;">Regulatory &amp; Market Access</h3>
-              <div data-area-cuerpo="1" style="overflow: hidden; max-height: 0px; opacity: 0; transition: max-height 750ms cubic-bezier(.16,.8,.24,1), opacity 600ms cubic-bezier(.16,.8,.24,1);">
-                <p style="margin: 14px 0 0; max-width: 520px; font-size: 14px; line-height: 1.8; font-weight: 400; color: #1B2C42;">Evaluación regulatoria, registros sanitarios y estrategia de introducción de productos al mercado.</p>
-              </div>
-            </div>
+        <article data-area="4" data-reveal="1" style="opacity: 0; transform: translateY(26px); transition: opacity 900ms cubic-bezier(.16,.8,.24,1) 90ms, transform 900ms cubic-bezier(.16,.8,.24,1) 90ms, box-shadow 600ms cubic-bezier(.16,.8,.24,1);">
+          <div data-area-foto="1"><image-slot id="sacc-area-5" shape="rect" fit="cover" placeholder="Regulatory" src="uploads/sacc-area-5.jpg"></image-slot></div>
+          <div data-area-velo="1" aria-hidden="true"></div>
+          <div data-area-texto="1">
+            <span data-area-numero="1">05</span>
+            <span data-area-filete="1" aria-hidden="true"></span>
+            <h3>Regulatory &amp; Market Access</h3>
+            <p>Evaluación regulatoria, registros sanitarios y estrategia de introducción de productos al mercado.</p>
           </div>
         </article>
-        <article data-area="5" style="position: relative; z-index: 6; margin-top: -4px; background: linear-gradient(170deg, #C6CBD0 0%, #BABFC5 42%, #AFB5BB 78%, #B7BDC2 100%); border: 2px solid rgba(11,22,38,.55); padding: 0 clamp(20px, 2.2vw, 34px); cursor: default; transform: translateY(0px); box-shadow: 0 -3px 12px rgba(11,22,38,.05), inset 0 1px 0 rgba(255,255,255,.55), inset 0 -1px 0 rgba(11,22,38,.13); transition: transform 650ms cubic-bezier(.16,.8,.24,1), box-shadow 650ms cubic-bezier(.16,.8,.24,1);">
-          <span style="position: absolute; top: -13px; left: clamp(20px, 2.2vw, 34px); width: 126px; height: 13px; background: linear-gradient(180deg, #C9CED3 0%, #C1C6CB 100%); border: 2px solid rgba(11,22,38,.55); border-bottom: none; border-radius: 2px 14px 0 0;"></span>
-          <div style="padding: clamp(22px, 2.2vw, 32px) 0;">
-            <div>
-              <h3 style="margin: 0; font-weight: 400; font-size: clamp(19px, 1.9vw, 27px); letter-spacing: -.01em; color: #132133;">International Business Development</h3>
-              <div data-area-cuerpo="1" style="overflow: hidden; max-height: 0px; opacity: 0; transition: max-height 750ms cubic-bezier(.16,.8,.24,1), opacity 600ms cubic-bezier(.16,.8,.24,1);">
-                <p style="margin: 14px 0 0; max-width: 520px; font-size: 14px; line-height: 1.8; font-weight: 400; color: #1B2C42;">Desarrollo de relaciones con fabricantes, laboratorios y compañías internacionales.</p>
-              </div>
-            </div>
+        <article data-area="5" data-reveal="1" style="opacity: 0; transform: translateY(26px); transition: opacity 900ms cubic-bezier(.16,.8,.24,1) 180ms, transform 900ms cubic-bezier(.16,.8,.24,1) 180ms, box-shadow 600ms cubic-bezier(.16,.8,.24,1);">
+          <div data-area-foto="1"><image-slot id="sacc-area-6" shape="rect" fit="cover" placeholder="International business" src="uploads/sacc-area-6.jpg"></image-slot></div>
+          <div data-area-velo="1" aria-hidden="true"></div>
+          <div data-area-texto="1">
+            <span data-area-numero="1">06</span>
+            <span data-area-filete="1" aria-hidden="true"></span>
+            <h3>International Business Development</h3>
+            <p>Desarrollo de relaciones con fabricantes, laboratorios y compañías internacionales.</p>
           </div>
         </article>
-      </div>
-
-      <div style="position: sticky; top: 130px; height: clamp(380px, 44vw, 620px); display: flex; flex-direction: column;">
-        <div style="position: relative; width: 100%; flex: 1; min-height: 0; background: #EDEEEF;">
-          <div data-area-img="0" style="position: absolute; inset: 0; opacity: 0; transition: opacity 900ms cubic-bezier(.16,.8,.24,1);"><image-slot id="sacc-area-1" shape="rect" placeholder="Farmacéutica" src="uploads/sacc-area-1.jpg"></image-slot></div>
-          <div data-area-img="1" style="position: absolute; inset: 0; opacity: 0; transition: opacity 900ms cubic-bezier(.16,.8,.24,1);"><image-slot id="sacc-area-2" shape="rect" placeholder="Medical devices" src="uploads/sacc-area-2.jpg"></image-slot></div>
-          <div data-area-img="2" style="position: absolute; inset: 0; opacity: 0; transition: opacity 900ms cubic-bezier(.16,.8,.24,1);"><image-slot id="sacc-area-3" shape="rect" placeholder="Medical supplies" src="uploads/sacc-area-3.jpg"></image-slot></div>
-          <div data-area-img="3" style="position: absolute; inset: 0; opacity: 0; transition: opacity 900ms cubic-bezier(.16,.8,.24,1);"><image-slot id="sacc-area-4" shape="rect" placeholder="Medical equipment" src="uploads/sacc-area-4.jpg"></image-slot></div>
-          <div data-area-img="4" style="position: absolute; inset: 0; opacity: 0; transition: opacity 900ms cubic-bezier(.16,.8,.24,1);"><image-slot id="sacc-area-5" shape="rect" placeholder="Regulatory" src="uploads/sacc-area-5.jpg"></image-slot></div>
-          <div data-area-img="5" style="position: absolute; inset: 0; opacity: 0; transition: opacity 900ms cubic-bezier(.16,.8,.24,1);"><image-slot id="sacc-area-6" shape="rect" placeholder="International business" src="uploads/sacc-area-6.jpg"></image-slot></div>
-        </div>
-        <div style="margin-top: 16px; display: flex; align-items: center; gap: 12px;">
-          <span style="width: 28px; height: 1px; background: #979FA8;"></span>
-          <span data-area-rotulo="1" style="font-size: 10px; letter-spacing: .26em; text-transform: uppercase; color: #485463;">Especialidades farmacéuticas</span>
-        </div>
-      </div>
     </div>
 
     <div style="margin-top: clamp(38px, 5vw, 82px); border-top: 1px solid rgba(11,22,38,.12); padding-top: clamp(30px, 4vw, 56px);">
@@ -769,7 +770,7 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;accent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#B9BFC4&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;#B9BFC4&quot;,&quot;#979FA8&quot;,&quot;#D5D8DC&quot;,&quot;#9CA4AD&quot;],&quot;section&quot;:&quot;Identidad&quot;}}">
 class Component extends DCLogic {
-  state = { lang: 'ES', menu: false, area: 0, pillar: 0 };
+  state = { lang: 'ES', menu: false, pillar: 0 };
 
   constructor(props) {
     super(props);
@@ -781,7 +782,6 @@ class Component extends DCLogic {
     this.processRef = React.createRef();
     this.processLineRef = React.createRef();
     this.modelRef = React.createRef();
-    this.areaListRef = React.createRef();
     this.reduced = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   }
 
@@ -938,7 +938,6 @@ class Component extends DCLogic {
     this.onScroll();
     this.applyResponsive();
     this.liberarTactil();
-    this.pintarAreas();
     try {
       const guardado = localStorage.getItem('sacc-lang');
       if (guardado === 'EN' && this.state.lang !== 'EN') this.setState({ lang: 'EN' });
@@ -953,7 +952,7 @@ class Component extends DCLogic {
     }
   }
 
-  componentDidUpdate() { this.pintarAreas(); this.liberarTactil(); this.initVideo(); this.initStack(); this.initGlobe(); this.initSphere(); this.initTopo(); this.initMapa(); this.initCards3D(); this.scan(); this.applyLang(); this.applyResponsive(); }
+  componentDidUpdate() { this.liberarTactil(); this.initVideo(); this.initStack(); this.initGlobe(); this.initSphere(); this.initTopo(); this.initMapa(); this.initCards3D(); this.scan(); this.applyLang(); this.applyResponsive(); }
 
   componentWillUnmount() {
     this.teardownVideo();
@@ -2036,7 +2035,6 @@ class Component extends DCLogic {
     }
   };
 
-  setArea(i) { if (i !== this.state.area) { this.setState({ area: i }); } }
 
   // Los estilos de las fichas de area salian de huecos de plantilla numerados.
   // Ahora se aplican por indice, asi el largo de la lista lo decide el DOM.
@@ -2097,39 +2095,6 @@ class Component extends DCLogic {
     fotos.forEach((foto, i) => {
       foto.style.opacity = this.state.pillar === i ? '1' : '0';
     });
-  }
-
-  pintarAreas() {
-    window.__saccPintarAreas = () => this.pintarAreas();
-    const activo = this.state.area;
-    const fichas = document.querySelectorAll('[data-area]');
-    if (fichas.length && activo >= fichas.length) { this.setState({ area: 0 }); return; }
-    fichas.forEach((el) => {
-      const i = Number(el.getAttribute('data-area'));
-      const on = i === activo;
-      el.style.transform = on ? 'translateY(-6px)' : 'translateY(0px)';
-      el.style.boxShadow = on ? '0 28px 52px -14px rgba(11,22,38,.30), 0 8px 18px -8px rgba(11,22,38,.18), inset 0 1px 0 rgba(255,255,255,.7), inset 0 -1px 0 rgba(11,22,38,.13)' : '0 -3px 12px rgba(11,22,38,.05), inset 0 1px 0 rgba(255,255,255,.55), inset 0 -1px 0 rgba(11,22,38,.13)';
-      el.style.zIndex = String(i + 1);
-      const cuerpo = el.querySelector('[data-area-cuerpo]');
-      if (cuerpo) {
-        cuerpo.style.maxHeight = on ? '170px' : '0px';
-        cuerpo.style.opacity = on ? '1' : '0';
-      }
-      if (!el._areaLista) {
-        el._areaLista = true;
-        el.addEventListener('mouseenter', () => this.setArea(Number(el.getAttribute('data-area'))));
-        el.addEventListener('click', () => this.setArea(Number(el.getAttribute('data-area'))));
-      }
-    });
-    document.querySelectorAll('[data-area-img]').forEach((el) => {
-      el.style.opacity = Number(el.getAttribute('data-area-img')) === activo ? '1' : '0';
-    });
-    const rotulo = document.querySelector('[data-area-rotulo]');
-    const ficha = fichas[activo];
-    if (rotulo && ficha) {
-      const t = ficha.querySelector('h3');
-      if (t) rotulo.textContent = t.textContent;
-    }
   }
 
   // Mascara de tierra firme, 168x84 celdas equirectangulares, 1 bit por celda.
@@ -2408,7 +2373,7 @@ class Component extends DCLogic {
       navRef: this.navRef, navLinksRef: this.navLinksRef, burgerRef: this.burgerRef,
       progressRef: this.progressRef, heroBgRef: this.heroBgRef,
       processRef: this.processRef, processLineRef: this.processLineRef,
-      modelRef: this.modelRef, areaListRef: this.areaListRef,
+      modelRef: this.modelRef,
       esBorde: s.lang === 'ES' ? '#B9BFC4' : 'rgba(245,246,246,.20)',
       esFondo: s.lang === 'ES' ? 'rgba(185,191,196,.16)' : 'transparent',
       esTexto: s.lang === 'ES' ? '#D1D5D8' : '#B0B6BD',
