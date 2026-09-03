@@ -67,7 +67,7 @@
   @supports ((-webkit-background-clip: text) or (background-clip: text)) {
     [data-principio-titulo] { background: linear-gradient(96deg, #FFFFFF 0%, #E7EAEE 40%, #C2C8CE 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
   }
-  [data-principio-texto] { margin: clamp(12px, 1.2vw, 18px) 0 0; font-size: 14.5px; line-height: 1.75; font-weight: 400; color: #B4BBC3; }
+  [data-principio-texto] { margin: clamp(12px, 1.2vw, 18px) 0 0; font-size: 16px; line-height: 1.75; font-weight: 400; color: #B4BBC3; }
   /* Las columnas van escalonadas: la rejilla pareja era parte de lo que
      hacia ver este bloque como una tabla. */
   @media (min-width: 1100px) {
@@ -87,7 +87,7 @@
      canto plateado a la izquierda. */
   [data-portafolio] { display: flex; flex-direction: column; justify-content: space-between; gap: clamp(18px, 2vw, 26px); min-height: clamp(132px, 12vw, 168px); padding: clamp(20px, 2.2vw, 30px) clamp(18px, 2vw, 28px); background: linear-gradient(158deg, #16263B 0%, #101C2C 62%, #0C1725 100%); border: 1px solid rgba(245,246,246,.10); border-left: 3px solid #B9BFC4; box-shadow: 0 1px 2px rgba(11,22,38,.05), 0 14px 28px -16px rgba(11,22,38,.28); }
   [data-portafolio]:hover { box-shadow: 0 2px 4px rgba(11,22,38,.10), 0 26px 46px -20px rgba(11,22,38,.42); }
-  [data-portafolio] span { font-size: 14.5px; line-height: 1.5; font-weight: 400; color: #D5DAE0; }
+  [data-portafolio] span { font-size: 16px; line-height: 1.5; font-weight: 400; color: #D5DAE0; }
   [data-icono] { display: block; width: clamp(30px, 2.6vw, 36px); height: clamp(30px, 2.6vw, 36px); flex: none; }
   /* El trazo se dibuja al entrar en pantalla. pathLength="1" normaliza el
      largo de cada figura, asi que un mismo desplazamiento de 1 a 0 recorre
@@ -120,7 +120,7 @@
   [data-area-filete] { display: block; width: 34px; height: 2px; margin: 0 0 16px; background: linear-gradient(90deg, #B9BFC4 0%, rgba(185,191,196,.25) 100%); transition: width 700ms cubic-bezier(.16,.8,.24,1); }
   [data-area]:hover [data-area-filete] { width: 78px; }
   [data-area] h3 { margin: 0 0 11px; font-family: Poppins, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif; font-weight: 400; font-size: clamp(19px, 1.7vw, 25px); line-height: 1.2; letter-spacing: -.005em; color: #FFFFFF; }
-  [data-area] p { margin: 0; font-size: 14.5px; line-height: 1.72; font-weight: 400; color: #D5DAE0; }
+  [data-area] p { margin: 0; font-size: 16px; line-height: 1.72; font-weight: 400; color: #D5DAE0; }
   @media (max-width: 619px) {
     /* En celular el texto ocupa casi toda la tarjeta: si el alto minimo
        fuera menor, en las pantallas mas angostas la primera linea se saldria
@@ -194,10 +194,10 @@
     </nav>
 
     <div style="display: flex; align-items: center; gap: 22px;">
-      <div data-lang-header="1" style="display: flex; align-items: center; gap: 7px; font-size: 11px; letter-spacing: .14em;">
-        <button onClick="{{ setEs }}" style="background: none; border: none; padding: 0; cursor: pointer; letter-spacing: .14em; font-size: 12.5px; font-weight: 500; color: {{ esColor }};">ES</button>
+      <div data-lang-header="1" style="display: flex; align-items: center; gap: 7px; font-size: 12px; letter-spacing: .14em;">
+        <button onClick="{{ setEs }}" style="background: none; border: none; padding: 0; cursor: pointer; letter-spacing: .14em; font-size: 13.5px; font-weight: 500; color: {{ esColor }};">ES</button>
         <span style="color: #485463;">|</span>
-        <button onClick="{{ setEn }}" style="background: none; border: none; padding: 0; cursor: pointer; letter-spacing: .14em; font-size: 12.5px; font-weight: 500; color: {{ enColor }};">EN</button>
+        <button onClick="{{ setEn }}" style="background: none; border: none; padding: 0; cursor: pointer; letter-spacing: .14em; font-size: 13.5px; font-weight: 500; color: {{ enColor }};">EN</button>
       </div>
       <a href="#contacto" data-cta-header="1" style="display: inline-block; white-space: nowrap; padding: 14px 26px; border: 1px solid rgba(185,191,196,.75); font-size: 11.5px; letter-spacing: .16em; font-weight: 500; text-transform: uppercase; color: #F5F6F6; transition: background 500ms cubic-bezier(.16,.8,.24,1), color 500ms, border-color 500ms;" style-hover="background: var(--accent, #B9BFC4); color: #0B1626; border-color: var(--accent, #B9BFC4);">Partner with SACC</a>
       <button ref="{{ burgerRef }}" onClick="{{ toggleMenu }}" aria-label="Menu" style="display: none; background: none; border: none; padding: 6px; cursor: pointer; flex-direction: column; gap: 6px;">
@@ -222,11 +222,11 @@
     <button onClick="{{ toggleMenu }}" aria-label="Cerrar" style="background: none; border: none; color: #F5F6F6; font-size: 26px; line-height: 1; cursor: pointer;">×</button>
   </div>
   <div style="margin-top: 22px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 14px;">
-    <div style="display: flex; align-items: center; gap: 8px; font-size: 12px; letter-spacing: .14em;">
-    <button onClick="{{ setEs }}" style="border: 1px solid {{ esBorde }}; background: {{ esFondo }}; padding: 6px 13px; cursor: pointer; letter-spacing: .14em; font-size: 12px; color: {{ esTexto }}; transition: background 400ms, color 400ms, border-color 400ms;">ES</button>
-    <button onClick="{{ setEn }}" style="border: 1px solid {{ enBorde }}; background: {{ enFondo }}; padding: 6px 13px; cursor: pointer; letter-spacing: .14em; font-size: 12px; color: {{ enTexto }}; transition: background 400ms, color 400ms, border-color 400ms;">EN</button>
+    <div style="display: flex; align-items: center; gap: 8px; font-size: 13px; letter-spacing: .14em;">
+    <button onClick="{{ setEs }}" style="border: 1px solid {{ esBorde }}; background: {{ esFondo }}; padding: 6px 13px; cursor: pointer; letter-spacing: .14em; font-size: 13px; color: {{ esTexto }}; transition: background 400ms, color 400ms, border-color 400ms;">ES</button>
+    <button onClick="{{ setEn }}" style="border: 1px solid {{ enBorde }}; background: {{ enFondo }}; padding: 6px 13px; cursor: pointer; letter-spacing: .14em; font-size: 13px; color: {{ enTexto }}; transition: background 400ms, color 400ms, border-color 400ms;">EN</button>
     </div>
-    <a href="#contacto" onClick="{{ closeMenu }}" style="padding: 11px 20px; background: var(--accent, #B9BFC4); color: #0B1626; font-size: 10px; letter-spacing: .16em; text-transform: uppercase; white-space: nowrap;">Asociarse con SACC</a>
+    <a href="#contacto" onClick="{{ closeMenu }}" style="padding: 11px 20px; background: var(--accent, #B9BFC4); color: #0B1626; font-size: 11.5px; letter-spacing: .16em; text-transform: uppercase; white-space: nowrap;">Asociarse con SACC</a>
   </div>
   <nav style="margin: 22px 0 0; width: 100%; display: flex; flex-direction: column; gap: 2px;">
     <a href="#top" onClick="{{ closeMenu }}" style="font-family: Poppins, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif; letter-spacing: .045em; font-size: clamp(22px, 4.6vw, 30px); color: #F5F6F6; padding: 7px 0; border-bottom: 1px solid rgba(245,246,246,.08);">Inicio</a>
@@ -237,7 +237,7 @@
     <a href="#modelo" onClick="{{ closeMenu }}" style="font-family: Poppins, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif; letter-spacing: .045em; font-size: clamp(22px, 4.6vw, 30px); color: #F5F6F6; padding: 7px 0; border-bottom: 1px solid rgba(245,246,246,.08);">Modelo</a>
     <a href="#contacto" onClick="{{ closeMenu }}" style="font-family: Poppins, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif; letter-spacing: .045em; font-size: clamp(22px, 4.6vw, 30px); color: #D1D5D8; padding: 8px 0;">Contacto</a>
   </nav>
-  <div style="width: 100%; margin-top: auto; padding-top: 26px; font-size: 10.5px; letter-spacing: .2em; color: #8F98A1; text-transform: uppercase;">Connecting Global Healthcare with Paraguay</div>
+  <div style="width: 100%; margin-top: auto; padding-top: 26px; font-size: 11.5px; letter-spacing: .2em; color: #8F98A1; text-transform: uppercase;">Connecting Global Healthcare with Paraguay</div>
 </div>
 
 <section id="top" style="background: #0B1626; padding: 6px 6px 0;" data-hero-top="1">
@@ -260,8 +260,8 @@
         <p data-reveal="1" style="margin: clamp(24px, 3vw, 34px) 0 0; max-width: 560px; font-size: clamp(16.5px, 1.35vw, 19px); line-height: 1.7; font-weight: 400; color: #E8EBEE; text-shadow: 0 1px 14px rgba(11,22,38,.75); opacity: 0; transform: translateY(18px); transition: opacity 1000ms cubic-bezier(.16,.8,.24,1) 420ms, transform 1000ms cubic-bezier(.16,.8,.24,1) 420ms;">Soluciones integrales para la introducción, desarrollo y comercialización de productos médicos y farmacéuticos en el mercado paraguayo.</p>
 
         <div data-reveal="1" style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: clamp(30px, 4vw, 44px); opacity: 0; transform: translateY(18px); transition: opacity 1000ms cubic-bezier(.16,.8,.24,1) 560ms, transform 1000ms cubic-bezier(.16,.8,.24,1) 560ms;">
-          <a href="/nosotros" style="display: inline-flex; align-items: center; gap: 10px; padding: 16px 30px; border-radius: 999px; background: var(--accent, #B9BFC4); color: #0B1626; font-size: 11px; letter-spacing: .2em; text-transform: uppercase; font-weight: 500; white-space: nowrap; transition: background 500ms, transform 500ms cubic-bezier(.16,.8,.24,1);" style-hover="background: #D4D8DB; transform: translateY(-2px);">Explore SACC <span style="font-size: 13px;">→</span></a>
-          <a href="#contacto" style="display: inline-flex; align-items: center; padding: 16px 30px; border-radius: 999px; border: 1px solid rgba(245,246,246,.24); color: #F5F6F6; font-size: 11px; letter-spacing: .2em; text-transform: uppercase; white-space: nowrap; transition: border-color 500ms, color 500ms, transform 500ms cubic-bezier(.16,.8,.24,1);" style-hover="border-color: var(--accent, #B9BFC4); color: var(--accent, #B9BFC4); transform: translateY(-2px);">Partner with us</a>
+          <a href="/nosotros" style="display: inline-flex; align-items: center; gap: 10px; padding: 16px 30px; border-radius: 999px; background: var(--accent, #B9BFC4); color: #0B1626; font-size: 12px; letter-spacing: .2em; text-transform: uppercase; font-weight: 500; white-space: nowrap; transition: background 500ms, transform 500ms cubic-bezier(.16,.8,.24,1);" style-hover="background: #D4D8DB; transform: translateY(-2px);">Explore SACC <span style="font-size: 14px;">→</span></a>
+          <a href="#contacto" style="display: inline-flex; align-items: center; padding: 16px 30px; border-radius: 999px; border: 1px solid rgba(245,246,246,.24); color: #F5F6F6; font-size: 12px; letter-spacing: .2em; text-transform: uppercase; white-space: nowrap; transition: border-color 500ms, color 500ms, transform 500ms cubic-bezier(.16,.8,.24,1);" style-hover="border-color: var(--accent, #B9BFC4); color: var(--accent, #B9BFC4); transform: translateY(-2px);">Partner with us</a>
         </div>
       </div>
 
@@ -276,26 +276,26 @@
       <div data-reveal="1" style="opacity: 0; transform: translateY(24px); transition: opacity 1000ms cubic-bezier(.16,.8,.24,1) 0ms, transform 1000ms cubic-bezier(.16,.8,.24,1) 0ms;">
         <div style="display: flex; align-items: center; gap: 14px; margin-bottom: clamp(22px, 2.6vw, 34px);">
           <span style="width: 48px; height: 1px; background: #979FA8;"></span>
-          <span style="font-size: 10px; letter-spacing: .4em; text-transform: uppercase; color: #485463;">SACC Medical Group</span>
+          <span style="font-size: 11.5px; letter-spacing: .4em; text-transform: uppercase; color: #485463;">SACC Medical Group</span>
         </div>
         <h2 style="margin: 0 0 clamp(22px, 2.6vw, 34px); font-weight: 300; font-size: clamp(28px, 3.6vw, 54px); line-height: 1.1; letter-spacing: -.02em; color: #132133;">Soluciones integrales para<br /><em style="font-family: Poppins, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif; letter-spacing: .045em; font-style: normal; font-weight: 400;">el sector de la salud.</em></h2>
       </div>
 
       <div data-reveal="1" style="opacity: 0; transform: translateY(24px); transition: opacity 1000ms cubic-bezier(.16,.8,.24,1) 140ms, transform 1000ms cubic-bezier(.16,.8,.24,1) 140ms;">
-        <p style="margin: 0 0 clamp(15px, 1.6vw, 20px); font-size: 15.5px; line-height: 1.85; font-weight: 400; color: #303B48;">SACC Medical Group es una empresa de SACC Group EAS orientada al desarrollo, importación, comercialización y distribución de productos para el sector sanitario paraguayo.</p>
-        <p style="margin: 0 0 clamp(15px, 1.6vw, 20px); font-size: 15px; line-height: 1.85; font-weight: 400; color: #1B2C42;">Nuestra actividad integra insumos médicos, dispositivos y equipos médicos, productos hospitalarios y especialidades farmacéuticas, combinando conocimiento del mercado local, gestión regulatoria y desarrollo de relaciones con fabricantes y socios estratégicos internacionales.</p>
-        <p style="margin: 0; font-size: 15px; line-height: 1.85; font-weight: 400; color: #1B2C42;">Trabajamos con una visión de largo plazo orientada a incorporar al Paraguay tecnologías, productos y soluciones sanitarias que respondan a las necesidades del mercado privado, hospitalario e institucional.</p>
+        <p style="margin: 0 0 clamp(15px, 1.6vw, 20px); font-size: 17px; line-height: 1.85; font-weight: 400; color: #303B48;">SACC Medical Group es una empresa de SACC Group EAS orientada al desarrollo, importación, comercialización y distribución de productos para el sector sanitario paraguayo.</p>
+        <p style="margin: 0 0 clamp(15px, 1.6vw, 20px); font-size: 16.5px; line-height: 1.85; font-weight: 400; color: #1B2C42;">Nuestra actividad integra insumos médicos, dispositivos y equipos médicos, productos hospitalarios y especialidades farmacéuticas, combinando conocimiento del mercado local, gestión regulatoria y desarrollo de relaciones con fabricantes y socios estratégicos internacionales.</p>
+        <p style="margin: 0; font-size: 16.5px; line-height: 1.85; font-weight: 400; color: #1B2C42;">Trabajamos con una visión de largo plazo orientada a incorporar al Paraguay tecnologías, productos y soluciones sanitarias que respondan a las necesidades del mercado privado, hospitalario e institucional.</p>
       </div>
 
       <div data-reveal="1" style="opacity: 0; transform: translateY(24px); transition: opacity 1000ms cubic-bezier(.16,.8,.24,1) 240ms, transform 1000ms cubic-bezier(.16,.8,.24,1) 240ms;">
         <div style="margin-top: clamp(26px, 3.2vw, 44px); border-top: 1px solid rgba(11,22,38,.12); padding-top: clamp(22px, 2.6vw, 34px); display: grid; grid-template-columns: 1fr 1fr; gap: clamp(24px, 3vw, 44px);">
           <div>
             <div style="font-family: Poppins, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif; letter-spacing: .045em; font-size: clamp(34px, 3.4vw, 50px); line-height: 1; color: #132133;">06</div>
-            <div style="margin-top: 12px; font-size: 10.5px; letter-spacing: .18em; text-transform: uppercase; color: #485463;">Áreas de actividad</div>
+            <div style="margin-top: 12px; font-size: 11.5px; letter-spacing: .18em; text-transform: uppercase; color: #485463;">Áreas de actividad</div>
           </div>
           <div>
             <div style="font-family: Poppins, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif; letter-spacing: .045em; font-size: clamp(34px, 3.4vw, 50px); line-height: 1; color: #132133;">B2B</div>
-            <div style="margin-top: 12px; font-size: 10.5px; letter-spacing: .18em; text-transform: uppercase; color: #485463;">International partners</div>
+            <div style="margin-top: 12px; font-size: 11.5px; letter-spacing: .18em; text-transform: uppercase; color: #485463;">International partners</div>
           </div>
         </div>
       </div>
@@ -319,8 +319,8 @@
       <h2 style="margin: 0; font-weight: 300; font-size: clamp(30px, 4.2vw, 66px); line-height: 1.1; letter-spacing: -.02em; color: #F5F6F6;">International Healthcare.<br /><em style="font-family: Poppins, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif; letter-spacing: .045em; font-style: normal; font-weight: 400; color: var(--accent, #B9BFC4);">Local Market Expertise.</em></h2>
     </div>
     <div data-reveal="1" style="grid-column: 9 / span 4; opacity: 0; transform: translateY(24px); transition: opacity 1000ms cubic-bezier(.16,.8,.24,1) 180ms, transform 1000ms cubic-bezier(.16,.8,.24,1) 180ms;">
-      <p style="margin: 0 0 24px; font-size: 15px; line-height: 1.85; font-weight: 400; color: #F5F6F6;">SACC Medical Group conecta fabricantes internacionales, conocimiento regulatorio y oportunidades del mercado paraguayo dentro de una misma plataforma de desarrollo.</p>
-      <p style="margin: 0; font-size: 15px; line-height: 1.85; font-weight: 400; color: #E5E7EA;">Desde la identificación de una oportunidad hasta su llegada efectiva al mercado, coordinamos los diferentes componentes necesarios para construir proyectos sanitarios sostenibles.</p>
+      <p style="margin: 0 0 24px; font-size: 16.5px; line-height: 1.85; font-weight: 400; color: #F5F6F6;">SACC Medical Group conecta fabricantes internacionales, conocimiento regulatorio y oportunidades del mercado paraguayo dentro de una misma plataforma de desarrollo.</p>
+      <p style="margin: 0; font-size: 16.5px; line-height: 1.85; font-weight: 400; color: #E5E7EA;">Desde la identificación de una oportunidad hasta su llegada efectiva al mercado, coordinamos los diferentes componentes necesarios para construir proyectos sanitarios sostenibles.</p>
     </div>
   </div>
 </section>
@@ -330,10 +330,10 @@
     <div data-reveal="1" style="max-width: 720px; opacity: 0; transform: translateY(24px); transition: opacity 1000ms cubic-bezier(.16,.8,.24,1), transform 1000ms cubic-bezier(.16,.8,.24,1);">
       <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 30px;">
         <span style="width: 48px; height: 1px; background: #979FA8;"></span>
-        <span style="font-size: 10px; letter-spacing: .4em; text-transform: uppercase; color: #485463;">Áreas de actividad</span>
+        <span style="font-size: 11.5px; letter-spacing: .4em; text-transform: uppercase; color: #485463;">Áreas de actividad</span>
       </div>
       <h2 style="margin: 0 0 20px; font-weight: 300; font-size: clamp(28px, 3.6vw, 54px); line-height: 1.12; letter-spacing: -.015em; color: #132133;">Integrated Healthcare Capabilities</h2>
-      <p style="margin: 0; font-size: 15px; line-height: 1.8; font-weight: 400; color: #1B2C42;">Una plataforma integral para desarrollar productos y tecnologías sanitarias en Paraguay.</p>
+      <p style="margin: 0; font-size: 16.5px; line-height: 1.8; font-weight: 400; color: #1B2C42;">Una plataforma integral para desarrollar productos y tecnologías sanitarias en Paraguay.</p>
     </div>
 
     <div data-area-rejilla="1" style="margin-top: clamp(30px, 6vw, 96px); display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(12px, 1.4vw, 20px);">
@@ -396,24 +396,24 @@
     <div style="margin-top: clamp(38px, 5vw, 82px); border-top: 1px solid rgba(11,22,38,.12); padding-top: clamp(30px, 4vw, 56px);">
       <div data-reveal="1" style="display: flex; align-items: center; gap: 14px; margin-bottom: clamp(24px, 3vw, 40px); opacity: 0; transform: translateY(18px); transition: opacity 900ms cubic-bezier(.16,.8,.24,1), transform 900ms cubic-bezier(.16,.8,.24,1);">
         <span style="width: 48px; height: 1px; background: #979FA8;"></span>
-        <span style="font-size: 10px; letter-spacing: .4em; text-transform: uppercase; color: #485463;">En detalle</span>
+        <span style="font-size: 11.5px; letter-spacing: .4em; text-transform: uppercase; color: #485463;">En detalle</span>
       </div>
 
       <div style="display: grid; grid-template-columns: 1fr 1fr; gap: clamp(20px, 2.4vw, 34px); align-items: start;">
       <div data-card3d="1" data-reveal="1" style="background: linear-gradient(158deg, #16263B 0%, #101C2C 62%, #0C1725 100%); border: 1px solid rgba(245,246,246,.10); border-top: 3px solid #B9BFC4; box-shadow: 0 2px 4px rgba(11,22,38,.06), 0 28px 56px -20px rgba(11,22,38,.30), 0 10px 20px -12px rgba(11,22,38,.14); padding: clamp(26px, 3vw, 44px); opacity: 0; transform: translateY(24px); transition: opacity 1000ms cubic-bezier(.16,.8,.24,1) 0ms, transform 1000ms cubic-bezier(.16,.8,.24,1) 0ms;">
         <span style="display: block; width: 46px; height: 3px; background: linear-gradient(90deg, #7C8A99 0%, #B9BFC4 100%); margin-bottom: clamp(18px, 2vw, 26px);"></span>
         <h3 style="margin: 0 0 clamp(16px, 1.8vw, 24px); font-family: Poppins, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif; letter-spacing: .045em; font-weight: 400; font-size: clamp(20px, 2vw, 29px); line-height: 1.15; color: #F5F6F6;">Especialidades farmacéuticas</h3>
-        <p style="margin: 0 0 clamp(14px, 1.5vw, 20px); font-size: 15.5px; line-height: 1.8; font-weight: 400; color: #AEB6C0;">Nuestro modelo contempla la identificación de productos, análisis del mercado, estrategia regulatoria, registro sanitario, importación y desarrollo comercial.</p>
-        <p style="margin: 0; font-size: 15px; line-height: 1.8; font-weight: 400; color: #AEB6C0;">La compañía podrá desarrollar progresivamente líneas orientadas a áreas como oncología, hematología y otras especialidades de alta complejidad, de acuerdo con las oportunidades del mercado y los requisitos regulatorios correspondientes.</p>
+        <p style="margin: 0 0 clamp(14px, 1.5vw, 20px); font-size: 17px; line-height: 1.8; font-weight: 400; color: #AEB6C0;">Nuestro modelo contempla la identificación de productos, análisis del mercado, estrategia regulatoria, registro sanitario, importación y desarrollo comercial.</p>
+        <p style="margin: 0; font-size: 16.5px; line-height: 1.8; font-weight: 400; color: #AEB6C0;">La compañía podrá desarrollar progresivamente líneas orientadas a áreas como oncología, hematología y otras especialidades de alta complejidad, de acuerdo con las oportunidades del mercado y los requisitos regulatorios correspondientes.</p>
       </div>
       <div data-card3d="1" data-reveal="1" style="background: linear-gradient(158deg, #16263B 0%, #101C2C 62%, #0C1725 100%); border: 1px solid rgba(245,246,246,.10); border-top: 3px solid #B9BFC4; box-shadow: 0 2px 4px rgba(11,22,38,.06), 0 28px 56px -20px rgba(11,22,38,.30), 0 10px 20px -12px rgba(11,22,38,.14); padding: clamp(26px, 3vw, 44px); opacity: 0; transform: translateY(24px); transition: opacity 1000ms cubic-bezier(.16,.8,.24,1) 140ms, transform 1000ms cubic-bezier(.16,.8,.24,1) 140ms;">
         <span style="display: block; width: 46px; height: 3px; background: linear-gradient(90deg, #7C8A99 0%, #B9BFC4 100%); margin-bottom: clamp(18px, 2vw, 26px);"></span>
         <h3 style="margin: 0 0 clamp(16px, 1.8vw, 24px); font-family: Poppins, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif; letter-spacing: .045em; font-weight: 400; font-size: clamp(20px, 2vw, 29px); line-height: 1.15; color: #F5F6F6;">Insumos médicos y hospitalarios</h3>
-        <p style="margin: 0 0 clamp(14px, 1.5vw, 20px); font-size: 15.5px; line-height: 1.8; font-weight: 400; color: #AEB6C0;">Desarrollo y comercialización de productos destinados a hospitales, sanatorios, clínicas, laboratorios, profesionales de la salud y otras instituciones sanitarias.</p>
+        <p style="margin: 0 0 clamp(14px, 1.5vw, 20px); font-size: 17px; line-height: 1.8; font-weight: 400; color: #AEB6C0;">Desarrollo y comercialización de productos destinados a hospitales, sanatorios, clínicas, laboratorios, profesionales de la salud y otras instituciones sanitarias.</p>
       </div>
       </div>
 
-      <p data-reveal="1" style="margin: clamp(30px, 3.6vw, 52px) 0 clamp(20px, 2.2vw, 30px); font-size: 15px; line-height: 1.8; font-weight: 400; color: #1B2C42; opacity: 0; transform: translateY(18px); transition: opacity 900ms cubic-bezier(.16,.8,.24,1) 120ms, transform 900ms cubic-bezier(.16,.8,.24,1) 120ms;">El portafolio puede comprender, entre otros:</p>
+      <p data-reveal="1" style="margin: clamp(30px, 3.6vw, 52px) 0 clamp(20px, 2.2vw, 30px); font-size: 16.5px; line-height: 1.8; font-weight: 400; color: #1B2C42; opacity: 0; transform: translateY(18px); transition: opacity 900ms cubic-bezier(.16,.8,.24,1) 120ms, transform 900ms cubic-bezier(.16,.8,.24,1) 120ms;">El portafolio puede comprender, entre otros:</p>
 
       <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(10px, 1.1vw, 16px);">
         <div data-portafolio="1" data-card3d="1" data-reveal="1" style="opacity: 0; transform: translateY(20px); transition: opacity 800ms cubic-bezier(.16,.8,.24,1) 0ms, transform 800ms cubic-bezier(.16,.8,.24,1) 0ms, box-shadow 500ms cubic-bezier(.16,.8,.24,1), background-color 420ms;"><svg data-icono="1" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="#B9BFC4" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round"><path pathLength="1" d="M12 1.6 L12 4" /><path pathLength="1" d="M8 4 L16 4 L16 12.4 C16 14.6 14.2 16.4 12 16.4 C9.8 16.4 8 14.6 8 12.4 Z" /><path pathLength="1" d="M12 16.4 L12 21" /><path pathLength="1" d="M10.2 21 L13.8 21" /></svg><span>Dispositivos para infusión</span></div>
@@ -436,13 +436,13 @@
       <div style="grid-column: span 6;">
         <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 30px;">
           <span style="width: 48px; height: 1px; background: var(--accent, #B9BFC4);"></span>
-          <span style="font-size: 10px; letter-spacing: .4em; text-transform: uppercase; color: #8F98A1;">Pharmaceuticals</span>
+          <span style="font-size: 11.5px; letter-spacing: .4em; text-transform: uppercase; color: #8F98A1;">Pharmaceuticals</span>
         </div>
         <h2 style="margin: 0; font-weight: 300; font-size: clamp(28px, 3.8vw, 58px); line-height: 1.1; letter-spacing: -.02em; color: #F5F6F6;">From global opportunity<br /><em style="font-family: Poppins, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif; letter-spacing: .045em; font-style: normal; font-weight: 400;">to local market.</em></h2>
       </div>
       <div style="grid-column: 8 / span 5; align-self: end;">
-        <p style="margin: 0; font-size: 15px; line-height: 1.85; font-weight: 400; color: #9FA7AF;">SACC Medical Group desarrolla una estrategia específica para compañías farmacéuticas internacionales interesadas en ingresar al Paraguay.</p>
-        <p style="margin: 18px 0 0; font-size: 15px; line-height: 1.85; font-weight: 400; color: #636C77;">Nuestro enfoque contempla el ciclo completo de acceso al mercado:</p>
+        <p style="margin: 0; font-size: 16.5px; line-height: 1.85; font-weight: 400; color: #9FA7AF;">SACC Medical Group desarrolla una estrategia específica para compañías farmacéuticas internacionales interesadas en ingresar al Paraguay.</p>
+        <p style="margin: 18px 0 0; font-size: 16.5px; line-height: 1.85; font-weight: 400; color: #636C77;">Nuestro enfoque contempla el ciclo completo de acceso al mercado:</p>
       </div>
     </div>
 
@@ -450,17 +450,17 @@
       <div data-proceso-riel="1" style="position: absolute; left: 0; right: 0; top: 7px; height: 1px; background: rgba(245,246,246,.14);"></div>
       <div ref="{{ processLineRef }}" style="position: absolute; left: 0; top: 7px; height: 1px; width: 0%; background: var(--accent, #B9BFC4); transition: width 700ms cubic-bezier(.16,.8,.24,1);"></div>
       <div data-proceso-grilla="1" style="position: relative; display: grid; grid-template-columns: repeat(7, 1fr); gap: 14px;">
-        <div data-paso="1"><span data-paso-punto="1" style="display: block; width: 9px; height: 9px; border: 1px solid rgba(245,246,246,.3); background: #0B1626; border-radius: 50%; margin-bottom: 26px; transform: translateY(3px);"></span><div data-paso-num="1" style="font-size: 10px; letter-spacing: .22em; color: #636C77; margin-bottom: 10px;">01</div><div data-paso-txt="1" style="font-size: clamp(12px, 1.05vw, 14px); line-height: 1.5; font-weight: 400; color: #F5F6F6;">Product Evaluation</div></div>
-        <div data-paso="1"><span data-paso-punto="1" style="display: block; width: 9px; height: 9px; border: 1px solid rgba(245,246,246,.3); background: #0B1626; border-radius: 50%; margin-bottom: 26px; transform: translateY(3px);"></span><div data-paso-num="1" style="font-size: 10px; letter-spacing: .22em; color: #636C77; margin-bottom: 10px;">02</div><div data-paso-txt="1" style="font-size: clamp(12px, 1.05vw, 14px); line-height: 1.5; font-weight: 400; color: #F5F6F6;">Regulatory Analysis</div></div>
-        <div data-paso="1"><span data-paso-punto="1" style="display: block; width: 9px; height: 9px; border: 1px solid rgba(245,246,246,.3); background: #0B1626; border-radius: 50%; margin-bottom: 26px; transform: translateY(3px);"></span><div data-paso-num="1" style="font-size: 10px; letter-spacing: .22em; color: #636C77; margin-bottom: 10px;">03</div><div data-paso-txt="1" style="font-size: clamp(12px, 1.05vw, 14px); line-height: 1.5; font-weight: 400; color: #F5F6F6;">Health Registration</div></div>
-        <div data-paso="1"><span data-paso-punto="1" style="display: block; width: 9px; height: 9px; border: 1px solid rgba(245,246,246,.3); background: #0B1626; border-radius: 50%; margin-bottom: 26px; transform: translateY(3px);"></span><div data-paso-num="1" style="font-size: 10px; letter-spacing: .22em; color: #636C77; margin-bottom: 10px;">04</div><div data-paso-txt="1" style="font-size: clamp(12px, 1.05vw, 14px); line-height: 1.5; font-weight: 400; color: #F5F6F6;">Import Strategy</div></div>
-        <div data-paso="1"><span data-paso-punto="1" style="display: block; width: 9px; height: 9px; border: 1px solid rgba(245,246,246,.3); background: #0B1626; border-radius: 50%; margin-bottom: 26px; transform: translateY(3px);"></span><div data-paso-num="1" style="font-size: 10px; letter-spacing: .22em; color: #636C77; margin-bottom: 10px;">05</div><div data-paso-txt="1" style="font-size: clamp(12px, 1.05vw, 14px); line-height: 1.5; font-weight: 400; color: #F5F6F6;">Market Access</div></div>
-        <div data-paso="1"><span data-paso-punto="1" style="display: block; width: 9px; height: 9px; border: 1px solid rgba(245,246,246,.3); background: #0B1626; border-radius: 50%; margin-bottom: 26px; transform: translateY(3px);"></span><div data-paso-num="1" style="font-size: 10px; letter-spacing: .22em; color: #636C77; margin-bottom: 10px;">06</div><div data-paso-txt="1" style="font-size: clamp(12px, 1.05vw, 14px); line-height: 1.5; font-weight: 400; color: #F5F6F6;">Institutional &amp; Private Market</div></div>
-        <div data-paso="1"><span data-paso-punto="1" style="display: block; width: 9px; height: 9px; border: 1px solid rgba(245,246,246,.3); background: #0B1626; border-radius: 50%; margin-bottom: 26px; transform: translateY(3px);"></span><div data-paso-num="1" style="font-size: 10px; letter-spacing: .22em; color: #636C77; margin-bottom: 10px;">07</div><div data-paso-txt="1" style="font-size: clamp(12px, 1.05vw, 14px); line-height: 1.5; font-weight: 400; color: #F5F6F6;">Portfolio Expansion</div></div>
+        <div data-paso="1"><span data-paso-punto="1" style="display: block; width: 9px; height: 9px; border: 1px solid rgba(245,246,246,.3); background: #0B1626; border-radius: 50%; margin-bottom: 26px; transform: translateY(3px);"></span><div data-paso-num="1" style="font-size: 11.5px; letter-spacing: .22em; color: #636C77; margin-bottom: 10px;">01</div><div data-paso-txt="1" style="font-size: clamp(13.5px, 1.15vw, 15.5px); line-height: 1.5; font-weight: 400; color: #F5F6F6;">Product Evaluation</div></div>
+        <div data-paso="1"><span data-paso-punto="1" style="display: block; width: 9px; height: 9px; border: 1px solid rgba(245,246,246,.3); background: #0B1626; border-radius: 50%; margin-bottom: 26px; transform: translateY(3px);"></span><div data-paso-num="1" style="font-size: 11.5px; letter-spacing: .22em; color: #636C77; margin-bottom: 10px;">02</div><div data-paso-txt="1" style="font-size: clamp(13.5px, 1.15vw, 15.5px); line-height: 1.5; font-weight: 400; color: #F5F6F6;">Regulatory Analysis</div></div>
+        <div data-paso="1"><span data-paso-punto="1" style="display: block; width: 9px; height: 9px; border: 1px solid rgba(245,246,246,.3); background: #0B1626; border-radius: 50%; margin-bottom: 26px; transform: translateY(3px);"></span><div data-paso-num="1" style="font-size: 11.5px; letter-spacing: .22em; color: #636C77; margin-bottom: 10px;">03</div><div data-paso-txt="1" style="font-size: clamp(13.5px, 1.15vw, 15.5px); line-height: 1.5; font-weight: 400; color: #F5F6F6;">Health Registration</div></div>
+        <div data-paso="1"><span data-paso-punto="1" style="display: block; width: 9px; height: 9px; border: 1px solid rgba(245,246,246,.3); background: #0B1626; border-radius: 50%; margin-bottom: 26px; transform: translateY(3px);"></span><div data-paso-num="1" style="font-size: 11.5px; letter-spacing: .22em; color: #636C77; margin-bottom: 10px;">04</div><div data-paso-txt="1" style="font-size: clamp(13.5px, 1.15vw, 15.5px); line-height: 1.5; font-weight: 400; color: #F5F6F6;">Import Strategy</div></div>
+        <div data-paso="1"><span data-paso-punto="1" style="display: block; width: 9px; height: 9px; border: 1px solid rgba(245,246,246,.3); background: #0B1626; border-radius: 50%; margin-bottom: 26px; transform: translateY(3px);"></span><div data-paso-num="1" style="font-size: 11.5px; letter-spacing: .22em; color: #636C77; margin-bottom: 10px;">05</div><div data-paso-txt="1" style="font-size: clamp(13.5px, 1.15vw, 15.5px); line-height: 1.5; font-weight: 400; color: #F5F6F6;">Market Access</div></div>
+        <div data-paso="1"><span data-paso-punto="1" style="display: block; width: 9px; height: 9px; border: 1px solid rgba(245,246,246,.3); background: #0B1626; border-radius: 50%; margin-bottom: 26px; transform: translateY(3px);"></span><div data-paso-num="1" style="font-size: 11.5px; letter-spacing: .22em; color: #636C77; margin-bottom: 10px;">06</div><div data-paso-txt="1" style="font-size: clamp(13.5px, 1.15vw, 15.5px); line-height: 1.5; font-weight: 400; color: #F5F6F6;">Institutional &amp; Private Market</div></div>
+        <div data-paso="1"><span data-paso-punto="1" style="display: block; width: 9px; height: 9px; border: 1px solid rgba(245,246,246,.3); background: #0B1626; border-radius: 50%; margin-bottom: 26px; transform: translateY(3px);"></span><div data-paso-num="1" style="font-size: 11.5px; letter-spacing: .22em; color: #636C77; margin-bottom: 10px;">07</div><div data-paso-txt="1" style="font-size: clamp(13.5px, 1.15vw, 15.5px); line-height: 1.5; font-weight: 400; color: #F5F6F6;">Portfolio Expansion</div></div>
       </div>
     </div>
 
-    <p data-reveal="1" style="max-width: 780px; margin: clamp(30px, 3.4vw, 52px) 0 0; font-size: 15px; line-height: 1.85; font-weight: 400; color: #9FA7AF; opacity: 0; transform: translateY(20px); transition: opacity 1000ms cubic-bezier(.16,.8,.24,1) 200ms, transform 1000ms cubic-bezier(.16,.8,.24,1) 200ms;">Esta estructura permite transformar una oportunidad internacional en un proyecto comercial viable dentro del mercado paraguayo.</p>
+    <p data-reveal="1" style="max-width: 780px; margin: clamp(30px, 3.4vw, 52px) 0 0; font-size: 16.5px; line-height: 1.85; font-weight: 400; color: #9FA7AF; opacity: 0; transform: translateY(20px); transition: opacity 1000ms cubic-bezier(.16,.8,.24,1) 200ms, transform 1000ms cubic-bezier(.16,.8,.24,1) 200ms;">Esta estructura permite transformar una oportunidad internacional en un proyecto comercial viable dentro del mercado paraguayo.</p>
   </div>
 </section>
 
@@ -469,14 +469,14 @@
     <div data-reveal="1" style="opacity: 0; transform: translateY(24px); transition: opacity 1000ms cubic-bezier(.16,.8,.24,1), transform 1000ms cubic-bezier(.16,.8,.24,1);">
       <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 30px;">
         <span style="width: 48px; height: 1px; background: #979FA8;"></span>
-        <span style="font-size: 10px; letter-spacing: .4em; text-transform: uppercase; color: #485463;">Regulatory &amp; Market Access</span>
+        <span style="font-size: 11.5px; letter-spacing: .4em; text-transform: uppercase; color: #485463;">Regulatory &amp; Market Access</span>
       </div>
       <h2 style="margin: 0 0 30px; font-family: Poppins, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif; letter-spacing: .045em; font-weight: 400; font-size: clamp(28px, 3.2vw, 50px); line-height: 1.15; color: #132133;">Regulatory.<br />Strategic.<br />Market Ready.</h2>
-      <p style="margin: 0 0 22px; font-size: 15px; line-height: 1.85; font-weight: 400; color: #303B48;">La regulación constituye uno de los pilares de nuestra estrategia.</p>
-      <p style="margin: 0 0 30px; font-size: 15px; line-height: 1.85; font-weight: 400; color: #1B2C42;">Trabajamos en la evaluación y coordinación de los requerimientos necesarios para la introducción de productos sanitarios en Paraguay, incluyendo documentación técnica y regulatoria, certificaciones internacionales, registros sanitarios, autorizaciones y demás requisitos establecidos por las autoridades competentes.</p>
+      <p style="margin: 0 0 22px; font-size: 16.5px; line-height: 1.85; font-weight: 400; color: #303B48;">La regulación constituye uno de los pilares de nuestra estrategia.</p>
+      <p style="margin: 0 0 30px; font-size: 16.5px; line-height: 1.85; font-weight: 400; color: #1B2C42;">Trabajamos en la evaluación y coordinación de los requerimientos necesarios para la introducción de productos sanitarios en Paraguay, incluyendo documentación técnica y regulatoria, certificaciones internacionales, registros sanitarios, autorizaciones y demás requisitos establecidos por las autoridades competentes.</p>
       <div style="border-left: 1px solid #979FA8; padding-left: 22px;">
-        <div style="font-size: 10px; letter-spacing: .3em; text-transform: uppercase; color: #485463; margin-bottom: 10px;">Objetivo</div>
-        <p style="margin: 0; font-size: 16px; line-height: 1.7; font-weight: 400; color: #132133;">Nuestro objetivo es construir desde el inicio una estructura regulatoria compatible con la estrategia comercial de cada producto.</p>
+        <div style="font-size: 11.5px; letter-spacing: .3em; text-transform: uppercase; color: #485463; margin-bottom: 10px;">Objetivo</div>
+        <p style="margin: 0; font-size: 17.5px; line-height: 1.7; font-weight: 400; color: #132133;">Nuestro objetivo es construir desde el inicio una estructura regulatoria compatible con la estrategia comercial de cada producto.</p>
       </div>
     </div>
     <div data-reveal="1" data-reveal-clip="1" style="position: relative; min-width: 0; height: clamp(300px, 33vw, 520px); opacity: 0; clip-path: inset(0 0 100% 0); transition: opacity 1200ms cubic-bezier(.16,.8,.24,1) 150ms, clip-path 1200ms cubic-bezier(.16,.8,.24,1) 150ms;">
@@ -497,20 +497,20 @@
     <div data-reveal="1" style="max-width: 640px; opacity: 0; transform: translateY(24px); transition: opacity 1000ms cubic-bezier(.16,.8,.24,1), transform 1000ms cubic-bezier(.16,.8,.24,1);">
       <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 30px;">
         <span style="width: 48px; height: 1px; background: var(--accent, #B9BFC4);"></span>
-        <span style="font-size: 10px; letter-spacing: .4em; text-transform: uppercase; color: #8F98A1;">International Business Development</span>
+        <span style="font-size: 11.5px; letter-spacing: .4em; text-transform: uppercase; color: #8F98A1;">International Business Development</span>
       </div>
       <h2 style="margin: 0 0 26px; font-weight: 300; font-size: clamp(25px, 2.9vw, 42px); line-height: 1.1; letter-spacing: -.02em; color: #F5F6F6;">Connecting global manufacturers<br />with Paraguay.</h2>
-      <p style="margin: 0; max-width: 560px; font-size: 15px; line-height: 1.85; font-weight: 400; color: #9FA7AF;">SACC Medical Group desarrolla relaciones con fabricantes, laboratorios y compañías internacionales interesados en establecer o ampliar su presencia en Paraguay.</p>
-      <p style="margin: 18px 0 0; max-width: 560px; font-size: 15px; line-height: 1.85; font-weight: 400; color: #636C77;">Analizamos oportunidades provenientes de diferentes mercados y buscamos construir relaciones comerciales basadas en:</p>
+      <p style="margin: 0; max-width: 560px; font-size: 16.5px; line-height: 1.85; font-weight: 400; color: #9FA7AF;">SACC Medical Group desarrolla relaciones con fabricantes, laboratorios y compañías internacionales interesados en establecer o ampliar su presencia en Paraguay.</p>
+      <p style="margin: 18px 0 0; max-width: 560px; font-size: 16.5px; line-height: 1.85; font-weight: 400; color: #636C77;">Analizamos oportunidades provenientes de diferentes mercados y buscamos construir relaciones comerciales basadas en:</p>
     </div>
 
     <div data-reveal="1" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: rgba(245,246,246,.10); border: 1px solid rgba(245,246,246,.10); opacity: 0; transform: translateY(24px); transition: opacity 1000ms cubic-bezier(.16,.8,.24,1) 150ms, transform 1000ms cubic-bezier(.16,.8,.24,1) 150ms;">
-      <div style="background: #0B1626; padding: 18px 18px; font-size: 12.5px; letter-spacing: .1em; text-transform: uppercase; color: #BFC4C9; transition: color 500ms, background 500ms;" style-hover="color: var(--accent, #B9BFC4); background: #0D1A2B;">Quality</div>
-      <div style="background: #0B1626; padding: 18px 18px; font-size: 12.5px; letter-spacing: .1em; text-transform: uppercase; color: #BFC4C9; transition: color 500ms, background 500ms;" style-hover="color: var(--accent, #B9BFC4); background: #0D1A2B;">Regulatory Compliance</div>
-      <div style="background: #0B1626; padding: 18px 18px; font-size: 12.5px; letter-spacing: .1em; text-transform: uppercase; color: #BFC4C9; transition: color 500ms, background 500ms;" style-hover="color: var(--accent, #B9BFC4); background: #0D1A2B;">Competitiveness</div>
-      <div style="background: #0B1626; padding: 18px 18px; font-size: 12.5px; letter-spacing: .1em; text-transform: uppercase; color: #BFC4C9; transition: color 500ms, background 500ms;" style-hover="color: var(--accent, #B9BFC4); background: #0D1A2B;">Supply Continuity</div>
-      <div style="background: #0B1626; padding: 18px 18px; font-size: 12.5px; letter-spacing: .1em; text-transform: uppercase; color: #BFC4C9; transition: color 500ms, background 500ms;" style-hover="color: var(--accent, #B9BFC4); background: #0D1A2B;">Commercial Sustainability</div>
-      <div style="background: #0B1626; padding: 18px 18px; font-size: 12.5px; letter-spacing: .1em; text-transform: uppercase; color: #BFC4C9; transition: color 500ms, background 500ms;" style-hover="color: var(--accent, #B9BFC4); background: #0D1A2B;">Market Development</div>
+      <div style="background: #0B1626; padding: 18px 18px; font-size: 13.5px; letter-spacing: .1em; text-transform: uppercase; color: #BFC4C9; transition: color 500ms, background 500ms;" style-hover="color: var(--accent, #B9BFC4); background: #0D1A2B;">Quality</div>
+      <div style="background: #0B1626; padding: 18px 18px; font-size: 13.5px; letter-spacing: .1em; text-transform: uppercase; color: #BFC4C9; transition: color 500ms, background 500ms;" style-hover="color: var(--accent, #B9BFC4); background: #0D1A2B;">Regulatory Compliance</div>
+      <div style="background: #0B1626; padding: 18px 18px; font-size: 13.5px; letter-spacing: .1em; text-transform: uppercase; color: #BFC4C9; transition: color 500ms, background 500ms;" style-hover="color: var(--accent, #B9BFC4); background: #0D1A2B;">Competitiveness</div>
+      <div style="background: #0B1626; padding: 18px 18px; font-size: 13.5px; letter-spacing: .1em; text-transform: uppercase; color: #BFC4C9; transition: color 500ms, background 500ms;" style-hover="color: var(--accent, #B9BFC4); background: #0D1A2B;">Supply Continuity</div>
+      <div style="background: #0B1626; padding: 18px 18px; font-size: 13.5px; letter-spacing: .1em; text-transform: uppercase; color: #BFC4C9; transition: color 500ms, background 500ms;" style-hover="color: var(--accent, #B9BFC4); background: #0D1A2B;">Commercial Sustainability</div>
+      <div style="background: #0B1626; padding: 18px 18px; font-size: 13.5px; letter-spacing: .1em; text-transform: uppercase; color: #BFC4C9; transition: color 500ms, background 500ms;" style-hover="color: var(--accent, #B9BFC4); background: #0D1A2B;">Market Development</div>
     </div>
 
     </div>
@@ -527,7 +527,7 @@
     <div data-reveal="1" style="max-width: 640px; opacity: 0; transform: translateY(24px); transition: opacity 1000ms cubic-bezier(.16,.8,.24,1), transform 1000ms cubic-bezier(.16,.8,.24,1);">
       <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 30px;">
         <span style="width: 48px; height: 1px; background: #979FA8;"></span>
-        <span style="font-size: 10px; letter-spacing: .4em; text-transform: uppercase; color: #485463;">Nuestro modelo</span>
+        <span style="font-size: 11.5px; letter-spacing: .4em; text-transform: uppercase; color: #485463;">Nuestro modelo</span>
       </div>
       <h2 style="margin: 0; font-weight: 300; font-size: clamp(28px, 3.6vw, 54px); line-height: 1.12; letter-spacing: -.015em; color: #132133;">Cuatro etapas, un mismo estándar de ejecución.</h2>
     </div>
@@ -543,26 +543,26 @@
       </div>
       <div style="margin-top: 18px; display: flex; align-items: center; gap: 10px;">
         <span style="height: 1px; flex: 1; background: rgba(11,22,38,.14); position: relative;"><span style="position: absolute; left: 0; top: 0; height: 1px; background: #979FA8; width: {{ pillarProgress }}; transition: width 700ms cubic-bezier(.16,.8,.24,1);"></span></span>
-        <span style="font-family: Poppins, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif; letter-spacing: .045em; font-size: 12px; letter-spacing: .1em; color: #485463;">{{ pillarCounter }}</span>
+        <span style="font-family: Poppins, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif; letter-spacing: .045em; font-size: 13px; letter-spacing: .1em; color: #485463;">{{ pillarCounter }}</span>
       </div>
     </div>
 
     <div>
       <div data-pillar="0" style="min-height: clamp(360px, 48vw, 560px); display: flex; flex-direction: column; justify-content: center; border-top: 1px solid rgba(11,22,38,.12); padding: 40px 0;">
         <h3 style="margin: 0 0 18px; font-weight: 400; font-size: clamp(22px, 2.4vw, 34px); letter-spacing: -.01em; color: #132133;">Product Development</h3>
-        <p style="margin: 0; max-width: 460px; font-size: 15px; line-height: 1.85; font-weight: 400; color: #1B2C42;">Identificamos productos y tecnologías con potencial para el mercado paraguayo.</p>
+        <p style="margin: 0; max-width: 460px; font-size: 16.5px; line-height: 1.85; font-weight: 400; color: #1B2C42;">Identificamos productos y tecnologías con potencial para el mercado paraguayo.</p>
       </div>
       <div data-pillar="1" style="min-height: clamp(360px, 48vw, 560px); display: flex; flex-direction: column; justify-content: center; border-top: 1px solid rgba(11,22,38,.12); padding: 40px 0;">
         <h3 style="margin: 0 0 18px; font-weight: 400; font-size: clamp(22px, 2.4vw, 34px); letter-spacing: -.01em; color: #132133;">Regulatory Strategy</h3>
-        <p style="margin: 0; max-width: 460px; font-size: 15px; line-height: 1.85; font-weight: 400; color: #1B2C42;">Evaluamos los requisitos regulatorios y documentales necesarios para su introducción.</p>
+        <p style="margin: 0; max-width: 460px; font-size: 16.5px; line-height: 1.85; font-weight: 400; color: #1B2C42;">Evaluamos los requisitos regulatorios y documentales necesarios para su introducción.</p>
       </div>
       <div data-pillar="2" style="min-height: clamp(360px, 48vw, 560px); display: flex; flex-direction: column; justify-content: center; border-top: 1px solid rgba(11,22,38,.12); padding: 40px 0;">
         <h3 style="margin: 0 0 18px; font-weight: 400; font-size: clamp(22px, 2.4vw, 34px); letter-spacing: -.01em; color: #132133;">Market Access</h3>
-        <p style="margin: 0; max-width: 460px; font-size: 15px; line-height: 1.85; font-weight: 400; color: #1B2C42;">Diseñamos la estrategia para acceder al mercado privado, hospitalario e institucional.</p>
+        <p style="margin: 0; max-width: 460px; font-size: 16.5px; line-height: 1.85; font-weight: 400; color: #1B2C42;">Diseñamos la estrategia para acceder al mercado privado, hospitalario e institucional.</p>
       </div>
       <div data-pillar="3" style="min-height: clamp(360px, 48vw, 560px); display: flex; flex-direction: column; justify-content: center; border-top: 1px solid rgba(11,22,38,.12); border-bottom: 1px solid rgba(11,22,38,.12); padding: 40px 0;">
         <h3 style="margin: 0 0 18px; font-weight: 400; font-size: clamp(22px, 2.4vw, 34px); letter-spacing: -.01em; color: #132133;">Commercial Development</h3>
-        <p style="margin: 0; max-width: 460px; font-size: 15px; line-height: 1.85; font-weight: 400; color: #1B2C42;">Construimos las condiciones comerciales necesarias para desarrollar cada producto en el largo plazo.</p>
+        <p style="margin: 0; max-width: 460px; font-size: 16.5px; line-height: 1.85; font-weight: 400; color: #1B2C42;">Construimos las condiciones comerciales necesarias para desarrollar cada producto en el largo plazo.</p>
       </div>
     </div>
   </div>
@@ -572,7 +572,7 @@
   <div style="max-width: 1500px; margin: 0 auto;">
     <div data-reveal="1" style="display: flex; align-items: center; gap: 14px; margin-bottom: clamp(26px, 3.2vw, 46px); opacity: 0; transform: translateY(20px); transition: opacity 900ms cubic-bezier(.16,.8,.24,1), transform 900ms cubic-bezier(.16,.8,.24,1);">
       <span style="width: 48px; height: 1px; background: var(--accent, #B9BFC4);"></span>
-      <span style="font-size: 10px; letter-spacing: .4em; text-transform: uppercase; color: #8F98A1;">Who we work with</span>
+      <span style="font-size: 11.5px; letter-spacing: .4em; text-transform: uppercase; color: #8F98A1;">Who we work with</span>
     </div>
     <div style="display: flex; flex-wrap: wrap; gap: 0 clamp(20px, 3vw, 46px); max-width: 1180px;">
       <span data-reveal="1" style="font-weight: 200; font-size: clamp(21px, 3vw, 44px); line-height: 1.18; letter-spacing: -.02em; color: #F5F6F6; opacity: 0; transform: translateX(-64px); transition: opacity 850ms cubic-bezier(.16,.8,.24,1) 40ms, transform 850ms cubic-bezier(.16,.8,.24,1) 40ms;">Manufacturers</span>
@@ -600,7 +600,7 @@
   <div style="max-width: 1500px; margin: 0 auto;">
     <div data-reveal="1" style="display: flex; align-items: center; gap: 18px; margin-bottom: clamp(32px, 4vw, 56px); opacity: 0; transform: translateY(20px); transition: opacity 900ms cubic-bezier(.16,.8,.24,1), transform 900ms cubic-bezier(.16,.8,.24,1);">
       <span style="width: 64px; height: 1px; background: var(--accent, #B9BFC4);"></span>
-      <span style="font-size: 14px; letter-spacing: .34em; text-transform: uppercase; color: #BBC0C6;">Nuestros principios</span>
+      <span style="font-size: 15.5px; letter-spacing: .34em; text-transform: uppercase; color: #BBC0C6;">Nuestros principios</span>
     </div>
     <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(26px, 3.4vw, 60px) clamp(24px, 3vw, 54px); perspective: 1200px;">
       <div data-principio="1" data-card3d="1" data-reveal="1" style="opacity: 0; transform: translateY(26px); transition: opacity 900ms cubic-bezier(.16,.8,.24,1) 0ms, transform 900ms cubic-bezier(.16,.8,.24,1) 0ms;">
@@ -703,16 +703,16 @@
     <div data-reveal="1" style="opacity: 0; transform: translateY(24px); transition: opacity 1000ms cubic-bezier(.16,.8,.24,1), transform 1000ms cubic-bezier(.16,.8,.24,1);">
       <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 30px;">
         <span style="width: 48px; height: 1px; background: #979FA8;"></span>
-        <span style="font-size: 10px; letter-spacing: .4em; text-transform: uppercase; color: #485463;">Local Market Expertise</span>
+        <span style="font-size: 11.5px; letter-spacing: .4em; text-transform: uppercase; color: #485463;">Local Market Expertise</span>
       </div>
       <h2 style="margin: 0 0 28px; font-weight: 300; font-size: clamp(28px, 3.6vw, 54px); line-height: 1.12; letter-spacing: -.015em; color: #132133;">Paraguay.<br /><em style="font-family: Poppins, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif; letter-spacing: .045em; font-style: normal; font-weight: 400;">A growing healthcare market.</em></h2>
-      <p style="margin: 0 0 18px; font-size: 15px; line-height: 1.85; font-weight: 400; color: #303B48;">Paraguay cuenta con un importante mercado sanitario compuesto por instituciones públicas y privadas.</p>
-      <p style="margin: 0 0 18px; font-size: 15px; line-height: 1.85; font-weight: 400; color: #1B2C42;">SACC Medical Group analiza oportunidades dentro de ambos segmentos y desarrolla estrategias adaptadas a las características técnicas, regulatorias y comerciales de cada producto.</p>
-      <p style="margin: 0; font-size: 15px; line-height: 1.85; font-weight: 400; color: #1B2C42;">El conocimiento de los procesos de adquisición, requisitos regulatorios y dinámica institucional constituye una parte relevante de nuestra metodología de acceso al mercado.</p>
+      <p style="margin: 0 0 18px; font-size: 16.5px; line-height: 1.85; font-weight: 400; color: #303B48;">Paraguay cuenta con un importante mercado sanitario compuesto por instituciones públicas y privadas.</p>
+      <p style="margin: 0 0 18px; font-size: 16.5px; line-height: 1.85; font-weight: 400; color: #1B2C42;">SACC Medical Group analiza oportunidades dentro de ambos segmentos y desarrolla estrategias adaptadas a las características técnicas, regulatorias y comerciales de cada producto.</p>
+      <p style="margin: 0; font-size: 16.5px; line-height: 1.85; font-weight: 400; color: #1B2C42;">El conocimiento de los procesos de adquisición, requisitos regulatorios y dinámica institucional constituye una parte relevante de nuestra metodología de acceso al mercado.</p>
       <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 50px; border-top: 1px solid rgba(11,22,38,.12); padding-top: 26px;">
-        <div><div style="font-size: 10.5px; letter-spacing: .16em; text-transform: uppercase; color: #485463;">Mercado privado</div></div>
-        <div><div style="font-size: 10.5px; letter-spacing: .16em; text-transform: uppercase; color: #485463;">Mercado hospitalario</div></div>
-        <div><div style="font-size: 10.5px; letter-spacing: .16em; text-transform: uppercase; color: #485463;">Mercado institucional</div></div>
+        <div><div style="font-size: 11.5px; letter-spacing: .16em; text-transform: uppercase; color: #485463;">Mercado privado</div></div>
+        <div><div style="font-size: 11.5px; letter-spacing: .16em; text-transform: uppercase; color: #485463;">Mercado hospitalario</div></div>
+        <div><div style="font-size: 11.5px; letter-spacing: .16em; text-transform: uppercase; color: #485463;">Mercado institucional</div></div>
       </div>
     </div>
     <div data-reveal="1" style="position: relative; width: 100%; max-width: 600px; margin: 0 auto; aspect-ratio: 1 / 1; display: flex; align-items: center; justify-content: center; opacity: 0; transform: translateY(24px); transition: opacity 1200ms cubic-bezier(.16,.8,.24,1) 150ms, transform 1200ms cubic-bezier(.16,.8,.24,1) 150ms;">
@@ -729,10 +729,10 @@
   <div style="position: relative; max-width: 1300px; margin: 0 auto;">
     <h2 data-reveal="1" style="margin: 0; font-weight: 200; font-size: clamp(23px, 3vw, 44px); line-height: 1.25; letter-spacing: -.02em; color: #F5F6F6; opacity: 0; transform: translateY(26px); transition: opacity 1200ms cubic-bezier(.16,.8,.24,1), transform 1200ms cubic-bezier(.16,.8,.24,1);">Conectar al Paraguay con productos, tecnologías y compañías capaces de contribuir al desarrollo de una <em style="font-family: Poppins, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif; letter-spacing: .045em; font-style: normal; font-weight: 400; color: var(--accent, #B9BFC4);">atención sanitaria moderna, competitiva y de calidad.</em></h2>
     <div data-reveal="1" style="margin-top: clamp(32px, 4vw, 58px); display: flex; flex-wrap: wrap; align-items: baseline; gap: 14px clamp(20px, 3vw, 44px); border-top: 1px solid rgba(245,246,246,.12); padding-top: 22px; opacity: 0; transform: translateY(20px); transition: opacity 1000ms cubic-bezier(.16,.8,.24,1) 180ms, transform 1000ms cubic-bezier(.16,.8,.24,1) 180ms;">
-      <span style="font-family: Poppins, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif; letter-spacing: .045em; font-size: 15px; letter-spacing: .14em; color: #F5F6F6;">SACC MEDICAL GROUP</span>
-      <span style="font-size: 10.5px; letter-spacing: .3em; text-transform: uppercase; color: #BBC0C6;">Healthcare</span>
-      <span style="font-size: 10.5px; letter-spacing: .3em; text-transform: uppercase; color: #BBC0C6;">Regulatory</span>
-      <span style="font-size: 10.5px; letter-spacing: .3em; text-transform: uppercase; color: #BBC0C6;">Market Access</span>
+      <span style="font-family: Poppins, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif; letter-spacing: .045em; font-size: 16.5px; letter-spacing: .14em; color: #F5F6F6;">SACC MEDICAL GROUP</span>
+      <span style="font-size: 11.5px; letter-spacing: .3em; text-transform: uppercase; color: #BBC0C6;">Healthcare</span>
+      <span style="font-size: 11.5px; letter-spacing: .3em; text-transform: uppercase; color: #BBC0C6;">Regulatory</span>
+      <span style="font-size: 11.5px; letter-spacing: .3em; text-transform: uppercase; color: #BBC0C6;">Market Access</span>
     </div>
   </div>
 </section>
@@ -742,29 +742,29 @@
 
     <div data-reveal="1" style="display: flex; align-items: center; justify-content: center; gap: 16px; opacity: 0; transform: translateY(20px); transition: opacity 1000ms cubic-bezier(.16,.8,.24,1) 0ms, transform 1000ms cubic-bezier(.16,.8,.24,1) 0ms;">
       <span style="width: clamp(26px, 4vw, 52px); height: 1px; background: #979FA8;"></span>
-      <span style="font-size: 10px; letter-spacing: .4em; text-transform: uppercase; color: #485463;">Contacto</span>
+      <span style="font-size: 11.5px; letter-spacing: .4em; text-transform: uppercase; color: #485463;">Contacto</span>
       <span style="width: clamp(26px, 4vw, 52px); height: 1px; background: #979FA8;"></span>
     </div>
 
     <h2 data-reveal="1" style="margin: clamp(26px, 3vw, 42px) 0 0; font-weight: 300; font-size: clamp(27px, 3.4vw, 50px); line-height: 1.12; letter-spacing: -.02em; color: #132133; opacity: 0; transform: translateY(24px); transition: opacity 1000ms cubic-bezier(.16,.8,.24,1) 120ms, transform 1000ms cubic-bezier(.16,.8,.24,1) 120ms;">Let's develop the Paraguayan<br /><em style="font-family: Poppins, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif; letter-spacing: .045em; font-style: normal; font-weight: 400;">healthcare market together.</em></h2>
 
-    <p data-reveal="1" style="margin: clamp(20px, 2.4vw, 30px) auto 0; max-width: 520px; font-size: 15px; line-height: 1.8; font-weight: 400; color: #1B2C42; opacity: 0; transform: translateY(24px); transition: opacity 1000ms cubic-bezier(.16,.8,.24,1) 220ms, transform 1000ms cubic-bezier(.16,.8,.24,1) 220ms;" data-sacc="contacto-bajada">If your company is exploring opportunities in Paraguay, let's talk.</p>
+    <p data-reveal="1" style="margin: clamp(20px, 2.4vw, 30px) auto 0; max-width: 520px; font-size: 16.5px; line-height: 1.8; font-weight: 400; color: #1B2C42; opacity: 0; transform: translateY(24px); transition: opacity 1000ms cubic-bezier(.16,.8,.24,1) 220ms, transform 1000ms cubic-bezier(.16,.8,.24,1) 220ms;" data-sacc="contacto-bajada">If your company is exploring opportunities in Paraguay, let's talk.</p>
 
     <div data-reveal="1" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; margin-top: clamp(30px, 3.6vw, 46px); opacity: 0; transform: translateY(24px); transition: opacity 1000ms cubic-bezier(.16,.8,.24,1) 320ms, transform 1000ms cubic-bezier(.16,.8,.24,1) 320ms;">
-      <a href="mailto:info@saccmedicalgroup.com" style="padding: 17px 32px; background: #132133; color: #F5F6F6; font-size: 11px; letter-spacing: .18em; text-transform: uppercase; transition: background 500ms, transform 500ms cubic-bezier(.16,.8,.24,1);" style-hover="background: var(--accent, #B9BFC4); color: #0B1626; transform: translateY(-2px);">Contact SACC Medical Group</a>
-      <a href="mailto:info@saccmedicalgroup.com" style="padding: 17px 32px; border: 1px solid rgba(11,22,38,.25); color: #132133; font-size: 11px; letter-spacing: .18em; text-transform: uppercase; transition: border-color 500ms, color 500ms, transform 500ms cubic-bezier(.16,.8,.24,1);" style-hover="border-color: #979FA8; color: #555D65; transform: translateY(-2px);">Business Partnership</a>
+      <a href="mailto:info@saccmedicalgroup.com" style="padding: 17px 32px; background: #132133; color: #F5F6F6; font-size: 12px; letter-spacing: .18em; text-transform: uppercase; transition: background 500ms, transform 500ms cubic-bezier(.16,.8,.24,1);" style-hover="background: var(--accent, #B9BFC4); color: #0B1626; transform: translateY(-2px);">Contact SACC Medical Group</a>
+      <a href="mailto:info@saccmedicalgroup.com" style="padding: 17px 32px; border: 1px solid rgba(11,22,38,.25); color: #132133; font-size: 12px; letter-spacing: .18em; text-transform: uppercase; transition: border-color 500ms, color 500ms, transform 500ms cubic-bezier(.16,.8,.24,1);" style-hover="border-color: #979FA8; color: #555D65; transform: translateY(-2px);">Business Partnership</a>
     </div>
 
     <form data-form-contacto="1" novalidate="novalidate" style="margin: clamp(40px, 5vw, 64px) auto 0; max-width: 660px; text-align: left;">
       <div data-reveal="1" style="display: grid; grid-template-columns: 1fr 1fr; gap: clamp(16px, 1.8vw, 22px); opacity: 0; transform: translateY(20px); transition: opacity 900ms cubic-bezier(.16,.8,.24,1) 0ms, transform 900ms cubic-bezier(.16,.8,.24,1) 0ms;">
-        <div><label for="sacc-nombre" style="display: block; font-size: 10px; letter-spacing: .26em; text-transform: uppercase; color: #485463; margin-bottom: 9px;">Full name</label><input id="sacc-nombre" name="sacc-nombre" type="text" required="required" autocomplete="name" style="width: 100%; box-sizing: border-box; font-family: inherit; font-size: 15px; font-weight: 400; color: #132133; background: #FFFFFF; border: 1px solid rgba(11,22,38,.18); padding: 13px 14px; transition: border-color 300ms;" /></div>
-        <div><label for="sacc-empresa" style="display: block; font-size: 10px; letter-spacing: .26em; text-transform: uppercase; color: #485463; margin-bottom: 9px;">Organization</label><input id="sacc-empresa" name="sacc-empresa" type="text" autocomplete="organization" style="width: 100%; box-sizing: border-box; font-family: inherit; font-size: 15px; font-weight: 400; color: #132133; background: #FFFFFF; border: 1px solid rgba(11,22,38,.18); padding: 13px 14px; transition: border-color 300ms;" /></div>
-        <div><label for="sacc-email" style="display: block; font-size: 10px; letter-spacing: .26em; text-transform: uppercase; color: #485463; margin-bottom: 9px;">Work email</label><input id="sacc-email" name="sacc-email" type="email" required="required" autocomplete="email" style="width: 100%; box-sizing: border-box; font-family: inherit; font-size: 15px; font-weight: 400; color: #132133; background: #FFFFFF; border: 1px solid rgba(11,22,38,.18); padding: 13px 14px; transition: border-color 300ms;" /></div>
-        <div><label for="sacc-telefono" style="display: block; font-size: 10px; letter-spacing: .26em; text-transform: uppercase; color: #485463; margin-bottom: 9px;">Phone (optional)</label><input id="sacc-telefono" name="sacc-telefono" type="tel" autocomplete="tel" style="width: 100%; box-sizing: border-box; font-family: inherit; font-size: 15px; font-weight: 400; color: #132133; background: #FFFFFF; border: 1px solid rgba(11,22,38,.18); padding: 13px 14px; transition: border-color 300ms;" /></div>
+        <div><label for="sacc-nombre" style="display: block; font-size: 11.5px; letter-spacing: .26em; text-transform: uppercase; color: #485463; margin-bottom: 9px;">Full name</label><input id="sacc-nombre" name="sacc-nombre" type="text" required="required" autocomplete="name" style="width: 100%; box-sizing: border-box; font-family: inherit; font-size: 16.5px; font-weight: 400; color: #132133; background: #FFFFFF; border: 1px solid rgba(11,22,38,.18); padding: 13px 14px; transition: border-color 300ms;" /></div>
+        <div><label for="sacc-empresa" style="display: block; font-size: 11.5px; letter-spacing: .26em; text-transform: uppercase; color: #485463; margin-bottom: 9px;">Organization</label><input id="sacc-empresa" name="sacc-empresa" type="text" autocomplete="organization" style="width: 100%; box-sizing: border-box; font-family: inherit; font-size: 16.5px; font-weight: 400; color: #132133; background: #FFFFFF; border: 1px solid rgba(11,22,38,.18); padding: 13px 14px; transition: border-color 300ms;" /></div>
+        <div><label for="sacc-email" style="display: block; font-size: 11.5px; letter-spacing: .26em; text-transform: uppercase; color: #485463; margin-bottom: 9px;">Work email</label><input id="sacc-email" name="sacc-email" type="email" required="required" autocomplete="email" style="width: 100%; box-sizing: border-box; font-family: inherit; font-size: 16.5px; font-weight: 400; color: #132133; background: #FFFFFF; border: 1px solid rgba(11,22,38,.18); padding: 13px 14px; transition: border-color 300ms;" /></div>
+        <div><label for="sacc-telefono" style="display: block; font-size: 11.5px; letter-spacing: .26em; text-transform: uppercase; color: #485463; margin-bottom: 9px;">Phone (optional)</label><input id="sacc-telefono" name="sacc-telefono" type="tel" autocomplete="tel" style="width: 100%; box-sizing: border-box; font-family: inherit; font-size: 16.5px; font-weight: 400; color: #132133; background: #FFFFFF; border: 1px solid rgba(11,22,38,.18); padding: 13px 14px; transition: border-color 300ms;" /></div>
       </div>
       <div data-reveal="1" style="margin-top: clamp(16px, 1.8vw, 22px); opacity: 0; transform: translateY(20px); transition: opacity 900ms cubic-bezier(.16,.8,.24,1) 90ms, transform 900ms cubic-bezier(.16,.8,.24,1) 90ms;">
-        <label for="sacc-interes" style="display: block; font-size: 10px; letter-spacing: .26em; text-transform: uppercase; color: #485463; margin-bottom: 9px;">Reason for contact</label>
-        <select id="sacc-interes" name="sacc-interes" style="width: 100%; box-sizing: border-box; font-family: inherit; font-size: 15px; font-weight: 400; color: #132133; background: #FFFFFF; border: 1px solid rgba(11,22,38,.18); padding: 13px 14px; transition: border-color 300ms;">
+        <label for="sacc-interes" style="display: block; font-size: 11.5px; letter-spacing: .26em; text-transform: uppercase; color: #485463; margin-bottom: 9px;">Reason for contact</label>
+        <select id="sacc-interes" name="sacc-interes" style="width: 100%; box-sizing: border-box; font-family: inherit; font-size: 16.5px; font-weight: 400; color: #132133; background: #FFFFFF; border: 1px solid rgba(11,22,38,.18); padding: 13px 14px; transition: border-color 300ms;">
           <option>Product representation</option>
           <option>Distribution and supply</option>
           <option>Regulatory and registration</option>
@@ -772,23 +772,23 @@
         </select>
       </div>
       <div data-reveal="1" style="margin-top: clamp(16px, 1.8vw, 22px); opacity: 0; transform: translateY(20px); transition: opacity 900ms cubic-bezier(.16,.8,.24,1) 160ms, transform 900ms cubic-bezier(.16,.8,.24,1) 160ms;">
-        <label for="sacc-mensaje" style="display: block; font-size: 10px; letter-spacing: .26em; text-transform: uppercase; color: #485463; margin-bottom: 9px;">Message</label>
-        <textarea id="sacc-mensaje" name="sacc-mensaje" rows="5" required="required" style="width: 100%; box-sizing: border-box; font-family: inherit; font-size: 15px; font-weight: 400; color: #132133; background: #FFFFFF; border: 1px solid rgba(11,22,38,.18); padding: 13px 14px; transition: border-color 300ms; resize: vertical; line-height: 1.7;"></textarea>
+        <label for="sacc-mensaje" style="display: block; font-size: 11.5px; letter-spacing: .26em; text-transform: uppercase; color: #485463; margin-bottom: 9px;">Message</label>
+        <textarea id="sacc-mensaje" name="sacc-mensaje" rows="5" required="required" style="width: 100%; box-sizing: border-box; font-family: inherit; font-size: 16.5px; font-weight: 400; color: #132133; background: #FFFFFF; border: 1px solid rgba(11,22,38,.18); padding: 13px 14px; transition: border-color 300ms; resize: vertical; line-height: 1.7;"></textarea>
       </div>
       <div aria-hidden="true" style="position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden;">
         <label for="sacc-sitio">Do not fill this field</label>
         <input id="sacc-sitio" name="sacc-sitio" type="text" tabindex="-1" autocomplete="off" />
       </div>
       <div data-reveal="1" style="margin-top: clamp(20px, 2.2vw, 28px); display: flex; flex-wrap: wrap; align-items: center; gap: 18px; opacity: 0; transform: translateY(20px); transition: opacity 900ms cubic-bezier(.16,.8,.24,1) 230ms, transform 900ms cubic-bezier(.16,.8,.24,1) 230ms;">
-        <button type="submit" data-form-enviar="1" style="font-family: inherit; padding: 17px 32px; background: #132133; color: #F5F6F6; border: none; cursor: pointer; font-size: 11px; letter-spacing: .18em; text-transform: uppercase; transition: background 500ms, transform 500ms cubic-bezier(.16,.8,.24,1);" style-hover="background: var(--accent, #B9BFC4); color: #0B1626; transform: translateY(-2px);">Send message</button>
+        <button type="submit" data-form-enviar="1" style="font-family: inherit; padding: 17px 32px; background: #132133; color: #F5F6F6; border: none; cursor: pointer; font-size: 12px; letter-spacing: .18em; text-transform: uppercase; transition: background 500ms, transform 500ms cubic-bezier(.16,.8,.24,1);" style-hover="background: var(--accent, #B9BFC4); color: #0B1626; transform: translateY(-2px);">Send message</button>
         <p data-form-aviso="1" role="status" aria-live="polite" style="margin: 0; flex: 1 1 240px; min-height: 20px; font-size: 13.5px; line-height: 1.6; font-weight: 400; color: #485463;"></p>
       </div>
-      <p data-reveal="1" style="margin: clamp(16px, 1.8vw, 22px) 0 0; font-size: 12.5px; line-height: 1.7; font-weight: 400; color: #646F7D; opacity: 0; transform: translateY(16px); transition: opacity 900ms cubic-bezier(.16,.8,.24,1) 300ms, transform 900ms cubic-bezier(.16,.8,.24,1) 300ms;">Your data is used only to answer this enquiry. <a href="/privacidad" style="color: #3F5E80; border-bottom: 1px solid rgba(63,94,128,.35);">Política de privacidad</a></p>
+      <p data-reveal="1" style="margin: clamp(16px, 1.8vw, 22px) 0 0; font-size: 13.5px; line-height: 1.7; font-weight: 400; color: #646F7D; opacity: 0; transform: translateY(16px); transition: opacity 900ms cubic-bezier(.16,.8,.24,1) 300ms, transform 900ms cubic-bezier(.16,.8,.24,1) 300ms;">Your data is used only to answer this enquiry. <a href="/privacidad" style="color: #3F5E80; border-bottom: 1px solid rgba(63,94,128,.35);">Política de privacidad</a></p>
     </form>
 
     <div data-reveal="1" style="margin-top: clamp(40px, 5vw, 70px); border-top: 1px solid rgba(11,22,38,.12); padding-top: clamp(24px, 3vw, 34px); display: grid; grid-template-columns: 1fr 1fr; gap: 24px; text-align: center; opacity: 0; transform: translateY(20px); transition: opacity 1000ms cubic-bezier(.16,.8,.24,1) 420ms, transform 1000ms cubic-bezier(.16,.8,.24,1) 420ms;">
-      <div><div style="font-size: 10px; letter-spacing: .26em; text-transform: uppercase; color: #485463; margin-bottom: 8px;">Email</div><div data-sacc="email" style="font-size: 14px; font-weight: 400; color: #132133;">info@saccmedicalgroup.com</div></div>
-      <div><div style="font-size: 10px; letter-spacing: .26em; text-transform: uppercase; color: #485463; margin-bottom: 8px;">Sede</div><div data-sacc="sede" style="font-size: 14px; font-weight: 400; color: #132133;">Asunción · Republic of Paraguay</div></div>
+      <div><div style="font-size: 11.5px; letter-spacing: .26em; text-transform: uppercase; color: #485463; margin-bottom: 8px;">Email</div><div data-sacc="email" style="font-size: 15.5px; font-weight: 400; color: #132133;">info@saccmedicalgroup.com</div></div>
+      <div><div style="font-size: 11.5px; letter-spacing: .26em; text-transform: uppercase; color: #485463; margin-bottom: 8px;">Sede</div><div data-sacc="sede" style="font-size: 15.5px; font-weight: 400; color: #132133;">Asunción · Republic of Paraguay</div></div>
     </div>
   </div>
 </section>
@@ -805,24 +805,24 @@
             <span style="width: 16px; height: 1px; background: var(--accent, #B9BFC4);"></span>
           </span>
         </div>
-        <p style="margin: 18px 0 0; max-width: 330px; font-size: 14px; line-height: 1.75; font-weight: 400; color: #78838E;">Connecting Global Healthcare with Paraguay.</p>
+        <p style="margin: 18px 0 0; max-width: 330px; font-size: 15.5px; line-height: 1.75; font-weight: 400; color: #78838E;">Connecting Global Healthcare with Paraguay.</p>
       </div>
       <nav style="display: flex; flex-direction: column; gap: 10px;">
-        <a href="/nosotros" style="font-size: 12.5px; letter-spacing: .08em; color: #BFC4C9; transition: color 400ms;" style-hover="color: var(--accent, #B9BFC4);">Company</a>
-        <a href="#areas" style="font-size: 12.5px; letter-spacing: .08em; color: #BFC4C9; transition: color 400ms;" style-hover="color: var(--accent, #B9BFC4);">Healthcare Solutions</a>
-        <a href="#market-access" style="font-size: 12.5px; letter-spacing: .08em; color: #BFC4C9; transition: color 400ms;" style-hover="color: var(--accent, #B9BFC4);">Market Access</a>
-        <a href="#international" style="font-size: 12.5px; letter-spacing: .08em; color: #BFC4C9; transition: color 400ms;" style-hover="color: var(--accent, #B9BFC4);">International Business</a>
-        <a href="#contacto" style="font-size: 12.5px; letter-spacing: .08em; color: #BFC4C9; transition: color 400ms;" style-hover="color: var(--accent, #B9BFC4);">Contact</a>
+        <a href="/nosotros" style="font-size: 13.5px; letter-spacing: .08em; color: #BFC4C9; transition: color 400ms;" style-hover="color: var(--accent, #B9BFC4);">Company</a>
+        <a href="#areas" style="font-size: 13.5px; letter-spacing: .08em; color: #BFC4C9; transition: color 400ms;" style-hover="color: var(--accent, #B9BFC4);">Healthcare Solutions</a>
+        <a href="#market-access" style="font-size: 13.5px; letter-spacing: .08em; color: #BFC4C9; transition: color 400ms;" style-hover="color: var(--accent, #B9BFC4);">Market Access</a>
+        <a href="#international" style="font-size: 13.5px; letter-spacing: .08em; color: #BFC4C9; transition: color 400ms;" style-hover="color: var(--accent, #B9BFC4);">International Business</a>
+        <a href="#contacto" style="font-size: 13.5px; letter-spacing: .08em; color: #BFC4C9; transition: color 400ms;" style-hover="color: var(--accent, #B9BFC4);">Contact</a>
       </nav>
       <div style="display: flex; flex-direction: column; gap: 10px;">
-        <div style="font-size: 12.5px; font-weight: 400; color: #78838E;">SACC Medical Group</div>
-        <div style="font-size: 12.5px; font-weight: 400; color: #78838E;">SACC Group EAS</div>
-        <div style="font-size: 12.5px; font-weight: 400; color: #78838E;">Republic of Paraguay</div>
-        <a href="https://www.linkedin.com" style="margin-top: 12px; font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: #F5F6F6; transition: color 400ms;" style-hover="color: var(--accent, #B9BFC4);">LinkedIn</a>
-        <a href="mailto:info@saccmedicalgroup.com" style="font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: #F5F6F6; transition: color 400ms;" style-hover="color: var(--accent, #B9BFC4);">Email</a>
+        <div style="font-size: 13.5px; font-weight: 400; color: #78838E;">SACC Medical Group</div>
+        <div style="font-size: 13.5px; font-weight: 400; color: #78838E;">SACC Group EAS</div>
+        <div style="font-size: 13.5px; font-weight: 400; color: #78838E;">Republic of Paraguay</div>
+        <a href="https://www.linkedin.com" style="margin-top: 12px; font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: #F5F6F6; transition: color 400ms;" style-hover="color: var(--accent, #B9BFC4);">LinkedIn</a>
+        <a href="mailto:info@saccmedicalgroup.com" style="font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: #F5F6F6; transition: color 400ms;" style-hover="color: var(--accent, #B9BFC4);">Email</a>
       </div>
     </div>
-    <div style="padding-top: 20px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-size: 11px; letter-spacing: .1em; color: #485463;">
+    <div style="padding-top: 20px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-size: 12px; letter-spacing: .1em; color: #485463;">
       <span>© SACC Medical Group. All rights reserved.</span>
       <span style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px 18px;">
           <a href="/privacidad" style="color: #78838E; letter-spacing: .1em; transition: color 400ms;" style-hover="color: var(--accent, #B9BFC4);">Política de privacidad</a>
