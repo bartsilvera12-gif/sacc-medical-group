@@ -17,6 +17,11 @@ Options -Indexes
 <IfModule mod_rewrite.c>
   RewriteEngine On
 
+  # La portada en la raiz. LiteSpeed (Hostinger) no siempre respeta el
+  # DirectoryIndex con espacios en el nombre y, con Options -Indexes, eso
+  # devolvia un 403 en la portada. La reescritura maneja bien los espacios.
+  RewriteRule ^$ "SACC Medical Group.dc.html" [L]
+
   # Las direcciones limpias que usa el sitio en sus propios enlaces.
   RewriteRule ^nosotros/?$ nosotros.html [L]
   RewriteRule ^privacidad/?$ politica-de-privacidad.html [L]
