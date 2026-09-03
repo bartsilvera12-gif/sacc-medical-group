@@ -1,0 +1,54 @@
+# Ruteo para Hostinger (Apache / LiteSpeed).
+#
+# vercel.json solo lo lee Vercel. Este archivo hace lo mismo para el hosting
+# de Hostinger, que si no serviria un listado de archivos en la portada y
+# devolveria 404 en /nosotros y /privacidad, que son los enlaces internos
+# del propio sitio.
+#
+# Todo lo opcional va dentro de <IfModule> para que, si el servidor no tiene
+# ese modulo, la directiva se ignore en vez de tumbar el sitio con un 500.
+
+# La portada. El archivo lleva espacios en el nombre, de ahi las comillas.
+DirectoryIndex "SACC Medical Group.dc.html"
+
+# Sin listado de directorios: sin esto, entrar a /uploads/ mostraria todo.
+Options -Indexes
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Las direcciones limpias que usa el sitio en sus propios enlaces.
+  RewriteRule ^nosotros/?$ nosotros.html [L]
+  RewriteRule ^privacidad/?$ politica-de-privacidad.html [L]
+  RewriteRule ^admin/?$ admin.html [L]
+
+  # El editor de imagenes busca este archivo; sin la regla queda un 404 en la
+  # consola de todas las paginas.
+  RewriteRule ^\.image-slots\.state\.json$ uploads/estado-slots.json [L]
+</IfModule>
+
+<IfModule mod_headers.c>
+  # El panel no se indexa ni se cachea.
+  <FilesMatch "^admin\.html$">
+    Header set X-Robots-Tag "noindex, nofollow"
+    Header set Cache-Control "no-store"
+  </FilesMatch>
+</IfModule>
+
+<IfModule mod_expires.c>
+  ExpiresActive On
+  # Las fuentes llevan el nombre fijo y no cambian: un año.
+  ExpiresByType font/woff2 "access plus 1 year"
+  ExpiresByType image/jpeg "access plus 1 month"
+  ExpiresByType image/png "access plus 1 month"
+  ExpiresByType video/mp4 "access plus 1 month"
+</IfModule>
+
+<IfModule mod_mime.c>
+  AddType font/woff2 .woff2
+</IfModule>
+
+# Nada de esto se sirve: son notas de trabajo y el esquema de la base.
+<FilesMatch "\.(sql|md)$">
+  Require all denied
+</FilesMatch>
