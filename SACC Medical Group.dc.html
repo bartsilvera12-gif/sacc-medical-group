@@ -49,6 +49,40 @@
      a esperar. El salto de vuelta al inicio cae con la banda ya fuera de la
      mascara, asi que no se ve. */
   @keyframes sacc-brillo { 0%, 55% { transform: translateX(-130%) skewX(-16deg); } 78%, 100% { transform: translateX(340%) skewX(-16deg); } }
+  /* Nuestros principios. El relleno de 1px es el borde: debajo gira el aro
+     de luz y encima el panel lo tapa todo menos ese pixel. */
+  /* align-self: start es lo que hace que el escalonado funcione: sin eso la
+     ficha se estira a lo alto de la fila y el margen de arriba se lo come,
+     asi que la tercera columna quedaba 92px mas baja que la primera. */
+  [data-principio] { align-self: start; display: flex; position: relative; overflow: hidden; padding: 1px; min-height: clamp(220px, 19vw, 280px); background: rgba(185,191,196,.13); }
+  [data-principio-aro] { position: absolute; left: 50%; top: 50%; width: 175%; aspect-ratio: 1; transform: translate(-50%, -50%) rotate(0deg); will-change: transform; background: conic-gradient(from 0deg, rgba(185,191,196,0) 0deg, rgba(185,191,196,0) 262deg, rgba(185,191,196,.45) 318deg, rgba(245,246,246,.95) 344deg, rgba(185,191,196,.4) 356deg, rgba(185,191,196,0) 360deg); animation: sacc-aro 11s linear infinite; }
+  @keyframes sacc-aro { to { transform: translate(-50%, -50%) rotate(360deg); } }
+  [data-principio-panel] { position: relative; flex: 1; display: flex; flex-direction: column; padding: clamp(24px, 2.6vw, 38px) clamp(22px, 2.4vw, 34px) clamp(26px, 2.8vw, 40px); background: linear-gradient(158deg, #17273C 0%, #111E2F 58%, #0D1928 100%); }
+  [data-principio-filete] { display: block; width: 22px; height: 2px; margin-bottom: clamp(16px, 1.8vw, 24px); background: linear-gradient(90deg, #F5F6F6 0%, rgba(185,191,196,.3) 100%); transition: width 700ms cubic-bezier(.16,.8,.24,1); }
+  [data-principio]:hover [data-principio-filete] { width: 62px; }
+  [data-principio-titulo] { font-family: Poppins, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif; font-size: clamp(21px, 2vw, 30px); font-weight: 400; letter-spacing: -.005em; line-height: 1.2; color: #F5F6F6; }
+  /* El titulo va en degradado plateado, como el logo. Se hace dentro de un
+     @supports porque si el recorte al texto no estuviera disponible y la
+     tinta ya fuera transparente, el titulo desapareceria. */
+  @supports ((-webkit-background-clip: text) or (background-clip: text)) {
+    [data-principio-titulo] { background: linear-gradient(96deg, #FFFFFF 0%, #E7EAEE 40%, #C2C8CE 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  }
+  [data-principio-texto] { margin: clamp(12px, 1.2vw, 18px) 0 0; font-size: 14.5px; line-height: 1.75; font-weight: 400; color: #B4BBC3; }
+  /* Las columnas van escalonadas: la rejilla pareja era parte de lo que
+     hacia ver este bloque como una tabla. */
+  @media (min-width: 1100px) {
+    [data-principio]:nth-child(3n+2) { margin-top: 46px; }
+    [data-principio]:nth-child(3n) { margin-top: 92px; }
+  }
+  /* En celular el aro girando son seis repintados constantes por nada: la
+     ficha es angosta y la luz apenas se aprecia. Queda un borde fijo. */
+  @media (max-width: 900px) {
+    [data-principio-aro] { animation: none; background: linear-gradient(180deg, rgba(185,191,196,.42) 0%, rgba(185,191,196,.08) 100%); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    [data-principio-aro] { animation: none; }
+  }
+
   /* Portafolio. Fondo azul, como las dos tarjetas grandes de arriba, con el
      canto plateado a la izquierda. */
   [data-portafolio] { display: flex; flex-direction: column; justify-content: space-between; gap: clamp(18px, 2vw, 26px); min-height: clamp(132px, 12vw, 168px); padding: clamp(20px, 2.2vw, 30px) clamp(18px, 2vw, 28px); background: linear-gradient(158deg, #16263B 0%, #101C2C 62%, #0C1725 100%); border: 1px solid rgba(245,246,246,.10); border-left: 3px solid #B9BFC4; box-shadow: 0 1px 2px rgba(11,22,38,.05), 0 14px 28px -16px rgba(11,22,38,.28); }
@@ -569,35 +603,53 @@
       <span style="font-size: 14px; letter-spacing: .34em; text-transform: uppercase; color: #BBC0C6;">Nuestros principios</span>
     </div>
     <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(26px, 3.4vw, 60px) clamp(24px, 3vw, 54px); perspective: 1200px;">
-      <div data-principio="1" data-card3d="1" data-reveal="1" style="border-top: 1px solid rgba(245,246,246,.16); padding-top: clamp(18px, 2vw, 26px); opacity: 0; transform: translateY(20px); transition: opacity 900ms cubic-bezier(.16,.8,.24,1) 0ms, transform 900ms cubic-bezier(.16,.8,.24,1) 0ms;">
-        <span style="display: block; width: 22px; height: 1px; background: var(--accent, #B9BFC4); margin-bottom: clamp(14px, 1.6vw, 22px);"></span>
-        <div data-principio-titulo="1" style="font-size: clamp(19px, 1.8vw, 28px); font-weight: 300; letter-spacing: -.01em; line-height: 1.25; color: #F5F6F6;">Calidad</div>
-        <p data-principio-texto="1" style="margin: clamp(12px, 1.2vw, 18px) 0 0; font-size: 14px; line-height: 1.75; font-weight: 400; color: #AAB1B8;">Seleccionamos productos y fabricantes considerando estándares técnicos, regulatorios y de calidad compatibles con las exigencias del sector sanitario.</p>
+      <div data-principio="1" data-card3d="1" data-reveal="1" style="opacity: 0; transform: translateY(26px); transition: opacity 900ms cubic-bezier(.16,.8,.24,1) 0ms, transform 900ms cubic-bezier(.16,.8,.24,1) 0ms;">
+        <span data-principio-aro="1" aria-hidden="true" style="animation-delay: 0s;"></span>
+        <div data-principio-panel="1">
+          <span data-principio-filete="1" aria-hidden="true"></span>
+          <div data-principio-titulo="1">Calidad</div>
+          <p data-principio-texto="1">Seleccionamos productos y fabricantes considerando estándares técnicos, regulatorios y de calidad compatibles con las exigencias del sector sanitario.</p>
+        </div>
       </div>
-      <div data-principio="1" data-card3d="1" data-reveal="1" style="border-top: 1px solid rgba(245,246,246,.16); padding-top: clamp(18px, 2vw, 26px); opacity: 0; transform: translateY(20px); transition: opacity 900ms cubic-bezier(.16,.8,.24,1) 90ms, transform 900ms cubic-bezier(.16,.8,.24,1) 90ms;">
-        <span style="display: block; width: 22px; height: 1px; background: var(--accent, #B9BFC4); margin-bottom: clamp(14px, 1.6vw, 22px);"></span>
-        <div data-principio-titulo="1" style="font-size: clamp(19px, 1.8vw, 28px); font-weight: 300; letter-spacing: -.01em; line-height: 1.25; color: #F5F6F6;">Cumplimiento</div>
-        <p data-principio-texto="1" style="margin: clamp(12px, 1.2vw, 18px) 0 0; font-size: 14px; line-height: 1.75; font-weight: 400; color: #AAB1B8;">La actividad médica y farmacéutica exige responsabilidad. El cumplimiento regulatorio constituye un elemento central de nuestra estrategia.</p>
+      <div data-principio="1" data-card3d="1" data-reveal="1" style="opacity: 0; transform: translateY(26px); transition: opacity 900ms cubic-bezier(.16,.8,.24,1) 120ms, transform 900ms cubic-bezier(.16,.8,.24,1) 120ms;">
+        <span data-principio-aro="1" aria-hidden="true" style="animation-delay: -1.9s;"></span>
+        <div data-principio-panel="1">
+          <span data-principio-filete="1" aria-hidden="true"></span>
+          <div data-principio-titulo="1">Cumplimiento</div>
+          <p data-principio-texto="1">La actividad médica y farmacéutica exige responsabilidad. El cumplimiento regulatorio constituye un elemento central de nuestra estrategia.</p>
+        </div>
       </div>
-      <div data-principio="1" data-card3d="1" data-reveal="1" style="border-top: 1px solid rgba(245,246,246,.16); padding-top: clamp(18px, 2vw, 26px); opacity: 0; transform: translateY(20px); transition: opacity 900ms cubic-bezier(.16,.8,.24,1) 180ms, transform 900ms cubic-bezier(.16,.8,.24,1) 180ms;">
-        <span style="display: block; width: 22px; height: 1px; background: var(--accent, #B9BFC4); margin-bottom: clamp(14px, 1.6vw, 22px);"></span>
-        <div data-principio-titulo="1" style="font-size: clamp(19px, 1.8vw, 28px); font-weight: 300; letter-spacing: -.01em; line-height: 1.25; color: #F5F6F6;">Confianza</div>
-        <p data-principio-texto="1" style="margin: clamp(12px, 1.2vw, 18px) 0 0; font-size: 14px; line-height: 1.75; font-weight: 400; color: #AAB1B8;">Construimos relaciones de largo plazo con fabricantes, clientes, profesionales e instituciones.</p>
+      <div data-principio="1" data-card3d="1" data-reveal="1" style="opacity: 0; transform: translateY(26px); transition: opacity 900ms cubic-bezier(.16,.8,.24,1) 240ms, transform 900ms cubic-bezier(.16,.8,.24,1) 240ms;">
+        <span data-principio-aro="1" aria-hidden="true" style="animation-delay: -3.8s;"></span>
+        <div data-principio-panel="1">
+          <span data-principio-filete="1" aria-hidden="true"></span>
+          <div data-principio-titulo="1">Confianza</div>
+          <p data-principio-texto="1">Construimos relaciones de largo plazo con fabricantes, clientes, profesionales e instituciones.</p>
+        </div>
       </div>
-      <div data-principio="1" data-card3d="1" data-reveal="1" style="border-top: 1px solid rgba(245,246,246,.16); padding-top: clamp(18px, 2vw, 26px); opacity: 0; transform: translateY(20px); transition: opacity 900ms cubic-bezier(.16,.8,.24,1) 270ms, transform 900ms cubic-bezier(.16,.8,.24,1) 270ms;">
-        <span style="display: block; width: 22px; height: 1px; background: var(--accent, #B9BFC4); margin-bottom: clamp(14px, 1.6vw, 22px);"></span>
-        <div data-principio-titulo="1" style="font-size: clamp(19px, 1.8vw, 28px); font-weight: 300; letter-spacing: -.01em; line-height: 1.25; color: #F5F6F6;">Innovación</div>
-        <p data-principio-texto="1" style="margin: clamp(12px, 1.2vw, 18px) 0 0; font-size: 14px; line-height: 1.75; font-weight: 400; color: #AAB1B8;">Buscamos permanentemente nuevos productos, tecnologías y modelos capaces de aportar valor al mercado sanitario.</p>
+      <div data-principio="1" data-card3d="1" data-reveal="1" style="opacity: 0; transform: translateY(26px); transition: opacity 900ms cubic-bezier(.16,.8,.24,1) 90ms, transform 900ms cubic-bezier(.16,.8,.24,1) 90ms;">
+        <span data-principio-aro="1" aria-hidden="true" style="animation-delay: -5.7s;"></span>
+        <div data-principio-panel="1">
+          <span data-principio-filete="1" aria-hidden="true"></span>
+          <div data-principio-titulo="1">Innovación</div>
+          <p data-principio-texto="1">Buscamos permanentemente nuevos productos, tecnologías y modelos capaces de aportar valor al mercado sanitario.</p>
+        </div>
       </div>
-      <div data-principio="1" data-card3d="1" data-reveal="1" style="border-top: 1px solid rgba(245,246,246,.16); padding-top: clamp(18px, 2vw, 26px); opacity: 0; transform: translateY(20px); transition: opacity 900ms cubic-bezier(.16,.8,.24,1) 360ms, transform 900ms cubic-bezier(.16,.8,.24,1) 360ms;">
-        <span style="display: block; width: 22px; height: 1px; background: var(--accent, #B9BFC4); margin-bottom: clamp(14px, 1.6vw, 22px);"></span>
-        <div data-principio-titulo="1" style="font-size: clamp(19px, 1.8vw, 28px); font-weight: 300; letter-spacing: -.01em; line-height: 1.25; color: #F5F6F6;">Acceso</div>
-        <p data-principio-texto="1" style="margin: clamp(12px, 1.2vw, 18px) 0 0; font-size: 14px; line-height: 1.75; font-weight: 400; color: #AAB1B8;">Trabajamos para facilitar la incorporación al Paraguay de soluciones médicas y farmacéuticas competitivas y de calidad.</p>
+      <div data-principio="1" data-card3d="1" data-reveal="1" style="opacity: 0; transform: translateY(26px); transition: opacity 900ms cubic-bezier(.16,.8,.24,1) 210ms, transform 900ms cubic-bezier(.16,.8,.24,1) 210ms;">
+        <span data-principio-aro="1" aria-hidden="true" style="animation-delay: -7.6s;"></span>
+        <div data-principio-panel="1">
+          <span data-principio-filete="1" aria-hidden="true"></span>
+          <div data-principio-titulo="1">Acceso</div>
+          <p data-principio-texto="1">Trabajamos para facilitar la incorporación al Paraguay de soluciones médicas y farmacéuticas competitivas y de calidad.</p>
+        </div>
       </div>
-      <div data-principio="1" data-card3d="1" data-reveal="1" style="border-top: 1px solid rgba(245,246,246,.16); padding-top: clamp(18px, 2vw, 26px); opacity: 0; transform: translateY(20px); transition: opacity 900ms cubic-bezier(.16,.8,.24,1) 450ms, transform 900ms cubic-bezier(.16,.8,.24,1) 450ms;">
-        <span style="display: block; width: 22px; height: 1px; background: var(--accent, #B9BFC4); margin-bottom: clamp(14px, 1.6vw, 22px);"></span>
-        <div data-principio-titulo="1" style="font-size: clamp(19px, 1.8vw, 28px); font-weight: 300; letter-spacing: -.01em; line-height: 1.25; color: #F5F6F6;">Desarrollo sostenible</div>
-        <p data-principio-texto="1" style="margin: clamp(12px, 1.2vw, 18px) 0 0; font-size: 14px; line-height: 1.75; font-weight: 400; color: #AAB1B8;">Priorizamos relaciones comerciales capaces de generar continuidad, crecimiento y valor para todas las partes involucradas.</p>
+      <div data-principio="1" data-card3d="1" data-reveal="1" style="opacity: 0; transform: translateY(26px); transition: opacity 900ms cubic-bezier(.16,.8,.24,1) 330ms, transform 900ms cubic-bezier(.16,.8,.24,1) 330ms;">
+        <span data-principio-aro="1" aria-hidden="true" style="animation-delay: -9.5s;"></span>
+        <div data-principio-panel="1">
+          <span data-principio-filete="1" aria-hidden="true"></span>
+          <div data-principio-titulo="1">Desarrollo sostenible</div>
+          <p data-principio-texto="1">Priorizamos relaciones comerciales capaces de generar continuidad, crecimiento y valor para todas las partes involucradas.</p>
+        </div>
       </div>
     </div>
   </div>
