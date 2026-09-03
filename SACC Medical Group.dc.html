@@ -52,6 +52,13 @@
   /* Areas de actividad. La foto se acerca despacio al pasar el cursor; la
      tarjeta no se mueve, porque el revelado de entrada le escribe
      transform: none y se pisarian. */
+  /* La entrada corre las tarjetas 44px a la izquierda. Sin recorte, la de la
+     primera columna se saldria de la pantalla y aparecia una barra
+     horizontal durante el segundo que dura la animacion. Se recorta solo en
+     horizontal: clip es la unica forma de recortar un eje y dejar el otro
+     visible, y hace falta que lo este para que no se coma las sombras.
+     Ademas, a diferencia de hidden, no crea un contenedor de scroll. */
+  [data-area-rejilla] { overflow-x: clip; overflow-y: visible; }
   [data-area] { position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; min-height: clamp(290px, 24vw, 390px); background: #0B1626; box-shadow: 0 1px 2px rgba(11,22,38,.06), 0 18px 34px -22px rgba(11,22,38,.45); }
   [data-area]:hover { box-shadow: 0 2px 5px rgba(11,22,38,.10), 0 34px 58px -24px rgba(11,22,38,.55); }
   [data-area-foto] { position: absolute; inset: 0; transform: scale(1.01); transition: transform 1300ms cubic-bezier(.16,.8,.24,1); }
@@ -61,8 +68,7 @@
   [data-area-velo] { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(11,22,38,.30) 0%, rgba(11,22,38,.48) 34%, rgba(11,22,38,.86) 68%, rgba(11,22,38,.95) 100%); transition: background 700ms; }
   [data-area]:hover [data-area-velo] { background: linear-gradient(180deg, rgba(11,22,38,.24) 0%, rgba(11,22,38,.44) 34%, rgba(11,22,38,.86) 68%, rgba(11,22,38,.95) 100%); }
   [data-area-texto] { position: relative; z-index: 1; padding: clamp(56px, 7vw, 92px) clamp(22px, 2.2vw, 32px) clamp(22px, 2.2vw, 32px); background: linear-gradient(180deg, rgba(11,22,38,0) 0%, rgba(11,22,38,.50) 26%, rgba(11,22,38,.66) 62%, rgba(11,22,38,.74) 100%); }
-  [data-area-numero] { display: block; font-size: 11px; letter-spacing: .3em; font-weight: 500; color: #FFFFFF; }
-  [data-area-filete] { display: block; width: 34px; height: 2px; margin: 13px 0 15px; background: linear-gradient(90deg, #B9BFC4 0%, rgba(185,191,196,.25) 100%); transition: width 700ms cubic-bezier(.16,.8,.24,1); }
+  [data-area-filete] { display: block; width: 34px; height: 2px; margin: 0 0 16px; background: linear-gradient(90deg, #B9BFC4 0%, rgba(185,191,196,.25) 100%); transition: width 700ms cubic-bezier(.16,.8,.24,1); }
   [data-area]:hover [data-area-filete] { width: 78px; }
   [data-area] h3 { margin: 0 0 11px; font-family: Poppins, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif; font-weight: 400; font-size: clamp(19px, 1.7vw, 25px); line-height: 1.2; letter-spacing: -.005em; color: #FFFFFF; }
   [data-area] p { margin: 0; font-size: 14.5px; line-height: 1.72; font-weight: 400; color: #D5DAE0; }
@@ -282,61 +288,55 @@
     </div>
 
     <div data-area-rejilla="1" style="margin-top: clamp(30px, 6vw, 96px); display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(12px, 1.4vw, 20px);">
-        <article data-area="0" data-reveal="1" style="opacity: 0; transform: translateY(26px); transition: opacity 900ms cubic-bezier(.16,.8,.24,1) 0ms, transform 900ms cubic-bezier(.16,.8,.24,1) 0ms, box-shadow 600ms cubic-bezier(.16,.8,.24,1);">
+        <article data-area="0" data-reveal="1" style="opacity: 0; transform: translateX(-44px); transition: opacity 900ms cubic-bezier(.16,.8,.24,1) 0ms, transform 1000ms cubic-bezier(.16,.8,.24,1) 0ms, box-shadow 600ms cubic-bezier(.16,.8,.24,1);">
           <div data-area-foto="1"><image-slot id="sacc-area-1" shape="rect" fit="cover" placeholder="Farmacéutica" src="uploads/sacc-area-1.jpg"></image-slot></div>
           <div data-area-velo="1" aria-hidden="true"></div>
           <div data-area-texto="1">
-            <span data-area-numero="1">01</span>
             <span data-area-filete="1" aria-hidden="true"></span>
             <h3>Especialidades farmacéuticas</h3>
             <p>Desarrollo e incorporación de medicamentos y líneas farmacéuticas destinadas tanto al mercado general como a áreas terapéuticas especializadas.</p>
           </div>
         </article>
-        <article data-area="1" data-reveal="1" style="opacity: 0; transform: translateY(26px); transition: opacity 900ms cubic-bezier(.16,.8,.24,1) 90ms, transform 900ms cubic-bezier(.16,.8,.24,1) 90ms, box-shadow 600ms cubic-bezier(.16,.8,.24,1);">
+        <article data-area="1" data-reveal="1" style="opacity: 0; transform: translateX(-44px); transition: opacity 900ms cubic-bezier(.16,.8,.24,1) 130ms, transform 1000ms cubic-bezier(.16,.8,.24,1) 130ms, box-shadow 600ms cubic-bezier(.16,.8,.24,1);">
           <div data-area-foto="1"><image-slot id="sacc-area-2" shape="rect" fit="cover" placeholder="Medical devices" src="uploads/sacc-area-2.jpg"></image-slot></div>
           <div data-area-velo="1" aria-hidden="true"></div>
           <div data-area-texto="1">
-            <span data-area-numero="1">02</span>
             <span data-area-filete="1" aria-hidden="true"></span>
             <h3>Medical Devices</h3>
             <p>Desarrollo de líneas de dispositivos médicos seleccionadas bajo criterios de calidad, cumplimiento regulatorio y necesidades del mercado.</p>
           </div>
         </article>
-        <article data-area="2" data-reveal="1" style="opacity: 0; transform: translateY(26px); transition: opacity 900ms cubic-bezier(.16,.8,.24,1) 180ms, transform 900ms cubic-bezier(.16,.8,.24,1) 180ms, box-shadow 600ms cubic-bezier(.16,.8,.24,1);">
+        <article data-area="2" data-reveal="1" style="opacity: 0; transform: translateX(-44px); transition: opacity 900ms cubic-bezier(.16,.8,.24,1) 260ms, transform 1000ms cubic-bezier(.16,.8,.24,1) 260ms, box-shadow 600ms cubic-bezier(.16,.8,.24,1);">
           <div data-area-foto="1"><image-slot id="sacc-area-3" shape="rect" fit="cover" placeholder="Medical supplies" src="uploads/sacc-area-3.jpg"></image-slot></div>
           <div data-area-velo="1" aria-hidden="true"></div>
           <div data-area-texto="1">
-            <span data-area-numero="1">03</span>
             <span data-area-filete="1" aria-hidden="true"></span>
             <h3>Medical Supplies</h3>
             <p>Insumos médicos y hospitalarios para hospitales, sanatorios, clínicas, laboratorios y profesionales de la salud.</p>
           </div>
         </article>
-        <article data-area="3" data-reveal="1" style="opacity: 0; transform: translateY(26px); transition: opacity 900ms cubic-bezier(.16,.8,.24,1) 0ms, transform 900ms cubic-bezier(.16,.8,.24,1) 0ms, box-shadow 600ms cubic-bezier(.16,.8,.24,1);">
+        <article data-area="3" data-reveal="1" style="opacity: 0; transform: translateX(-44px); transition: opacity 900ms cubic-bezier(.16,.8,.24,1) 0ms, transform 1000ms cubic-bezier(.16,.8,.24,1) 0ms, box-shadow 600ms cubic-bezier(.16,.8,.24,1);">
           <div data-area-foto="1"><image-slot id="sacc-area-4" shape="rect" fit="cover" placeholder="Medical equipment" src="uploads/sacc-area-4.jpg"></image-slot></div>
           <div data-area-velo="1" aria-hidden="true"></div>
           <div data-area-texto="1">
-            <span data-area-numero="1">04</span>
             <span data-area-filete="1" aria-hidden="true"></span>
             <h3>Medical Equipment</h3>
             <p>Identificación, importación y comercialización de tecnologías y equipamiento médico.</p>
           </div>
         </article>
-        <article data-area="4" data-reveal="1" style="opacity: 0; transform: translateY(26px); transition: opacity 900ms cubic-bezier(.16,.8,.24,1) 90ms, transform 900ms cubic-bezier(.16,.8,.24,1) 90ms, box-shadow 600ms cubic-bezier(.16,.8,.24,1);">
+        <article data-area="4" data-reveal="1" style="opacity: 0; transform: translateX(-44px); transition: opacity 900ms cubic-bezier(.16,.8,.24,1) 130ms, transform 1000ms cubic-bezier(.16,.8,.24,1) 130ms, box-shadow 600ms cubic-bezier(.16,.8,.24,1);">
           <div data-area-foto="1"><image-slot id="sacc-area-5" shape="rect" fit="cover" placeholder="Regulatory" src="uploads/sacc-area-5.jpg"></image-slot></div>
           <div data-area-velo="1" aria-hidden="true"></div>
           <div data-area-texto="1">
-            <span data-area-numero="1">05</span>
             <span data-area-filete="1" aria-hidden="true"></span>
             <h3>Regulatory &amp; Market Access</h3>
             <p>Evaluación regulatoria, registros sanitarios y estrategia de introducción de productos al mercado.</p>
           </div>
         </article>
-        <article data-area="5" data-reveal="1" style="opacity: 0; transform: translateY(26px); transition: opacity 900ms cubic-bezier(.16,.8,.24,1) 180ms, transform 900ms cubic-bezier(.16,.8,.24,1) 180ms, box-shadow 600ms cubic-bezier(.16,.8,.24,1);">
+        <article data-area="5" data-reveal="1" style="opacity: 0; transform: translateX(-44px); transition: opacity 900ms cubic-bezier(.16,.8,.24,1) 260ms, transform 1000ms cubic-bezier(.16,.8,.24,1) 260ms, box-shadow 600ms cubic-bezier(.16,.8,.24,1);">
           <div data-area-foto="1"><image-slot id="sacc-area-6" shape="rect" fit="cover" placeholder="International business" src="uploads/sacc-area-6.jpg"></image-slot></div>
           <div data-area-velo="1" aria-hidden="true"></div>
           <div data-area-texto="1">
-            <span data-area-numero="1">06</span>
             <span data-area-filete="1" aria-hidden="true"></span>
             <h3>International Business Development</h3>
             <p>Desarrollo de relaciones con fabricantes, laboratorios y compañías internacionales.</p>
