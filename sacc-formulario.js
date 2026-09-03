@@ -63,6 +63,21 @@
     return el && el.value ? el.value.trim() : '';
   }
 
+  // Aviso por correo a info@, best-effort. Corre solo despues de guardar en
+  // Supabase, asi que la consulta ya quedo registrada pase lo que pase aca. Si
+  // el host no tiene PHP (o el envio falla), se ignora en silencio: el guardado
+  // ya ocurrio y el usuario ya vio la confirmacion.
+  function notificar(datos) {
+    try {
+      fetch('contacto.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(datos),
+        keepalive: true,
+      }).catch(function () {});
+    } catch (e) {}
+  }
+
   document.addEventListener('submit', function (ev) {
     var form = ev.target;
     if (!form || !form.hasAttribute || !form.hasAttribute('data-form-contacto')) return;
@@ -116,6 +131,7 @@
       body: JSON.stringify(datos),
     }).then(function (r) {
       if (!r.ok) { fallar(); return; }
+      notificar(datos);
       aviso(form, t.listo, 'bien');
       form.reset();
       if (boton) { boton.disabled = false; boton.style.opacity = ''; }
