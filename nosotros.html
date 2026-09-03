@@ -198,6 +198,7 @@
   .fila[data-compacto] .lado { gap: 12px; }
   .fila[data-compacto] { gap: 16px; }
   header .fila[data-compacto][data-sin-idioma] .idiomas { display: none; }
+  .fila[data-compacto][data-sin-cta] .cta { display: none; }
   .fila[data-compacto][data-sin-bajada] .sub { display: none; }
 
   @media (max-width: 1099px) {
@@ -415,6 +416,7 @@
     fila.removeAttribute('data-nivel');
     fila.removeAttribute('data-compacto');
     fila.removeAttribute('data-sin-idioma');
+    fila.removeAttribute('data-sin-cta');
     fila.removeAttribute('data-sin-bajada');
     for (var i = 1; i <= NIVELES; i++) {
       if (!desborda()) return;
@@ -425,6 +427,8 @@
     fila.setAttribute('data-compacto', '');
     if (!desborda()) return;
     fila.setAttribute('data-sin-idioma', '');
+    if (!desborda()) return;
+    fila.setAttribute('data-sin-cta', '');
     if (!desborda()) return;
     fila.setAttribute('data-sin-bajada', '');
   }

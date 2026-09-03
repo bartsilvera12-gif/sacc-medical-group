@@ -253,11 +253,11 @@
     <div style="position: relative; width: 100%; padding: clamp(130px, 12vh, 180px) clamp(24px, 5vw, 80px) clamp(60px, 18vh, 180px); display: grid; grid-template-columns: minmax(0, 1fr); align-items: end;">
       <div style="max-width: 1000px;">
         <h1 style="margin: 0; font-weight: 300; font-size: clamp(38px, 6.4vw, 92px); line-height: 1.05; letter-spacing: -.015em; color: #F5F6F6;">
-          <span data-reveal="1" style="display: block; opacity: 0; transform: translateY(28px); transition: opacity 1100ms cubic-bezier(.16,.8,.24,1) 120ms, transform 1100ms cubic-bezier(.16,.8,.24,1) 120ms;">Connecting Global</span>
-          <span data-reveal="1" style="display: block; opacity: 0; transform: translateY(28px); transition: opacity 1100ms cubic-bezier(.16,.8,.24,1) 260ms, transform 1100ms cubic-bezier(.16,.8,.24,1) 260ms;"><em style="font-family: Poppins, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif; letter-spacing: .045em; font-style: normal; font-weight: 400; color: var(--accent, #B9BFC4);">Healthcare</em> with Paraguay.</span>
+          <span data-reveal="1" style="display: block; opacity: 0; transform: translateY(28px); transition: opacity 1100ms cubic-bezier(.16,.8,.24,1) 120ms, transform 1100ms cubic-bezier(.16,.8,.24,1) 120ms;">We Connect</span>
+          <span data-reveal="1" style="display: block; opacity: 0; transform: translateY(28px); transition: opacity 1100ms cubic-bezier(.16,.8,.24,1) 260ms, transform 1100ms cubic-bezier(.16,.8,.24,1) 260ms;"><em style="font-family: Poppins, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif; letter-spacing: .045em; font-style: normal; font-weight: 400; color: var(--accent, #B9BFC4);">Healthcare</em></span>
         </h1>
 
-        <p data-reveal="1" style="margin: clamp(24px, 3vw, 34px) 0 0; max-width: 560px; font-size: clamp(14px, 1.15vw, 16px); line-height: 1.75; font-weight: 400; color: #AAB1B8; opacity: 0; transform: translateY(18px); transition: opacity 1000ms cubic-bezier(.16,.8,.24,1) 420ms, transform 1000ms cubic-bezier(.16,.8,.24,1) 420ms;">Soluciones integrales para la introducción, desarrollo y comercialización de productos médicos y farmacéuticos en el mercado paraguayo.</p>
+        <p data-reveal="1" style="margin: clamp(24px, 3vw, 34px) 0 0; max-width: 560px; font-size: clamp(16.5px, 1.35vw, 19px); line-height: 1.7; font-weight: 400; color: #E8EBEE; text-shadow: 0 1px 14px rgba(11,22,38,.75); opacity: 0; transform: translateY(18px); transition: opacity 1000ms cubic-bezier(.16,.8,.24,1) 420ms, transform 1000ms cubic-bezier(.16,.8,.24,1) 420ms;">Soluciones integrales para la introducción, desarrollo y comercialización de productos médicos y farmacéuticos en el mercado paraguayo.</p>
 
         <div data-reveal="1" style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: clamp(30px, 4vw, 44px); opacity: 0; transform: translateY(18px); transition: opacity 1000ms cubic-bezier(.16,.8,.24,1) 560ms, transform 1000ms cubic-bezier(.16,.8,.24,1) 560ms;">
           <a href="/nosotros" style="display: inline-flex; align-items: center; gap: 10px; padding: 16px 30px; border-radius: 999px; background: var(--accent, #B9BFC4); color: #0B1626; font-size: 11px; letter-spacing: .2em; text-transform: uppercase; font-weight: 500; white-space: nowrap; transition: background 500ms, transform 500ms cubic-bezier(.16,.8,.24,1);" style-hover="background: #D4D8DB; transform: translateY(-2px);">Explore SACC <span style="font-size: 13px;">→</span></a>
@@ -919,12 +919,14 @@ class Component extends DCLogic {
     if (idiomas) idiomas.style.display = 'none';
     if (!desborda()) return;
 
-    // Paso 4: el logotipo se queda sin su bajada; la marca sigue legible.
-    if (sub) sub.style.display = 'none';
+    // Paso 4: no hay lugar sin afear el boton; queda dentro del menu, que es
+    // donde igual se repite.
+    cta.style.display = 'none';
     if (!desborda()) return;
 
-    // Paso 5: no hay lugar sin afear el boton; queda dentro del menu.
-    cta.style.display = 'none';
+    // Paso 5: recien ahora el logotipo se queda sin su bajada. Va ultimo
+    // porque "MEDICAL GROUP" es parte de la marca, no un adorno.
+    if (sub) sub.style.display = 'none';
   }
 
   layoutProceso(vertical) {
@@ -2318,7 +2320,7 @@ class Component extends DCLogic {
       'Partner with SACC': { es: 'Asociarse con SACC', en: 'Partner with SACC' },
       'Connecting Global Healthcare with Paraguay': { es: 'Conectando la salud global con Paraguay', en: 'Connecting Global Healthcare with Paraguay' },
       'Connecting Global Healthcare with Paraguay.': { es: 'Conectando la salud global con Paraguay.', en: 'Connecting Global Healthcare with Paraguay.' },
-      'Connecting Global': { es: 'Conectando la', en: 'Connecting Global' },
+      'We Connect': { es: 'Conectamos', en: 'We Connect' },
       'Healthcare': { es: 'Salud', en: 'Healthcare' },
       'with Paraguay.': { es: 'con Paraguay.', en: 'with Paraguay.' },
       'Explore SACC': { es: 'Explorar SACC', en: 'Explore SACC' },
