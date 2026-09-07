@@ -915,13 +915,16 @@ class Component extends DCLogic {
     cta.style.letterSpacing = '.16em';
     if (!desborda()) return;
 
-    // Paso 3: fuera el selector de idioma, que ya esta dentro del menu.
-    if (idiomas) idiomas.style.display = 'none';
+    // Paso 3: se suelta el boton; queda dentro del menu, que es donde igual se
+    // repite. El selector de idioma tiene que sobrevivir todo lo posible: sin
+    // el, cambiar de idioma obliga a abrir el menu, y en celular eso lo hace
+    // invisible para quien recien entra.
+    cta.style.display = 'none';
     if (!desborda()) return;
 
-    // Paso 4: no hay lugar sin afear el boton; queda dentro del menu, que es
-    // donde igual se repite.
-    cta.style.display = 'none';
+    // Paso 4: si aun asi no entra, se va el selector de idioma. Tambien esta
+    // dentro del menu.
+    if (idiomas) idiomas.style.display = 'none';
     if (!desborda()) return;
 
     // Paso 5: recien ahora el logotipo se queda sin su bajada. Va ultimo

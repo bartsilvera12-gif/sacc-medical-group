@@ -210,7 +210,6 @@
   @media (max-width: 619px) {
     .dos, .matriz { grid-template-columns: 1fr; }
     footer .rejilla { grid-template-columns: 1fr; gap: 26px; }
-    header .idiomas { display: none; }
     .cap { min-height: 0; }
   }
 </style>
@@ -426,9 +425,9 @@
     fila.removeAttribute('data-nivel');
     fila.setAttribute('data-compacto', '');
     if (!desborda()) return;
-    fila.setAttribute('data-sin-idioma', '');
-    if (!desborda()) return;
     fila.setAttribute('data-sin-cta', '');
+    if (!desborda()) return;
+    fila.setAttribute('data-sin-idioma', '');
     if (!desborda()) return;
     fila.setAttribute('data-sin-bajada', '');
   }
