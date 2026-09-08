@@ -793,6 +793,22 @@
   </div>
 </section>
 
+<section data-afiliaciones="1" style="background: #F5F6F6; padding: clamp(56px, 8vw, 118px) clamp(20px, 5vw, 72px); border-top: 1px solid rgba(11,22,38,.06);">
+  <div style="max-width: 1500px; margin: 0 auto;">
+    <div data-reveal="1" style="display: flex; align-items: center; justify-content: center; gap: 18px; margin-bottom: clamp(32px, 4.5vw, 58px); opacity: 0; transform: translateY(20px); transition: opacity 900ms cubic-bezier(.16,.8,.24,1), transform 900ms cubic-bezier(.16,.8,.24,1);">
+      <span style="width: 44px; height: 1px; background: #B9BFC4;"></span>
+      <span style="font-size: 12px; letter-spacing: .34em; text-transform: uppercase; color: #485463;">Empresa miembro de</span>
+      <span style="width: 44px; height: 1px; background: #B9BFC4;"></span>
+    </div>
+    <div data-reveal="1" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: clamp(40px, 6vw, 100px); opacity: 0; transform: translateY(20px); transition: opacity 900ms cubic-bezier(.16,.8,.24,1) 140ms, transform 900ms cubic-bezier(.16,.8,.24,1) 140ms;">
+      <a href="https://fedecapy.org.py/" target="_blank" rel="noopener" aria-label="FEDECAPY — Federación de Cámaras Binacionales y de Servicios del Paraguay" style="display: inline-flex; align-items: center; padding: 6px; transition: transform 500ms cubic-bezier(.16,.8,.24,1), opacity 400ms;" style-hover="transform: translateY(-2px); opacity: .82;">
+        <img src="uploads/marca/fedecapy-logo.png" alt="FEDECAPY" style="display: block; height: clamp(96px, 10vw, 140px); width: auto;" />
+      </a>
+      <img src="uploads/marca/capaturk-logo.jpg" alt="Cámara de Comercio Paraguay – Türkiye" style="display: block; height: clamp(96px, 10vw, 140px); width: auto;" />
+    </div>
+  </div>
+</section>
+
 <footer style="background: #0B1626; padding: clamp(38px, 4.5vw, 66px) clamp(20px, 5vw, 72px) 26px;">
   <div style="max-width: 1500px; margin: 0 auto;">
     <div style="display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: clamp(26px, 4vw, 64px); padding-bottom: clamp(28px, 3.6vw, 48px); border-bottom: 1px solid rgba(245,246,246,.10);">
@@ -822,12 +838,7 @@
         <a href="mailto:info@saccmedicalgroup.com" style="font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: #F5F6F6; transition: color 400ms;" style-hover="color: var(--accent, #B9BFC4);">Email</a>
       </div>
     </div>
-    <div style="padding-top: clamp(20px, 2.4vw, 30px); padding-bottom: clamp(16px, 2vw, 24px); display: flex; align-items: center; flex-wrap: wrap; gap: 14px 18px; font-size: 12.5px; letter-spacing: .04em; color: #78838E;">
-      <span style="width: 34px; height: 1px; background: rgba(185,191,196,.3); flex: none;"></span>
-      <span>Miembro de <a href="https://fedecapy.org.py/" target="_blank" rel="noopener" style="color: #BFC4C9; letter-spacing: .04em; transition: color 400ms;" style-hover="color: var(--accent, #B9BFC4);">FEDECAPY</a> y de la Cámara de Comercio Paraguay – Türkiye.</span>
-      <img src="uploads/marca/capaturk-logo.jpg" alt="Cámara de Comercio Paraguay – Türkiye" style="display: block; height: 60px; width: auto; margin-left: auto;" />
-    </div>
-    <div style="padding-top: 20px; border-top: 1px solid rgba(245,246,246,.10); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-size: 12px; letter-spacing: .1em; color: #485463;">
+    <div style="padding-top: 20px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-size: 12px; letter-spacing: .1em; color: #485463;">
       <span>© SACC Medical Group. All rights reserved.</span>
       <span style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px 18px;">
           <a href="/privacidad" style="color: #78838E; letter-spacing: .1em; transition: color 400ms;" style-hover="color: var(--accent, #B9BFC4);">Política de privacidad</a>
@@ -2402,8 +2413,7 @@ class Component extends DCLogic {
       'Healthcare Solutions': { es: 'Soluciones en salud', en: 'Healthcare Solutions' },
       'Contact': { es: 'Contacto', en: 'Contact' },
       '© SACC Medical Group. All rights reserved.': { es: '© SACC Medical Group. Todos los derechos reservados.', en: '© SACC Medical Group. All rights reserved.' },
-      'Miembro de': { es: 'Miembro de', en: 'Member of' },
-      'y de la Cámara de Comercio Paraguay – Türkiye.': { es: 'y de la Cámara de Comercio Paraguay – Türkiye.', en: 'and the Paraguay–Türkiye Chamber of Commerce.' },
+      'Empresa miembro de': { es: 'Empresa miembro de', en: 'Member company of' },
       'Healthcare · Regulatory · Market Access': { es: 'Salud · Regulatorio · Acceso al mercado', en: 'Healthcare · Regulatory · Market Access' },
     };
   }
