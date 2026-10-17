@@ -1,0 +1,2 @@
+# React alojado localmente: se guarda tal cual, sin tocar saltos de linea.
+vendor/*.js -text
